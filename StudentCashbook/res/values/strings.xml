@@ -18,5 +18,8 @@
     <string name="Logo">Logo</string>
     <string name="Passwort">Passwort</string>
     <string name="Anmelden">Anmelden</string>
+    <string name="Anmerkung">Anmerkung</string>
+    <string name="Datum">Datum</string>
+    <string name="Uhrzeit">Uhrzeit</string>
 
 </resources>

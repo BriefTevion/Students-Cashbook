@@ -26,14 +26,20 @@ public final class R {
         public static final int roundededittext=0x7f020002;
     }
     public static final class id {
-        public static final int Anmeldung=0x7f080003;
-        public static final int Benutzername=0x7f080004;
-        public static final int Passwort=0x7f080006;
-        public static final int Willkommen=0x7f080001;
-        public static final int action_settings=0x7f080007;
-        public static final int imageView1=0x7f080000;
-        public static final int textView1=0x7f080002;
-        public static final int textView2=0x7f080005;
+        public static final int Anmeldung=0x7f080009;
+        public static final int Anmerkung=0x7f080000;
+        public static final int Benutzername=0x7f08000a;
+        public static final int Betrag=0x7f080002;
+        public static final int Datum=0x7f080004;
+        public static final int EinnahmeBestaetigen=0x7f080001;
+        public static final int KategorieSpinner=0x7f080003;
+        public static final int Passwort=0x7f08000c;
+        public static final int Uhrzeit=0x7f080005;
+        public static final int Willkommen=0x7f080007;
+        public static final int action_settings=0x7f08000d;
+        public static final int imageView1=0x7f080006;
+        public static final int textView1=0x7f080008;
+        public static final int textView2=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_ausgabe=0x7f030000;
@@ -61,9 +67,12 @@ public final class R {
     }
     public static final class string {
         public static final int Anmelden=0x7f050010;
+        public static final int Anmerkung=0x7f050011;
         public static final int Benutzername=0x7f05000d;
+        public static final int Datum=0x7f050012;
         public static final int Logo=0x7f05000e;
         public static final int Passwort=0x7f05000f;
+        public static final int Uhrzeit=0x7f050013;
         public static final int Willkommen=0x7f05000c;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
