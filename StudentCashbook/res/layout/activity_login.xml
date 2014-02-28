@@ -66,8 +66,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/Anmeldung"
-        android:layout_below="@+id/textView2"
         android:background="@drawable/roundededittext"
+        android:layout_below="@+id/textView2"
+        
         android:ems="10"
         android:inputType="textPassword" />
 
