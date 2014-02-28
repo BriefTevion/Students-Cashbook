@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Student Cashbook</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_einnahme">EinnahmeActivity</string>
+    <string name="title_activity_ausgabe">AusgabeActivity</string>
+    <string name="title_activity_kategorien">KategorienActivity</string>
+    <string name="title_activity_monat_einnahme">MonatEinnahmeActivity</string>
+    <string name="title_activity_monat_ausgabe">MonatAusgabeActivity</string>
+    <string name="title_activity_sparziel">SparzielActivity</string>
+    <string name="title_activity_neues_sparziel">NeuesSparzielActivity</string>
+    <string name="title_activity_einstellungen">EinstellungenActivity</string>
+    <string name="Willkommen">Willkommen</string>
+    <string name="Benutzername">Benutzername</string>
+    <string name="Logo">Logo</string>
+    <string name="Passwort">Passwort</string>
+    <string name="Anmelden">Anmelden</string>
+
+</resources>
