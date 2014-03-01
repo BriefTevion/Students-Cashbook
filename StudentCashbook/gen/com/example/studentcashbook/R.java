@@ -35,17 +35,18 @@ public final class R {
         public static final int EinnahmeBestaetigen=0x7f080001;
         public static final int KategorieSpinner=0x7f080003;
         public static final int Passwort=0x7f08000d;
+        public static final int Pswdzuruecksetzen=0x7f08000f;
         public static final int RectangleOra=0x7f080006;
         public static final int Uhrzeit=0x7f080005;
         public static final int Willkommen=0x7f080008;
-        public static final int action_settings=0x7f080014;
-        public static final int anlegen=0x7f080013;
+        public static final int action_settings=0x7f080015;
+        public static final int anlegen=0x7f080012;
         public static final int imageView1=0x7f080007;
         public static final int neuerBenutzer=0x7f08000e;
-        public static final int neuerBenutzername=0x7f08000f;
+        public static final int neuerBenutzername=0x7f080011;
         public static final int neuerBenutzernameEingabe=0x7f080010;
-        public static final int neuesPasswort=0x7f080011;
-        public static final int neuesPasswortEingabe=0x7f080012;
+        public static final int neuesPasswort=0x7f080014;
+        public static final int neuesPasswortEingabe=0x7f080013;
         public static final int textView1=0x7f080009;
         public static final int textView2=0x7f08000c;
     }
@@ -86,6 +87,7 @@ public final class R {
         public static final int NeuerBenutzer=0x7f050015;
         public static final int OrangeRectangle=0x7f050014;
         public static final int Passwort=0x7f05000f;
+        public static final int PswdZurueck=0x7f050019;
         public static final int Uhrzeit=0x7f050013;
         public static final int Willkommen=0x7f05000c;
         public static final int action_settings=0x7f050001;

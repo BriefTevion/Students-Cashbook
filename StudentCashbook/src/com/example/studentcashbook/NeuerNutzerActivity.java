@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.Menu;
+import android.view.View;
 import android.widget.EditText;
 
 public class NeuerNutzerActivity extends Activity {
@@ -23,13 +24,9 @@ public class NeuerNutzerActivity extends Activity {
 		return true;
 	}
 	
-	@Override
-	protected void onStart() {
-		super.onStart();
-		
-	}
+	
 
-public void BenutzerNeuAnlegen(){
+public void BenutzerNeuAnlegen(View view){
 		
 		//Zugriff auf UI Element
 		EditText BenutzernameFeld = (EditText) findViewById(R.id.neuerBenutzernameEingabe);

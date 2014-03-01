@@ -40,7 +40,16 @@ public class LoginActivity extends Activity {
 		String Benutzername = spref.getString("USERNAME", "");
 		
 		//Werte in UI Elemente schreiben
-		BenutzernameFeld.setText(Benutzername);		
+		BenutzernameFeld.setText(Benutzername);	
+		
+		if (Benutzername != ""){
+			findViewById(R.id.neuerBenutzer).setVisibility(View.GONE);
+			findViewById(R.id.Pswdzuruecksetzen).setVisibility(View.VISIBLE);
+		}
+		else{
+			findViewById(R.id.neuerBenutzer).setVisibility(View.VISIBLE);
+			findViewById(R.id.Pswdzuruecksetzen).setVisibility(View.GONE);
+		}
 				
 				
 	}
@@ -93,12 +102,16 @@ public class LoginActivity extends Activity {
 	
 	}
 	
-	public void BenutzerAnlegen(){
+	public void BenutzerAnlegen(View view){
 		
-		//Zur Neur Nutzer Activity wechseln
+		//Zur Neuer Nutzer Activity wechseln
 		Intent intent = new Intent(this, NeuerNutzerActivity.class);	
 		startActivity(intent);
 		
+		
+	}
+	
+	public void PasswortZuruecksetzen(){
 		
 	}
 	
