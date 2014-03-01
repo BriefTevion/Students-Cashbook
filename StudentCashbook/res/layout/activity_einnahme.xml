@@ -2,14 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#84c185"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".EinnahmeActivity"
-    android:background="#84c185" >
-    
-    
+    tools:context=".EinnahmeActivity" >
     
     <EditText
         android:id="@+id/Anmerkung"
@@ -68,7 +66,7 @@
         android:layout_alignRight="@+id/KategorieSpinner"
         android:layout_marginTop="56dp"
         android:fontFamily="Tahoma"
-        android:text="@string/Datum"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -78,7 +76,15 @@
         android:layout_alignLeft="@+id/Datum"
         android:layout_below="@+id/Datum"
         android:fontFamily="Tahoma"
-        android:text="@string/Uhrzeit"
+        
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ImageView
+        android:id="@+id/RectangleOra"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/OrangeRectangle"
+        android:src="@drawable/rectangle_orange" />
 
 </RelativeLayout>

@@ -21,5 +21,10 @@
     <string name="Anmerkung">Anmerkung</string>
     <string name="Datum">Datum</string>
     <string name="Uhrzeit">Uhrzeit</string>
+    <string name="OrangeRectangle">OrangeRectangle</string>
+    <string name="NeuerBenutzer">Neu hier?</string>
+    <string name="title_activity_neuer_nutzer">NeuerNutzerActivity</string>
+    <string name="BenutzerAnlegen">Neuen Benutzer anlegen</string>
+    <string name="Anlegen">Anlegen</string>
 
 </resources>

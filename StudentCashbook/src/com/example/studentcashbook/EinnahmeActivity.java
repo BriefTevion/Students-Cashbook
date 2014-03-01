@@ -1,15 +1,34 @@
 package com.example.studentcashbook;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.TextView;
+
 
 public class EinnahmeActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+		//findViewById(R.id.Datum).setBackgroundColor(0xFF00FF00);
+		//TextView FeldZeit = (TextView) findViewById(R.id.Uhrzeit);
+		
+		//Calendar c = Calendar.getInstance();
+		//int AktuellesDatum = c.get(Calendar.DATE);
+		//FeldDatum.setText("Heute");
+		
+		
+		//Date AktuelleUhrzeit = c.getTime();
+		//FeldZeit.setText("900");
+		
 		setContentView(R.layout.activity_einnahme);
+		
 	}
 
 	@Override
