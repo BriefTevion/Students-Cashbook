@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="string_array_navigation_drawer">
+        <item>Übersicht</item>
+        <item>Monatl. Einnahmen</item>
+        <item>Monatl. Ausgaben</item>
+        <item>Kategorien</item>
+        <item>Sparziele</item>
+        <item>Einstellungen</item>
+    </string-array>
+    <string name="drawer_open">Open Navigation</string>
+    <string name="drawer_close">Close Navigation</string>
+</resources>
