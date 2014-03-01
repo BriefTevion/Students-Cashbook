@@ -22,7 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <activity 
+            android:name="com.example.studentcashbook.NeuerNutzerActivity" 
+            android:label="@string/title_activity_neuer_nutzer"
+            android:parentActivityName="com.example.studentcashbook.LoginActivity">
+        </activity><activity
             android:name="com.example.studentcashbook.MainActivity"
             android:label="@string/app_name" >
         </activity>
@@ -58,10 +62,7 @@
             android:name="com.example.studentcashbook.EinstellungenActivity"
             android:label="@string/title_activity_einstellungen" >
         </activity>
-        <activity
-            android:name="com.example.studentcashbook.NeuerNutzerActivity"
-            android:label="@string/title_activity_neuer_nutzer" >
-        </activity>
+        
     </application>
 
 </manifest>
