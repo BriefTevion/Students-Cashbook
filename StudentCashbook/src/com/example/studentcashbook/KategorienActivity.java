@@ -2,6 +2,7 @@ package com.example.studentcashbook;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class KategorienActivity extends BaseActivity {
 
@@ -15,6 +16,13 @@ public class KategorienActivity extends BaseActivity {
 	public void startAct(){
 		
 		setContentView(R.layout.activity_kategorien);
+	}
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+		
+		Toast.makeText(this, "Kategorien", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

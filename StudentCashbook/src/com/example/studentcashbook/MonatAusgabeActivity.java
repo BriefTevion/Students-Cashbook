@@ -2,6 +2,7 @@ package com.example.studentcashbook;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class MonatAusgabeActivity extends BaseActivity {
 
@@ -15,6 +16,13 @@ public class MonatAusgabeActivity extends BaseActivity {
 	public void startAct(){
 		
 		setContentView(R.layout.activity_monat_ausgabe);
+	}
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+		
+		Toast.makeText(this, "Monatl. Ausgaben", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

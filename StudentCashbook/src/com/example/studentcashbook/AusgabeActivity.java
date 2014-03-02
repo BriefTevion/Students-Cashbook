@@ -2,6 +2,7 @@ package com.example.studentcashbook;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class AusgabeActivity extends BaseActivity {
 
@@ -9,6 +10,12 @@ public class AusgabeActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+	}
+	@Override
+	protected void onStart(){
+		super.onStart();
+		
+		Toast.makeText(this, "Neue Ausgabe", Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override

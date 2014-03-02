@@ -2,6 +2,7 @@ package com.example.studentcashbook;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class NeuesSparzielActivity extends BaseActivity {
 
@@ -10,6 +11,12 @@ public class NeuesSparzielActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		
 	}
+	@Override
+	protected void onStart(){
+		super.onStart();
+		
+		Toast.makeText(this, "Neues Sparziel", Toast.LENGTH_SHORT).show();
+	}
 	
 	@Override
 	public void startAct(){
@@ -17,6 +24,9 @@ public class NeuesSparzielActivity extends BaseActivity {
 		setContentView(R.layout.activity_neues_sparziel);
 	}
 
+	
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

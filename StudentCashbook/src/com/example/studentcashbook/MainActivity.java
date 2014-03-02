@@ -2,6 +2,8 @@ package com.example.studentcashbook;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends BaseActivity {
 
@@ -13,10 +15,17 @@ public class MainActivity extends BaseActivity {
 	}
 	
 	@Override
+	protected void onStart(){
+		super.onStart();
+		
+		Toast.makeText(this, "Übersicht", Toast.LENGTH_SHORT).show();
+	}
+	@Override
 	public void startAct(){
 		
 		setContentView(R.layout.activity_main);
 	}
+
 	
 
 	@Override

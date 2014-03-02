@@ -2,6 +2,7 @@ package com.example.studentcashbook;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
 
 public class EinnahmeActivity extends BaseActivity {
@@ -24,6 +25,12 @@ public class EinnahmeActivity extends BaseActivity {
 		
 		
 		
+	}
+	@Override
+	protected void onStart(){
+		super.onStart();
+		
+		Toast.makeText(this, "Neue Einnahme", Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override
