@@ -1,15 +1,10 @@
 package com.example.studentcashbook;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
-import android.widget.TextView;
 
 
-public class EinnahmeActivity extends MainActivity {
+public class EinnahmeActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

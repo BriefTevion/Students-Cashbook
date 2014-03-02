@@ -1,10 +1,9 @@
 package com.example.studentcashbook;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class MonatEinnahmeActivity extends MainActivity  {
+public class MonatEinnahmeActivity extends BaseActivity  {
 
 	
 	

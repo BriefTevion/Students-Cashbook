@@ -1,10 +1,9 @@
 package com.example.studentcashbook;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 
-public class EinstellungenActivity extends MainActivity {
+public class EinstellungenActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
