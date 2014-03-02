@@ -1,16 +1,26 @@
 package com.example.studentcashbook;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
-public class MonatEinnahmeActivity extends Activity {
+public class MonatEinnahmeActivity extends MainActivity  {
 
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+	}
+	
+	@Override
+	public void startAct(){
+		
 		setContentView(R.layout.activity_monat_einnahme);
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -18,5 +28,7 @@ public class MonatEinnahmeActivity extends Activity {
 		getMenuInflater().inflate(R.menu.monat_einnahme, menu);
 		return true;
 	}
+	
 
+	
 }

@@ -4,11 +4,17 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class NeuesSparzielActivity extends Activity {
+public class NeuesSparzielActivity extends MainActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+	}
+	
+	@Override
+	public void startAct(){
+		
 		setContentView(R.layout.activity_neues_sparziel);
 	}
 

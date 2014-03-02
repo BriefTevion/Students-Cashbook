@@ -31,31 +31,24 @@ public final class R {
         public static final int roundededittext=0x7f020004;
     }
     public static final class id {
-        public static final int Anmeldung=0x7f09000a;
-        public static final int Anmerkung=0x7f090000;
-        public static final int Benutzername=0x7f09000b;
-        public static final int Betrag=0x7f090002;
-        public static final int Datum=0x7f090004;
-        public static final int EinnahmeBestaetigen=0x7f090001;
-        public static final int KategorieSpinner=0x7f090003;
-        public static final int Passwort=0x7f09000d;
-        public static final int Pswdzuruecksetzen=0x7f09000f;
-        public static final int RectangleOra=0x7f090006;
-        public static final int Uhrzeit=0x7f090005;
-        public static final int Willkommen=0x7f090008;
-        public static final int action_settings=0x7f090018;
-        public static final int anlegen=0x7f090015;
-        public static final int content_frame=0x7f090011;
-        public static final int drawer_layout=0x7f090010;
-        public static final int imageView1=0x7f090007;
-        public static final int left_drawer=0x7f090012;
-        public static final int neuerBenutzer=0x7f09000e;
-        public static final int neuerBenutzername=0x7f090014;
-        public static final int neuerBenutzernameEingabe=0x7f090013;
-        public static final int neuesPasswort=0x7f090017;
-        public static final int neuesPasswortEingabe=0x7f090016;
-        public static final int textView1=0x7f090009;
-        public static final int textView2=0x7f09000c;
+        public static final int Anmeldung=0x7f090006;
+        public static final int Benutzername=0x7f090007;
+        public static final int Passwort=0x7f090009;
+        public static final int Pswdzuruecksetzen=0x7f09000b;
+        public static final int Willkommen=0x7f090004;
+        public static final int action_settings=0x7f090011;
+        public static final int anlegen=0x7f09000e;
+        public static final int content_frame=0x7f090001;
+        public static final int drawer_layout=0x7f090000;
+        public static final int imageView1=0x7f090003;
+        public static final int left_drawer=0x7f090002;
+        public static final int neuerBenutzer=0x7f09000a;
+        public static final int neuerBenutzername=0x7f09000d;
+        public static final int neuerBenutzernameEingabe=0x7f09000c;
+        public static final int neuesPasswort=0x7f090010;
+        public static final int neuesPasswortEingabe=0x7f09000f;
+        public static final int textView1=0x7f090005;
+        public static final int textView2=0x7f090008;
     }
     public static final class layout {
         public static final int activity_ausgabe=0x7f030000;
@@ -73,16 +66,17 @@ public final class R {
     }
     public static final class menu {
         public static final int ausgabe=0x7f080000;
-        public static final int einnahme=0x7f080001;
-        public static final int einstellungen=0x7f080002;
-        public static final int kategorien=0x7f080003;
-        public static final int login=0x7f080004;
-        public static final int main=0x7f080005;
-        public static final int monat_ausgabe=0x7f080006;
-        public static final int monat_einnahme=0x7f080007;
-        public static final int neuer_nutzer=0x7f080008;
-        public static final int neues_sparziel=0x7f080009;
-        public static final int sparziel=0x7f08000a;
+        public static final int base=0x7f080001;
+        public static final int einnahme=0x7f080002;
+        public static final int einstellungen=0x7f080003;
+        public static final int kategorien=0x7f080004;
+        public static final int login=0x7f080005;
+        public static final int main=0x7f080006;
+        public static final int monat_ausgabe=0x7f080007;
+        public static final int monat_einnahme=0x7f080008;
+        public static final int neuer_nutzer=0x7f080009;
+        public static final int neues_sparziel=0x7f08000a;
+        public static final int sparziel=0x7f08000b;
     }
     public static final class string {
         public static final int Anlegen=0x7f06001a;
@@ -104,6 +98,7 @@ public final class R {
         public static final int drawer_open=0x7f060000;
         public static final int hello_world=0x7f060004;
         public static final int title_activity_ausgabe=0x7f060007;
+        public static final int title_activity_base=0x7f06001c;
         public static final int title_activity_einnahme=0x7f060006;
         public static final int title_activity_einstellungen=0x7f06000d;
         public static final int title_activity_kategorien=0x7f060008;

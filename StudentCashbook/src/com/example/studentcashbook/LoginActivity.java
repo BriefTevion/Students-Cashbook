@@ -111,7 +111,7 @@ public class LoginActivity extends Activity {
 		
 	}
 	
-	public void PasswortZuruecksetzen(){
+	public void PasswortZuruecksetzen(View view){
 		
 	}
 	

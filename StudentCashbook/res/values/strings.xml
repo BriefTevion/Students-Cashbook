@@ -27,5 +27,6 @@
     <string name="BenutzerAnlegen">Neuen Benutzer anlegen</string>
     <string name="Anlegen">Anlegen</string>
     <string name="PswdZurueck">Paswort vergessen?</string>
+    <string name="title_activity_base">BaseActivity</string>
 
 </resources>

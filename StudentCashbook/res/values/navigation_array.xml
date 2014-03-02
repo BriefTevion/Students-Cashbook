@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array
-        name="string_array_navigation_drawer">
+        name="string_array_navigation_drawer"
+        id="@android:id/drawerItems">
+        
         <item>Übersicht</item>
         <item>Monatl. Einnahmen</item>
         <item>Monatl. Ausgaben</item>

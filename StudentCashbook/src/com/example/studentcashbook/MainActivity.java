@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -21,40 +20,39 @@ public class MainActivity extends Activity {
 	private DrawerLayout dl;
 	private ListView dLv;
 	private ActionBarDrawerToggle abdt;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		
+		startAct();
 		//DrawerList initialisieren
 		activitiesList = getResources().getStringArray(R.array.string_array_navigation_drawer);
 		dl = (DrawerLayout) findViewById(R.id.drawer_layout);
 		dLv = (ListView) findViewById(R.id.left_drawer);
-		
+
 		//Adapter erzeugen für die ListView
 		dLv.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_listview_item, activitiesList));
 
 		// Set the list's click listener
         dLv.setOnItemClickListener(new DrawerItemClickListener());
 
-		
+
 		//Icon
 		dl = (DrawerLayout) findViewById(R.id.drawer_layout);
-		
+
 		//Konfigurieren des Drawer Icons
 		abdt = new ActionBarDrawerToggle(this, dl, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close)
 		{	
 		};
-		
+
 		//ActionBarDrawerToggle als Drawer Listener setzen
 		dl.setDrawerListener(abdt);
-		
+
 		//Pfeil-Icon setzen
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-		
-		
+
+
 	}
 
 	//Konfiguration wird übergeben
@@ -63,7 +61,7 @@ public class MainActivity extends Activity {
 		super.onConfigurationChanged(newConfig);
 		abdt.onConfigurationChanged(newConfig);
 	}
-	
+
 	//Aufruf bei Klick auf Item
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -74,7 +72,7 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
 	}
-	
+
 	@Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -82,20 +80,28 @@ public class MainActivity extends Activity {
         abdt.syncState();
     }
 
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		
+
 		return true;
 	}
-
 	
+	
+	public void startAct(){
+		
+		setContentView(R.layout.activity_main);
+	}
+
+
 	public void changeActivity(Integer number){
 		switch(number){
-		
+
 		case 1:
+			Intent intent0 = new Intent(this, MainActivity.class);
+			startActivity(intent0);
 			break;
 		case 2:
 			Intent intent = new Intent(this, MonatEinnahmeActivity.class);
@@ -118,19 +124,19 @@ public class MainActivity extends Activity {
 			startActivity(intent5);
 			break;
 		}
-		
-		
+
+
 	}
-	
-	
+
+
 	private class DrawerItemClickListener implements ListView.OnItemClickListener  {
-		
+
 		public void onItemClick(AdapterView parent, View view, int position, long id) {
-			Toast.makeText(MainActivity.this, ((TextView)view).getText(), Toast.LENGTH_LONG).show();
+			//Toast.makeText(MainActivity.this, ((TextView)view).getText(), Toast.LENGTH_LONG).show();
             
 			String item = (String) ((TextView)view).getText();
 			int number=0;
-			
+
 			if(item.contains("Übersicht")){
 				number = 1;
 			}
@@ -152,11 +158,11 @@ public class MainActivity extends Activity {
 
 			changeActivity(number);
 			dl.closeDrawer(dLv);
-			
-			
+
+
 	    }
 
 	}
-	
-	
+
+
 }

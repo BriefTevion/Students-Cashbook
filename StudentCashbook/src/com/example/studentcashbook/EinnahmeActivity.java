@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.widget.TextView;
 
 
-public class EinnahmeActivity extends Activity {
+public class EinnahmeActivity extends MainActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +27,14 @@ public class EinnahmeActivity extends Activity {
 		//Date AktuelleUhrzeit = c.getTime();
 		//FeldZeit.setText("900");
 		
-		setContentView(R.layout.activity_einnahme);
 		
+		
+	}
+	
+	@Override
+	public void startAct(){
+		
+		setContentView(R.layout.activity_einnahme);
 	}
 
 	@Override
