@@ -29,6 +29,8 @@ public final class R {
         public static final int rectangle_orange=0x7f020002;
         public static final int roundedbutton=0x7f020003;
         public static final int roundededittext=0x7f020004;
+        public static final int styledbutton=0x7f020005;
+        public static final int trivialstyledbutton=0x7f020006;
     }
     public static final class id {
         public static final int Anmeldung=0x7f090005;
@@ -130,5 +132,7 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+        public static final int Main_button_text=0x7f070002;
+        public static final int trivial_button_text=0x7f070003;
     }
 }

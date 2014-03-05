@@ -25,16 +25,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Anmeldung"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:clickable="true"
         android:fontFamily="Tahoma"
+        android:background="@drawable/trivialstyledbutton"
         android:onClick="PasswortZuruecksetzen"
-        android:text="@string/PswdZurueck" />
-
+        android:text="@string/PswdZurueck"
+        style="@style/trivial_button_text" />
+    
     <EditText
         android:id="@+id/Passwort"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
@@ -43,18 +45,19 @@
         android:gravity="center"
         android:hint="@string/Passwort"
         android:inputType="textPassword" >
-
+		
         <requestFocus />
     </EditText>
 
     <Button
         android:id="@+id/Anmeldung"
+        style="@style/Main_button_text"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_alignLeft="@+id/Passwort"
         android:layout_below="@+id/Passwort"
-        android:layout_marginTop="20dp"
-        android:background="#ff9100"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/styledbutton"
         android:clickable="true"
         android:fontFamily="Tahoma"
         android:onClick="buttonPressed"

@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/neuesPasswortEingabe"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
@@ -35,7 +35,7 @@
     <EditText
         android:id="@+id/passwortWdh"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/neuesPasswortEingabe"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -48,14 +48,15 @@
     <Button
         android:id="@+id/anlegen"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/passwortWdh"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:background="#ff9100"
+        android:background="@drawable/styledbutton"
         android:clickable="true"
         android:fontFamily="Tahoma"
         android:onClick="BenutzerNeuAnlegen"
-        android:text="@string/AnlegenButton_neuerNutzer" />
-
+        android:text="@string/AnlegenButton_neuerNutzer"
+        style="@style/Main_button_text" />
+    
 </RelativeLayout>
