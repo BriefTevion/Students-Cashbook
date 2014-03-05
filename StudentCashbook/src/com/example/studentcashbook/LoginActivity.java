@@ -16,7 +16,7 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
+		
 	}
 
 	@Override
@@ -30,25 +30,22 @@ public class LoginActivity extends Activity {
 	protected void onStart() {
 		super.onStart();
 		
-		//Zugriff auf UI Element
-		EditText BenutzernameFeld = (EditText) findViewById(R.id.Benutzername);
 		
 		//Holen der Preferences
 		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		
 		//Name auslesen
-		String Benutzername = spref.getString("USERNAME", "");
+		String Password = spref.getString("PASSWORD", "");
 		
-		//Werte in UI Elemente schreiben
-		BenutzernameFeld.setText(Benutzername);	
 		
-		if (Benutzername != ""){
-			findViewById(R.id.neuerBenutzer).setVisibility(View.GONE);
-			findViewById(R.id.Pswdzuruecksetzen).setVisibility(View.VISIBLE);
+		//Wenn noch kein Passwort gesetzt worden ist, Umleitung zur Registrierung
+		if (Password == ""){
+			Intent intent = new Intent(this, NeuerNutzerActivity.class);	
+			startActivity(intent);
 		}
+		//wenn die Registrierung bereits vollzogen ist
 		else{
-			findViewById(R.id.neuerBenutzer).setVisibility(View.VISIBLE);
-			findViewById(R.id.Pswdzuruecksetzen).setVisibility(View.GONE);
+			setContentView(R.layout.activity_login);
 		}
 				
 				
@@ -59,12 +56,9 @@ public class LoginActivity extends Activity {
 		
 		//Eingaben prüfen
 		//Zugriff auf UI Element
-		EditText BenutzernameFeld = (EditText) findViewById(R.id.Benutzername);
 		EditText PasswortFeld = (EditText) findViewById(R.id.Passwort);
 		
 		//Werte der UI Elemente holen
-		String Benutzername = BenutzernameFeld.getText().toString();
-		
 		//<<<<<<<<<<<<<<<<<<<Verschlüsselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
 		String Passwort = PasswortFeld.getText().toString();
 		
@@ -72,17 +66,15 @@ public class LoginActivity extends Activity {
 		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		
 		//Daten auslesen
-		String BenutzernameMemory = spref.getString("USERNAME", "");
 		String PasswortMemory = spref.getString("PASSWORD", "");
 		
 		
 		//Daten vergleichen
-		int resultUser = Benutzername.compareTo(BenutzernameMemory);
 		int resultPswd = Passwort.compareTo(PasswortMemory);		
 		
 		
-		//Wenn übereinstimmend	
-		if(resultUser == 0 && resultPswd == 0) {
+		//Wenn Passwort uebereinstimmend	
+		if(resultPswd == 0) {
 				
 				Intent intent = new Intent(this, MainActivity.class);	
 				startActivity(intent);
@@ -90,8 +82,8 @@ public class LoginActivity extends Activity {
 		else{
 			//Error Message aufrufen
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Benutzername oder Passwort falsch");
-			alert.setTitle("Login fehlgeschlagen");
+			alert.setMessage("Passwort falsch");
+			alert.setTitle("Anmeldung fehlgeschlagen");
 			alert.setNegativeButton("OK", null);
 			alert.setCancelable(true);
 			alert.create().show();
@@ -102,14 +94,6 @@ public class LoginActivity extends Activity {
 	
 	}
 	
-	public void BenutzerAnlegen(View view){
-		
-		//Zur Neuer Nutzer Activity wechseln
-		Intent intent = new Intent(this, NeuerNutzerActivity.class);	
-		startActivity(intent);
-		
-		
-	}
 	
 	public void PasswortZuruecksetzen(View view){
 		

@@ -4,16 +4,15 @@
     <string name="app_name">Student Cashbook</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_einnahme">EinnahmeActivity</string>
-    <string name="title_activity_ausgabe">AusgabeActivity</string>
-    <string name="title_activity_kategorien">KategorienActivity</string>
-    <string name="title_activity_monat_einnahme">MonatEinnahmeActivity</string>
-    <string name="title_activity_monat_ausgabe">MonatAusgabeActivity</string>
-    <string name="title_activity_sparziel">SparzielActivity</string>
-    <string name="title_activity_neues_sparziel">NeuesSparzielActivity</string>
-    <string name="title_activity_einstellungen">EinstellungenActivity</string>
-    <string name="Willkommen">Willkommen</string>
+    <string name="title_activity_login">Student Cashbook</string>
+    <string name="title_activity_einnahme">Einmalige Einnahme</string>
+    <string name="title_activity_ausgabe">Einmalige Ausgabe</string>
+    <string name="title_activity_kategorien">Kategorien</string>
+    <string name="title_activity_monat_einnahme">Monatl. Einnahmen</string>
+    <string name="title_activity_monat_ausgabe">Monatl. Ausgaben</string>
+    <string name="title_activity_sparziel">Sparziele</string>
+    <string name="title_activity_neues_sparziel">Neues Sparziel</string>
+    <string name="title_activity_einstellungen">Einstellungen</string>
     <string name="Benutzername">Benutzername</string>
     <string name="Logo">Logo</string>
     <string name="Passwort">Passwort</string>
@@ -25,8 +24,10 @@
     <string name="NeuerBenutzer">Neu hier?</string>
     <string name="title_activity_neuer_nutzer">NeuerNutzerActivity</string>
     <string name="BenutzerAnlegen">Neuen Benutzer anlegen</string>
-    <string name="Anlegen">Anlegen</string>
+    <string name="AnlegenButton_neuerNutzer">Anmelden</string>
     <string name="PswdZurueck">Paswort vergessen?</string>
     <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_main">Übersicht</string>
+    <string name="PasswortWdh_edit_neuerNutzer">Passwort wiederholen</string>
 
 </resources>

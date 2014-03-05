@@ -9,75 +9,53 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".NeuerNutzerActivity" >
 
-    <EditText
-        android:id="@+id/neuerBenutzernameEingabe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/neuerBenutzername"
-        android:layout_below="@+id/neuerBenutzername"
-        android:background="@drawable/roundededittext"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="text"
-        android:textStyle="bold" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/anlegen"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_below="@+id/neuesPasswortEingabe"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="84dp"
-        android:background="@drawable/roundedbutton"
-        android:clickable="true"
-        android:onClick="BenutzerNeuAnlegen"
-        android:text="@string/Anlegen" />
-
-    <TextView
-        android:id="@+id/neuesPasswort"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/neuerBenutzernameEingabe"
-        android:layout_below="@+id/neuerBenutzernameEingabe"
-        android:layout_marginTop="11dp"
-        android:fontFamily="Tahoma"
-        android:text="@string/Passwort"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginTop="34dp"
+        android:contentDescription="@string/Logo"
+        android:src="@drawable/ic_launcher" />
 
     <EditText
         android:id="@+id/neuesPasswortEingabe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/neuerBenutzernameEingabe"
-        android:layout_below="@+id/neuesPasswort"
-        android:background="@drawable/roundededittext"
-        android:ems="10"
-        android:inputType="textPassword" 
-        android:gravity="center"/>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="67dp"
-        android:fontFamily="Tahoma"
-        android:text="@string/BenutzerAnlegen"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginTop="90dp"
+        android:background="#ffffff"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/Passwort"
+        android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/neuerBenutzername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="44dp"
+    <EditText
+        android:id="@+id/passwortWdh"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/neuesPasswortEingabe"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/PasswortWdh_edit_neuerNutzer"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/anlegen"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/passwortWdh"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#ff9100"
+        android:clickable="true"
         android:fontFamily="Tahoma"
-        android:text="@string/Benutzername"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:onClick="BenutzerNeuAnlegen"
+        android:text="@string/AnlegenButton_neuerNutzer" />
 
 </RelativeLayout>

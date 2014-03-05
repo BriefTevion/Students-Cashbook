@@ -31,24 +31,17 @@ public final class R {
         public static final int roundededittext=0x7f020004;
     }
     public static final class id {
-        public static final int Anmeldung=0x7f090006;
-        public static final int Benutzername=0x7f090007;
-        public static final int Passwort=0x7f090009;
-        public static final int Pswdzuruecksetzen=0x7f09000b;
-        public static final int Willkommen=0x7f090004;
-        public static final int action_settings=0x7f090011;
-        public static final int anlegen=0x7f09000e;
+        public static final int Anmeldung=0x7f090005;
+        public static final int Passwort=0x7f090006;
+        public static final int Pswdzuruecksetzen=0x7f090004;
+        public static final int action_settings=0x7f09000a;
+        public static final int anlegen=0x7f090009;
         public static final int content_frame=0x7f090001;
         public static final int drawer_layout=0x7f090000;
         public static final int imageView1=0x7f090003;
         public static final int left_drawer=0x7f090002;
-        public static final int neuerBenutzer=0x7f09000a;
-        public static final int neuerBenutzername=0x7f09000d;
-        public static final int neuerBenutzernameEingabe=0x7f09000c;
-        public static final int neuesPasswort=0x7f090010;
-        public static final int neuesPasswortEingabe=0x7f09000f;
-        public static final int textView1=0x7f090005;
-        public static final int textView2=0x7f090008;
+        public static final int neuesPasswortEingabe=0x7f090007;
+        public static final int passwortWdh=0x7f090008;
     }
     public static final class layout {
         public static final int activity_ausgabe=0x7f030000;
@@ -79,33 +72,34 @@ public final class R {
         public static final int sparziel=0x7f08000b;
     }
     public static final class string {
-        public static final int Anlegen=0x7f06001a;
-        public static final int Anmelden=0x7f060012;
-        public static final int Anmerkung=0x7f060013;
-        public static final int BenutzerAnlegen=0x7f060019;
-        public static final int Benutzername=0x7f06000f;
-        public static final int Datum=0x7f060014;
-        public static final int Logo=0x7f060010;
-        public static final int NeuerBenutzer=0x7f060017;
-        public static final int OrangeRectangle=0x7f060016;
-        public static final int Passwort=0x7f060011;
-        public static final int PswdZurueck=0x7f06001b;
-        public static final int Uhrzeit=0x7f060015;
-        public static final int Willkommen=0x7f06000e;
+        public static final int AnlegenButton_neuerNutzer=0x7f060019;
+        public static final int Anmelden=0x7f060011;
+        public static final int Anmerkung=0x7f060012;
+        public static final int BenutzerAnlegen=0x7f060018;
+        public static final int Benutzername=0x7f06000e;
+        public static final int Datum=0x7f060013;
+        public static final int Logo=0x7f06000f;
+        public static final int NeuerBenutzer=0x7f060016;
+        public static final int OrangeRectangle=0x7f060015;
+        public static final int Passwort=0x7f060010;
+        public static final int PasswortWdh_edit_neuerNutzer=0x7f06001d;
+        public static final int PswdZurueck=0x7f06001a;
+        public static final int Uhrzeit=0x7f060014;
         public static final int action_settings=0x7f060003;
         public static final int app_name=0x7f060002;
         public static final int drawer_close=0x7f060001;
         public static final int drawer_open=0x7f060000;
         public static final int hello_world=0x7f060004;
         public static final int title_activity_ausgabe=0x7f060007;
-        public static final int title_activity_base=0x7f06001c;
+        public static final int title_activity_base=0x7f06001b;
         public static final int title_activity_einnahme=0x7f060006;
         public static final int title_activity_einstellungen=0x7f06000d;
         public static final int title_activity_kategorien=0x7f060008;
         public static final int title_activity_login=0x7f060005;
+        public static final int title_activity_main=0x7f06001c;
         public static final int title_activity_monat_ausgabe=0x7f06000a;
         public static final int title_activity_monat_einnahme=0x7f060009;
-        public static final int title_activity_neuer_nutzer=0x7f060018;
+        public static final int title_activity_neuer_nutzer=0x7f060017;
         public static final int title_activity_neues_sparziel=0x7f06000c;
         public static final int title_activity_sparziel=0x7f06000b;
     }
