@@ -10,7 +10,110 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:background="#84c185" />
+         android:background="#84c185" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView_Datum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/editText_Anmerkungen"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/Datum"
+                android:textColor="#ffffff" />
+            
+            <TextView
+                android:id="@+id/textView_Uhrzeit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/textView_Datum"
+                android:layout_below="@+id/textView_Datum"
+                android:layout_marginTop="5dp"
+                android:textColor="#ffffff"
+                android:text="@string/Uhrzeit" />
+            
+            <Spinner
+                android:id="@+id/DropDown_Kategorien"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textView_Uhrzeit"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:gravity="center" />
+            
+            <ImageView
+                android:id="@+id/Geldschein"
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:layout_alignLeft="@+id/DropDown_Kategorien"
+                android:layout_below="@+id/DropDown_Kategorien"
+                android:layout_marginTop="35dp"
+                android:contentDescription="@string/Geld"
+                android:src="@drawable/geldscheine" />
+            
+             <EditText
+                 android:id="@+id/editText_Eingabe"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignTop="@+id/Geldschein"
+                 android:layout_marginLeft="5dp"
+                 android:layout_marginTop="25dp"
+                 android:layout_toLeftOf="@+id/textView_Euro"
+                 android:layout_toRightOf="@+id/Geldschein"
+                 android:background="@drawable/roundededittext"
+                 android:ems="10"
+                 android:gravity="center"
+                 android:hint="@string/Betrag" >
+
+                <requestFocus />
+            </EditText>
+            
+            <TextView
+                android:id="@+id/textView_Euro"
+                android:layout_width="12dp"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/textView_Uhrzeit"
+                android:layout_alignTop="@+id/editText_Eingabe"
+                android:layout_marginTop="2dp"
+                android:ems="16"
+                android:text="@string/Euro"
+                android:textColor="#ffffff" />
+
+            <EditText
+                android:id="@+id/editText_Anmerkungen"
+                android:layout_width="300dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/Geldschein"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
+                android:background="#ffffff"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="@string/Anmerkung"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/Anlegen"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editText_Anmerkungen"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/styledbutton"
+                android:clickable="true"
+                android:fontFamily="Tahoma"
+                android:onClick="buttonPressed"
+                android:text="@string/Anlegen"
+                android:textColor="#ffffff" />
+            
+        </RelativeLayout>
+
+    </FrameLayout>
     
     
     <!-- The navigation drawer -->

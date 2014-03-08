@@ -15,9 +15,16 @@
     <string name="title_activity_einstellungen">Einstellungen</string>
     <string name="Benutzername">Benutzername</string>
     <string name="Logo">Logo</string>
+    <string name="Geld">Geld</string>
+    <string name="Betrag">Betrag</string>
     <string name="Passwort">Passwort</string>
+    <string name="Einnahme">Einnahme</string>
+    <string name="Ausgabe">Ausgabe</string>
+    <string name="LetzteAusgaben">Letzte Ausgaben</string>
     <string name="Anmelden">Anmelden</string>
     <string name="Anmerkung">Anmerkung</string>
+    <string name="Anlegen">✔</string>
+    <string name="Euro">€</string>
     <string name="Datum">Datum</string>
     <string name="Uhrzeit">Uhrzeit</string>
     <string name="OrangeRectangle">OrangeRectangle</string>

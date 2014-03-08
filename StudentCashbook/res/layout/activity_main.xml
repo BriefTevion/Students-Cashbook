@@ -10,7 +10,69 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:background="#84c185" />
+         android:background="#84c185" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        <android.support.v7.widget.Space
+                android:id="@+id/Tortendiagramm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp" />
+        
+        <ImageButton
+                android:id="@+id/imageButton_Einnahme"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/Tortendiagramm"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/Einnahme"
+                android:background="@drawable/Plus" />
+
+    	<ImageButton
+                android:id="@+id/imageButton_Ausgabe"
+                android:background="@drawable/x"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/Tortendiagramm"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/Ausgabe"/>
+
+    	<TextView
+	    	    android:id="@+id/textView_LetzteAusgaben"
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_alignParentLeft="true"
+	    	    android:layout_below="@+id/imageButton_Einnahme"
+	    	    android:layout_marginTop="20dp"
+				android:layout_marginLeft="5dp"
+				android:textAppearance="?android:attr/textAppearanceMedium" 
+				android:textColor="#ffffff"
+	    	    android:text="@string/LetzteAusgaben"/>
+    	
+    	<ListView 
+    	    	android:id="@+id/listView_LetzteAusgaben" 
+    	    	android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_centerHorizontal="true"
+	    	    android:layout_marginRight="5dp"
+				android:layout_marginLeft="5dp"
+        		android:layout_below="@+id/textView_LetzteAusgaben"
+	    	    android:layout_marginTop="5dp"
+	    	    android:background="#ffffff"/>
+	    	    
+            
+        </RelativeLayout>
+
+    </FrameLayout>
     
     
     <!-- The navigation drawer -->
