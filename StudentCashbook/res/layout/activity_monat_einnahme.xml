@@ -10,7 +10,39 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:background="#84c185" />
+        android:background="#84c185" >
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+	        <Button
+	        	android:id="@+id/button_Einnahme_hin"
+	            android:layout_width="wrap_content"
+	            android:layout_height="80dp"
+	            android:layout_alignParentTop="true"
+	            android:layout_centerHorizontal="true"
+	            android:layout_marginTop="20dp"
+	            android:background="#84c185"
+	            android:drawableLeft="@drawable/ic_launcher"
+	            android:gravity="left|center_vertical"
+	            android:text="@string/Einnahme_hin"
+	            android:textColor="#ffffff" />
+	
+	      	<ListView
+	            android:id="@+id/listView_monatliche_Einnahmen"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@+id/button_Einnahme_hin"
+	            android:layout_centerHorizontal="true"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginRight="15dp"
+	            android:layout_marginTop="10dp"
+	            android:background="#84c185" />
+            
+        </RelativeLayout>
+
+    </FrameLayout>
     
     
     <!-- The navigation drawer -->
