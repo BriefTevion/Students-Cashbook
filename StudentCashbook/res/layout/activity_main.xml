@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-        <android.support.v7.widget.Space
+        <Space
                 android:id="@+id/Tortendiagramm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -24,34 +24,39 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp" />
         
-        <ImageButton
-                android:id="@+id/imageButton_Einnahme"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:layout_alignParentLeft="true"
+        <Button
+            	android:id="@+id/button_Einnahme"
+                android:layout_width="110dp"
+                android:layout_height="100dp"
                 android:layout_below="@+id/Tortendiagramm"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
-                android:contentDescription="@string/Einnahme"
-                android:background="@drawable/Plus" />
+                android:background="#84c185"
+                android:drawableTop="@drawable/ic_launcher"
+                android:text="@string/Einnahme"
+                android:textColor="#ffffff"
+                android:gravity="left"/>
 
-    	<ImageButton
-                android:id="@+id/imageButton_Ausgabe"
-                android:background="@drawable/x"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
+    	<Button
+    	    	android:id="@+id/Ausgabe"
+                android:layout_width="110dp"
+                android:layout_height="100dp"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/Tortendiagramm"
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="20dp"
-                android:contentDescription="@string/Ausgabe"/>
+                android:background="#84c185"
+                android:drawableTop="@drawable/ic_launcher"
+                android:text="@string/Ausgabe"
+                android:textColor="#ffffff"
+                android:gravity="left"/>
 
     	<TextView
 	    	    android:id="@+id/textView_LetzteAusgaben"
 	    	    android:layout_width="wrap_content"
 	    	    android:layout_height="wrap_content"
 	    	    android:layout_alignParentLeft="true"
-	    	    android:layout_below="@+id/imageButton_Einnahme"
+	    	    android:layout_below="@+id/button_Einnahme"
 	    	    android:layout_marginTop="20dp"
 				android:layout_marginLeft="5dp"
 				android:textAppearance="?android:attr/textAppearanceMedium" 
