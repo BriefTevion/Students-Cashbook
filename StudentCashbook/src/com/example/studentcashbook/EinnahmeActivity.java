@@ -1,7 +1,12 @@
 package com.example.studentcashbook;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -11,18 +16,7 @@ public class EinnahmeActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		
-		//findViewById(R.id.Datum).setBackgroundColor(0xFF00FF00);
-		//TextView FeldZeit = (TextView) findViewById(R.id.Uhrzeit);
-		
-		//Calendar c = Calendar.getInstance();
-		//int AktuellesDatum = c.get(Calendar.DATE);
-		//FeldDatum.setText("Heute");
-		
-		
-		//Date AktuelleUhrzeit = c.getTime();
-		//FeldZeit.setText("900");
-		
+
 		
 		
 	}
@@ -30,7 +24,23 @@ public class EinnahmeActivity extends BaseActivity {
 	protected void onStart(){
 		super.onStart();
 		
+		//Kleine Nachricht beim oeffnen der Activity
 		Toast.makeText(this, "Neue Einnahme", Toast.LENGTH_SHORT).show();
+		
+		//Elemente erkennen
+		TextView FeldZeit = (TextView) findViewById(R.id.textView_Uhrzeit);
+		TextView FeldDatum = (TextView) findViewById(R.id.textView_Datum);
+		
+		//Datum erkennen und setzen
+		String AktuellesDatum = DateFormat.getDateInstance().format(new Date());
+		FeldDatum.setText(AktuellesDatum);
+		
+		//Uhrzeit erkennen und setzen
+		String AktuelleUhrzeit = DateFormat.getTimeInstance().format(new Date());
+		FeldZeit.setText(AktuelleUhrzeit);
+		
+		
+		
 	}
 	
 	@Override
