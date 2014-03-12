@@ -10,7 +10,164 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:background="#84c185" />
+         android:background="#84c185" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            
+        <TextView
+                android:id="@+id/textView_Sparziel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/SparzielDefinieren"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <EditText
+                android:id="@+id/editText_Titel"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_Sparziel"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:ems="10" 
+                android:hint="@string/Titel"
+                android:textColorHint="#ffffff">
+                
+            </EditText>
+
+            <EditText
+                android:id="@+id/editText_Betrag"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/editText_Titel"
+                android:layout_below="@+id/editText_Titel"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+				android:hint="@string/Betrag"
+                android:textColorHint="#ffffff"/>
+
+            <TextView
+                android:id="@+id/textView_Euro"
+                android:layout_width="12dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editText_Titel"
+                android:layout_toRightOf="@+id/editText_Betrag"
+                android:layout_marginTop="20dp"
+                android:text="@string/Euro"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/textView_faellig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/editText_Betrag"
+                android:layout_below="@+id/editText_Betrag"
+                android:layout_marginTop="15dp"
+                android:text="@string/faellig"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"/>
+
+            <EditText
+                android:id="@+id/editText_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView_faellig"
+                android:layout_alignBottom="@+id/textView_faellig"
+                android:layout_alignRight="@+id/editText_Titel"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/textView_faellig"
+                android:ems="10"
+                android:hint="@string/date"
+                android:inputType="date"
+                android:textColorHint="#ffffff" />
+            
+
+            <RadioButton
+                android:id="@+id/radioButton_uebrig"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView_faellig"
+                android:layout_below="@+id/editText_date"
+                android:layout_marginTop="15dp"
+                android:text="@string/uebrig"
+                android:textColor="#ffffff" />
+            
+            <RadioButton
+                android:id="@+id/radioButton_fest"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView_faellig"
+                android:layout_below="@+id/radioButton_uebrig"
+                android:text="@string/fest"
+                android:textColor="#ffffff" />
+
+            <SeekBar
+                android:id="@+id/seekBar_Betrag"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView_faellig"
+                android:layout_below="@+id/radioButton_fest"
+                android:layout_marginTop="20dp"
+                android:progress="0"
+            	android:max="100" />
+
+            <TextView
+                android:id="@+id/textView_Sparbetrag"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@+id/seekBar_Betrag"
+                android:layout_alignRight="@+id/editText_Titel"
+                android:layout_alignTop="@+id/seekBar_Betrag"
+                android:layout_toRightOf="@+id/seekBar_Betrag"
+                android:gravity="left|top"
+                android:text="@string/Sparbetrag"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_Anlegen"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seekBar_Betrag"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/styledbutton"
+                android:clickable="true"
+                android:fontFamily="Tahoma"
+                android:onClick="buttonPressed"
+                android:text="@string/Anlegen"
+                android:textColor="#ffffff"/>
+
+            <ImageView
+                android:id="@+id/imageView_Strich"
+                android:layout_width="310dp"
+                android:layout_height="2dp"
+                android:layout_below="@+id/button_Anlegen"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:src="#ffffff" />
+            
+            <ListView 
+    	    	android:id="@+id/listView_Sparziele" 
+    	    	android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_centerHorizontal="true"
+	    	    android:layout_alignLeft="@+id/editText_Titel"
+				android:layout_alignRight="@+id/editText_Titel"
+        		android:layout_below="@+id/imageView_Strich"
+	    	    android:layout_marginTop="10dp"
+	    	    android:background="#ffffff"/>    
+        </RelativeLayout>
+
+    </FrameLayout>
     
     
     <!-- The navigation drawer -->
