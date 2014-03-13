@@ -27,7 +27,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50sp"
         android:clickable="true"
-        android:fontFamily="Tahoma"
+        android:fontFamily="sans-serif-thin"
         android:background="@drawable/trivialstyledbutton"
         android:onClick="PasswortZuruecksetzen"
         android:text="@string/PswdZurueck"
@@ -43,6 +43,7 @@
         android:background="#f0ffff"
         android:ems="10"
         android:gravity="center"
+        android:fontFamily="sans-serif-thin"
         android:hint="@string/Passwort"
         android:inputType="textPassword" >
 		
@@ -59,7 +60,7 @@
         android:layout_marginTop="28sp"
         android:background="@drawable/styledbutton"
         android:clickable="true"
-        android:fontFamily="Tahoma"
+        android:fontFamily="sans-serif-thin"
         android:onClick="buttonPressed"
         android:text="@string/Anmelden" />
 

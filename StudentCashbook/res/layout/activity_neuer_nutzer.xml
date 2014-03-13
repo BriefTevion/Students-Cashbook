@@ -29,6 +29,7 @@
         android:background="#f0ffff"
         android:ems="10"
         android:gravity="center"
+        android:fontFamily="sans-serif-thin"
         android:hint="@string/Passwort"
         android:inputType="textPassword" />
 
@@ -41,6 +42,7 @@
         android:layout_marginTop="10sp"
         android:background="#f0ffff"
         android:ems="10"
+        android:fontFamily="sans-serif-thin"
         android:gravity="center"
         android:hint="@string/PasswortWdh_edit_neuerNutzer"
         android:inputType="textPassword" />
@@ -54,10 +56,10 @@
         android:layout_marginTop="30sp"
         android:background="@drawable/styledbutton"
         android:clickable="true"
-        android:fontFamily="Tahoma"
         android:onClick="BenutzerNeuAnlegen"
         android:text="@string/AnlegenButton_neuerNutzer"
-        style="@style/Main_button_text" />
+        style="@style/Main_button_text"
+        android:fontFamily="sans-serif-thin" />
 
     <TextView
         android:id="@+id/textView1"

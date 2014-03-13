@@ -1,6 +1,8 @@
 package DB;
 
-import DB.TransaktionenContract.TabInhalt;
+import com.example.studentcashbook.KategorienActivity;
+
+import DB.TransaktionenContract.transEntry;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,87 +10,57 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class TransaktionenDBHelper extends SQLiteOpenHelper {
-
-	//SQL Statement um Tabelle TransaktionenList zu erstellen
-	private static final String createTransaktionenList = "CREATE TABLE" + TabInhalt.TABLE_NAME + " (" +
-			TabInhalt.COLUMN_NAME_TRANSAKTION_ID + " INTEGER PRIMARY KEY," + 
-			TabInhalt.COLUMN_NAME_ANMEKRUNG + " TEXT," + 
-			TabInhalt.COLUMN_NAME_DATUM + " TEXT," +
-			TabInhalt.COLUMN_NAME_UHRZEIT + " TEXT," +
-			TabInhalt.COLUMN_NAME_KATEGORIE + " TEXT," +
-			TabInhalt.COLUMN_NAME_BETRAG + " DOUBLE)";
+	
+	private static final String TEXT_TYPE = " TEXT";
+	private static final String COMMA_SEP = ",";
+	public static final int DATABASE_VERSION = 1;
+	public static final String DATABASE_NAME = "Transaktionen.db";
+	
+	//SQL Statement um Tabelle transaktionenTable zu erstellen
+	private static final String SQL_CreateTransaktionenTable = 
+			"CREATE TABLE " + transEntry.TABLE_NAME + " (" +
+				transEntry.COLUMN_NAME_TRANSAKTION_ID + " INTEGER PRIMARY KEY," + 
+				transEntry.COLUMN_NAME_ANMEKRUNG + TEXT_TYPE + COMMA_SEP +
+				transEntry.COLUMN_NAME_DATUM + TEXT_TYPE + COMMA_SEP +
+				transEntry.COLUMN_NAME_UHRZEIT + TEXT_TYPE + COMMA_SEP +
+				transEntry.COLUMN_NAME_KATEGORIE + TEXT_TYPE + COMMA_SEP +
+				transEntry.COLUMN_NAME_BETRAG + TEXT_TYPE + " )";
+	
+	//SQL Statement um Tabelle kategorienTable zu erstellen
+	private static final String SQL_CreateKategorienTable =
+			"CREATE TABLE " + transEntry.TABLE_NAME_Kategorie + " (" +
+					transEntry.K_COLUMN_NAME_BEZEICHNER + " TEXT PRIMARY KEY," + 
+					transEntry.K_COLUMN_NAME_BUDGET + TEXT_TYPE + COMMA_SEP +
+					transEntry.K_COLUMN_NAME_RESTBETRAG + TEXT_TYPE + COMMA_SEP +
+					transEntry.K_COLUMN_NAME_LAST_UPDATED + TEXT_TYPE + " )";
+	
+	//Delete SQL-Statements
+	private static final String SQL_DELETE_ENTRIES_transaktionenTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME;
+	private static final String SQL_DELETE_ENTRIES_kategorienTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_Kategorie;
 	
 	
 	public TransaktionenDBHelper(Context context) {
-		super(context, "transaktionenList", null, 1);
+		super(context, DATABASE_NAME , null, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		
-		db.execSQL(createTransaktionenList);
-
+		try{
+			db.execSQL(SQL_CreateTransaktionenTable);
+			db.execSQL(SQL_CreateKategorienTable);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
+		db.execSQL(SQL_DELETE_ENTRIES_transaktionenTable);
+		db.execSQL(SQL_DELETE_ENTRIES_kategorienTable);
+		onCreate(db);
 
-	}
-
-	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
-	public void addTransaktion(Integer id, String anmerkung, String datum, String zeit, String kategorie, Double betrag){
-		SQLiteDatabase db = getWritableDatabase();
-		
-		ContentValues cv = new ContentValues();
-		cv.put(TabInhalt.COLUMN_NAME_TRANSAKTION_ID, id);
-		cv.put(TabInhalt.COLUMN_NAME_ANMEKRUNG, anmerkung);
-		cv.put(TabInhalt.COLUMN_NAME_DATUM, datum);
-		cv.put(TabInhalt.COLUMN_NAME_UHRZEIT, zeit);
-		cv.put(TabInhalt.COLUMN_NAME_KATEGORIE, kategorie);
-		cv.put(TabInhalt.COLUMN_NAME_BETRAG, betrag);
-		
-		long newRowID = db.insert("transaktionenList", null, cv);
 	}
 	
-	//Abfrage der letzten drei Transaktionen
-	public String getLastThreeTransaktions(){
-		SQLiteDatabase db = getReadableDatabase();
-		String result = "";
-		
-		String [] projection = {
-				TabInhalt.COLUMN_NAME_DATUM,
-				TabInhalt.COLUMN_NAME_BETRAG
-		};
-		
-		String sortOrder = TabInhalt.COLUMN_NAME_DATUM + " DESC";
-		
-		try{
-		Cursor c = db.query(TabInhalt.TABLE_NAME, projection, null, null, null, null, sortOrder, "3");
-		
-		if (c.getCount() == 0){
-			
-			return "No data";
-		}
-		else{
-		//solange cursor liest strings zu einem brauchbaren string zusammenfassen
-		while(c.moveToNext()){
-			String datum = c.getString(0);
-			Double betrag = c.getDouble(1);
-			
-			result = result + datum + " " + betrag + "\n";
-			
-		}
-		
-		return result;
-		}
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			
-			return "Error";
-		}
-	}
-
 }

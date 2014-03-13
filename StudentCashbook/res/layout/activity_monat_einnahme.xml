@@ -19,26 +19,17 @@
 	        <Button
 	        	android:id="@+id/button_Einnahme_hin"
 	            android:layout_width="wrap_content"
-	            android:layout_height="80dp"
+	            android:layout_height="wrap_content"
 	            android:layout_alignParentTop="true"
 	            android:layout_centerHorizontal="true"
 	            android:layout_marginTop="20dp"
-	            android:background="#84c185"
+	            android:background="@drawable/styledbutton"
+	            android:fontFamily="sans-serif-thin"
 	            android:drawableLeft="@drawable/ic_launcher"
 	            android:gravity="left|center_vertical"
 	            android:text="@string/Einnahme_hin"
 	            android:textColor="#ffffff" />
-	
-	      	<ListView
-	            android:id="@+id/listView_monatliche_Einnahmen"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_below="@+id/button_Einnahme_hin"
-	            android:layout_centerHorizontal="true"
-	            android:layout_marginLeft="15dp"
-	            android:layout_marginRight="15dp"
-	            android:layout_marginTop="10dp"
-	            android:background="#84c185" />
+
             
         </RelativeLayout>
 

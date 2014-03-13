@@ -1,7 +1,11 @@
 package com.example.studentcashbook;
 
 import DB.TransaktionenDBHelper;
+import DB.TransaktionenContract.transEntry;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -27,21 +31,22 @@ public class MainActivity extends BaseActivity {
 		
 		Toast.makeText(this, "Übersicht", Toast.LENGTH_SHORT).show();
 		
-		//Get die letzten drei Transaktionen
-		dbHelper = new TransaktionenDBHelper(getApplicationContext());
 		//Element bekommen
 		lastTrans = (TextView) findViewById(R.id.lastTransaktionen);
+		
 		//Abfrage als Text des Elementes setzen
 		try{
-		result = dbHelper.getLastThreeTransaktions();
+		result = getLastThreeTransaktions();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 			result = "DB Verbindungsproblem";
 		}
-		
-		lastTrans.setText(result);
+		finally{
+		lastTrans.setText(result);}
 	}
+	
+	
 	@Override
 	public void startAct(){
 		
@@ -67,6 +72,48 @@ public class MainActivity extends BaseActivity {
 		startActivity(intent);
 	}
 	
+	//Abfrage der letzten drei Transaktionen
+	public String getLastThreeTransaktions(){
+	
+	try{
+			//Zugang zur Datenbank
+			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+			SQLiteDatabase db = dbHelper.getReadableDatabase();
+			
+
+		String result = "";
+		
+		String [] projection = {
+				transEntry.COLUMN_NAME_TRANSAKTION_ID,
+				transEntry.COLUMN_NAME_DATUM,
+				transEntry.COLUMN_NAME_BETRAG
+		};
+		
+		String sortOrder = transEntry.COLUMN_NAME_DATUM + " DESC";
+		
+		
+		Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder, "3");
+		
+		
+		//solange cursor liest strings zu einem brauchbaren string zusammenfassen
+		while(c.moveToNext()){
+			String datum = c.getString(0);
+			String betrag = c.getString(1);
+			
+			result = result + datum + " " + betrag + "\n";
+			
+		}
+		
+		return result;
+		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+			return "Error";
+		}
+	}
+
 	
 
 }

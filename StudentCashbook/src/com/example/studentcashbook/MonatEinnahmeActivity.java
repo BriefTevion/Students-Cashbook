@@ -1,5 +1,10 @@
 package com.example.studentcashbook;
 
+import DB.TransaktionenDBHelper;
+import DB.TransaktionenContract.transEntry;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Toast;
@@ -35,6 +40,7 @@ public class MonatEinnahmeActivity extends BaseActivity  {
 		getMenuInflater().inflate(R.menu.monat_einnahme, menu);
 		return true;
 	}
+	
 	
 
 	

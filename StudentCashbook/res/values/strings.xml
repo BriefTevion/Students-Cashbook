@@ -16,7 +16,7 @@
     <string name="Anlegen">✔</string>
     <string name="Anmelden">Anmelden</string>
     <string name="Anmerkung">Anmerkung</string>
-    <string name="Ausgabe_hin">Ausgaben\nhinzufügen</string>
+    <string name="Ausgabe_hin">Monatliche Ausgabe\nhinzufügen</string>
     <string name="Sparziel_hin">Sparziel\nhinzufügen</string>
     <string name="Benutzername">Benutzername</string>
     <string name="Logo">Logo</string>
@@ -24,7 +24,7 @@
     <string name="Betrag">Betrag</string>
     <string name="Passwort">Passwort</string>
     <string name="Einnahme">Einnahme</string>
-    <string name="Einnahme_hin">Einnahmen\nhinzufügen</string>
+    <string name="Einnahme_hin">Monatliche Einnahme\nhinzufügen</string>
     <string name="Ausgabe">Ausgabe</string>
     <string name="LetzteAusgaben">Letzte Ausgaben</string>
     <string name="Euro">€</string>
@@ -49,5 +49,6 @@
     <string name="PasswortWdh_edit_neuerNutzer">Passwort wiederholen</string>
     <string name="login">Login</string>
     <string name="signup">Sign up</string>
+    <string name="spinnerKategorie">Wähle Kategorie aus</string>
 
 </resources>

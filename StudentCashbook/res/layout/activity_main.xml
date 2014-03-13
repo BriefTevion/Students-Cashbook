@@ -18,11 +18,11 @@
 
         <Space
                 android:id="@+id/Tortendiagramm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="400sp"
+                android:layout_height="150sp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="20sp" />
         
         <Button
             	android:id="@+id/button_Einnahme"
@@ -30,13 +30,14 @@
                 android:layout_height="100dp"
                 android:layout_below="@+id/Tortendiagramm"
                 android:layout_marginLeft="50sp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="40sp"
                 android:background="@drawable/styledbutton"
                 android:drawableTop="@drawable/ic_launcher"
                 android:text="@string/Einnahme"
-                android:textColor="#f0ffff"
+                android:textColor="#ffffff"
                 android:gravity="center"
-                android:onClick="openEinnahme"/>
+                android:onClick="openEinnahme"
+                android:fontFamily="sans-serif-thin"/>
 
     	<Button
     	    	android:id="@+id/Ausgabe"
@@ -45,13 +46,14 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/Tortendiagramm"
                 android:layout_marginRight="50sp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="40sp"
                 android:background="@drawable/styledbutton"
                 android:drawableTop="@drawable/ic_launcher"
                 android:text="@string/Ausgabe"
-                android:textColor="#f0ffff"
+                android:textColor="#ffffff"
                 android:gravity="center"
-                android:onClick="openAusgabe"/>
+                android:onClick="openAusgabe"
+                android:fontFamily="sans-serif-thin"/>
 
     	<TextView
 	    	    android:id="@+id/textView_LetzteAusgaben"
@@ -63,7 +65,8 @@
 				android:layout_marginLeft="15sp"
 				android:textAppearance="?android:attr/textAppearanceMedium" 
 				android:textColor="#ffffff"
-	    	    android:text="@string/LetzteAusgaben"/>
+	    	    android:text="@string/LetzteAusgaben"
+	    	    android:fontFamily="sans-serif-thin"/>
 
     	<TextView
     	    android:id="@+id/lastTransaktionen"
@@ -73,7 +76,8 @@
 			android:layout_marginTop="20sp"
 			android:layout_centerHorizontal="true"
     	    android:text="-- no data --" 
-    	    android:textSize="20sp"/>
+    	    android:textSize="20sp"
+    	    android:fontFamily="sans-serif-thin"/>
             
         </RelativeLayout>
 

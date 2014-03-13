@@ -2,7 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:fontFamily="sans-serif-thin" >
     
     <!-- The main content view -->
     <FrameLayout
@@ -21,20 +22,24 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/editText_Anmerkungen"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginRight="5sp"
+                android:layout_marginTop="15sp"
                 android:text="@string/Datum"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff" 
+                android:fontFamily="sans-serif-thin"
+                android:gravity = "right"/>
             
             <TextView
                 android:id="@+id/textView_Uhrzeit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/textView_Datum"
+                android:layout_alignRight ="@+id/textView_Datum"
                 android:layout_below="@+id/textView_Datum"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="5sp"
                 android:textColor="#ffffff"
-                android:text="@string/Uhrzeit" />
+                android:fontFamily="sans-serif-thin"
+                android:text="@string/Uhrzeit"
+                android:gravity = "right" />
             
             <Spinner
                 android:id="@+id/DropDown_Kategorien"
@@ -45,52 +50,33 @@
                 android:layout_marginTop="15dp"
                 android:gravity="center" />
             
-            <ImageView
-                android:id="@+id/Geldschein"
-                android:layout_width="150dp"
-                android:layout_height="80dp"
-                android:layout_alignLeft="@+id/DropDown_Kategorien"
-                android:layout_below="@+id/DropDown_Kategorien"
-                android:layout_marginTop="35dp"
-                android:contentDescription="@string/Geld"
-                android:src="@drawable/geldscheine" />
             
              <EditText
                  android:id="@+id/editText_Eingabe"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_alignTop="@+id/Geldschein"
-                 android:layout_marginLeft="5dp"
-                 android:layout_marginTop="25dp"
-                 android:layout_toLeftOf="@+id/textView_Euro"
-                 android:layout_toRightOf="@+id/Geldschein"
-                 android:background="@drawable/roundededittext"
+                 android:layout_width="300dp"
+                 android:layout_height="50dp"
+                 android:layout_alignTop="@+id/DropDown_Kategorien"
+                 android:layout_marginTop="80sp"
+				 android:layout_centerHorizontal="true"
+                 android:background="#f0ffff"
+                 android:fontFamily="sans-serif-thin"
                  android:ems="10"
                  android:gravity="center"
                  android:hint="@string/Betrag" >
 
                 <requestFocus />
             </EditText>
-            
-            <TextView
-                android:id="@+id/textView_Euro"
-                android:layout_width="12dp"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/textView_Uhrzeit"
-                android:layout_alignTop="@+id/editText_Eingabe"
-                android:layout_marginTop="2dp"
-                android:ems="16"
-                android:text="@string/Euro"
-                android:textColor="#ffffff" />
+
 
             <EditText
                 android:id="@+id/editText_Anmerkungen"
                 android:layout_width="300dp"
-                android:layout_height="150dp"
-                android:layout_below="@+id/Geldschein"
+                android:layout_height="80dp"
+                android:layout_below="@+id/editText_Eingabe"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:background="#ffffff"
+                android:layout_marginTop="35sp"
+                android:background="#f0ffff"
+                android:fontFamily="sans-serif-thin"
                 android:ems="10"
                 android:gravity="top"
                 android:hint="@string/Anmerkung"
@@ -105,10 +91,10 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/styledbutton"
                 android:clickable="true"
-                android:fontFamily="Tahoma"
-                android:onClick="buttonPressed"
+                android:onClick="addAusgabe"
                 android:text="@string/Anlegen"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff" 
+                android:fontFamily="sans-serif-thin"/>
             
         </RelativeLayout>
 
