@@ -23,5 +23,15 @@ public final class TransaktionenContract {
 		public static final String K_COLUMN_NAME_RESTBETRAG = "restbetrag";
 		public static final String K_COLUMN_NAME_LAST_UPDATED = "lastUpdated";
 		
+		public static final String TABLE_NAME_AUTOMATIC = "monatlicheEinnahmenTable";
+		public static final String M_COLUMN_NAME_BEZEICHNER = "name";
+		public static final String M_COLUMN_NAME_DATUM = "datum";
+		public static final String M_COLUMN_NAME_BETRAG = "betrag";
+		
+		public static final String TABLE_NAME_AUTOMATIC_A = "monatlicheAusgabenTable";
+		public static final String MA_COLUMN_NAME_BEZEICHNER = "name";
+		public static final String MA_COLUMN_NAME_DATUM = "datum";
+		public static final String MA_COLUMN_NAME_BETRAG = "betrag";
+		
 	}
 }

@@ -95,21 +95,21 @@ public class AusgabeActivity extends BaseActivity {
 	}
 	
 	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
-		public void addTransaktion(Integer id, String anmerkung, String datum, String zeit, String kategorie, String betrag){
-			//Zugang zur Datenbank
-			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-			SQLiteDatabase db = dbHelper.getWritableDatabase();
-			
-			ContentValues cv = new ContentValues();
-			cv.put(transEntry.COLUMN_NAME_TRANSAKTION_ID, id);
-			cv.put(transEntry.COLUMN_NAME_ANMEKRUNG, anmerkung);
-			cv.put(transEntry.COLUMN_NAME_DATUM, datum);
-			cv.put(transEntry.COLUMN_NAME_UHRZEIT, zeit);
-			cv.put(transEntry.COLUMN_NAME_KATEGORIE, kategorie);
-			cv.put(transEntry.COLUMN_NAME_BETRAG, betrag);
-			
-			long newRowID;
-			newRowID = db.insert(transEntry.TABLE_NAME, null, cv);
-		}
+	public void addTransaktion(Integer id, String anmerkung, String datum, String zeit, String kategorie, String betrag){
+		//Zugang zur Datenbank
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		ContentValues cv = new ContentValues();
+		cv.put(transEntry.COLUMN_NAME_TRANSAKTION_ID, id);
+		cv.put(transEntry.COLUMN_NAME_ANMEKRUNG, anmerkung);
+		cv.put(transEntry.COLUMN_NAME_DATUM, datum);
+		cv.put(transEntry.COLUMN_NAME_UHRZEIT, zeit);
+		cv.put(transEntry.COLUMN_NAME_KATEGORIE, kategorie);
+		cv.put(transEntry.COLUMN_NAME_BETRAG, betrag);
+		
+		long newRowID;
+		newRowID = db.insert(transEntry.TABLE_NAME, null, cv);
+	}
 
 }

@@ -28,7 +28,8 @@
 	            android:drawableLeft="@drawable/ic_launcher"
 	            android:gravity="left|center_vertical"
 	            android:text="@string/Einnahme_hin"
-	            android:textColor="#ffffff" />
+	            android:textColor="#ffffff"
+	            android:onClick="addMonatlicheEinnahme" />
 
             
         </RelativeLayout>

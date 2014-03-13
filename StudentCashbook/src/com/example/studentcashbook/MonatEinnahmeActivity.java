@@ -1,5 +1,8 @@
 package com.example.studentcashbook;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import DB.TransaktionenDBHelper;
 import DB.TransaktionenContract.transEntry;
 import android.content.ContentValues;
@@ -41,6 +44,29 @@ public class MonatEinnahmeActivity extends BaseActivity  {
 		return true;
 	}
 	
+	public void addMonatlicheEinnahme(){
+		String name = "";
+		String betrag = "";
+		String datum = DateFormat.getDateInstance().format(new Date());
+		putMonatlicheEinnahmeInTable(name, betrag, datum);
+		
+	}
+	
+	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
+	public void putMonatlicheEinnahmeInTable(String name, String betrag, String datum){
+		//Zugang zur Datenbank
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		ContentValues cv = new ContentValues();
+		cv.put(transEntry.M_COLUMN_NAME_BEZEICHNER, name);
+		cv.put(transEntry.M_COLUMN_NAME_BETRAG, betrag);
+		cv.put(transEntry.M_COLUMN_NAME_DATUM, datum);
+
+		
+		long newRowID;
+		newRowID = db.insert(transEntry.TABLE_NAME_AUTOMATIC, null, cv);
+	}
 	
 
 	

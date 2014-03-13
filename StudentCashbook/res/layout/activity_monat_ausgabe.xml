@@ -28,6 +28,7 @@
                 android:gravity="left|center_vertical"
                 android:text="@string/Ausgabe_hin"
                 android:textColor="#ffffff" 
+                android:onClick="addMonatlicheAusgabe"
                 android:fontFamily="sans-serif-thin"/>
 
         </RelativeLayout>
