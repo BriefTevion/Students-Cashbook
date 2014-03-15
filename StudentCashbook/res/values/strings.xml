@@ -50,5 +50,6 @@
     <string name="login">Login</string>
     <string name="signup">Sign up</string>
     <string name="spinnerKategorie">Wähle Kategorie aus</string>
+    <string name="abbrechen_button">Abbrechen</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.studentcashbook;
 
 import DB.TransaktionenDBHelper;
 import DB.TransaktionenContract.transEntry;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -65,6 +66,7 @@ public class MainActivity extends BaseActivity {
 	public void openEinnahme(View view){
 		Intent intent = new Intent(this, EinnahmeActivity.class);	
 		startActivity(intent);
+		
 	}
 	
 	public void openAusgabe(View view){
@@ -74,38 +76,42 @@ public class MainActivity extends BaseActivity {
 	
 	//Abfrage der letzten drei Transaktionen
 	public String getLastThreeTransaktions(){
-	
+		String result = "";
 	try{
 			//Zugang zur Datenbank
 			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
 			SQLiteDatabase db = dbHelper.getReadableDatabase();
-			
 
-		String result = "";
-		
 		String [] projection = {
 				transEntry.COLUMN_NAME_TRANSAKTION_ID,
 				transEntry.COLUMN_NAME_DATUM,
-				transEntry.COLUMN_NAME_BETRAG
+				transEntry.COLUMN_NAME_BETRAG,
+				transEntry.COLUMN_NAME_KATEGORIE
 		};
 		
-		String sortOrder = transEntry.COLUMN_NAME_DATUM + " DESC";
-		
+		String sortOrder = transEntry.COLUMN_NAME_TRANSAKTION_ID + " DESC";
 		
 		Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder, "3");
 		
 		
 		//solange cursor liest strings zu einem brauchbaren string zusammenfassen
 		while(c.moveToNext()){
-			String datum = c.getString(0);
-			String betrag = c.getString(1);
+			String datum = c.getString(1);
+			String betrag = c.getString(2);
+			String kategorie = c.getString(3);
 			
-			result = result + datum + " " + betrag + "\n";
+			result = result + datum + "			" + kategorie + "			" + betrag + "\n";
 			
 		}
 		
-		return result;
+		if(result == ""){
+			result = "Noch keine Transkationen bisher";
+		}
 		
+			db.close();
+			
+			return result;
+			
 		}
 		catch(Exception e){
 			e.printStackTrace();

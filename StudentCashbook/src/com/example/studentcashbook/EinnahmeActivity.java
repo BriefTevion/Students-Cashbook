@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import DB.TransaktionenDBHelper;
 import DB.TransaktionenContract.transEntry;
+import DB.TransaktionenDBHelper;
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -32,9 +34,27 @@ public class EinnahmeActivity extends BaseActivity {
 		//Spinner laden
 		kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
 		List<String> list = new ArrayList<String>();
-		//Daten aus der DB laden
-		list.add("Test1");
-		list.add("Test2");
+		//Kategorien aus der DB laden
+			//Zugang zur Datenbank
+			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+			SQLiteDatabase db = dbHelper.getReadableDatabase();
+			
+			String [] projection = { transEntry.K_COLUMN_NAME_BEZEICHNER };
+			String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
+			
+			Cursor c = db.query(transEntry.TABLE_NAME_Kategorie,projection, null, null, null, null, sortOrder);
+			
+			//Jeden Wert in List hinzufuegen
+			while(c.moveToNext()){
+				list.add(c.getString(0));
+			}
+			
+			//Wenn noch keine Kategorien vorhanden sind, dann umleiten
+			if(list.isEmpty()){
+				Intent intent = new Intent(this, KategorienActivity.class);
+				startActivity(intent);
+				
+			}
 		
 		try{
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
@@ -87,19 +107,21 @@ public class EinnahmeActivity extends BaseActivity {
 		return true;
 	}
 	
-	public void addEinnahme(){
+	public void addEinnahme(View view){
 		
 		TextView datumFeld = (TextView) findViewById(R.id.textView_Datum);
 		TextView zeitFeld = (TextView) findViewById(R.id.textView_Uhrzeit);
 		EditText betragFeld = (EditText) findViewById(R.id.editText_Eingabe);
 		EditText anmerkungFeld = (EditText) findViewById(R.id.editText_Anmerkungen);
-		
-		//Kategorie
-		//ID
+		Spinner kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
+
+		Integer id = getNewID();
 
 		try{
-			addTransaktion(1, anmerkungFeld.getText().toString(), datumFeld.getText().toString(), zeitFeld.getText().toString(), 
-					"Auto", betragFeld.getText().toString());
+			addTransaktion(id, anmerkungFeld.getText().toString(), 
+					datumFeld.getText().toString(), 
+					zeitFeld.getText().toString(), 
+					kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
 			
 			//Nachricht ueber erfolgreiches speichern
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -108,30 +130,58 @@ public class EinnahmeActivity extends BaseActivity {
 			alert.setNegativeButton("OK", null);
 			alert.setCancelable(true);
 			alert.create().show();
-		
-		}
-		catch(Exception e){
 			
+			//Elemente zuruecksetzen
+			betragFeld.setText("");
+			anmerkungFeld.setText("");
+			kategorieSpin.setSelection(0);
+			
+			
+		}
+		
+		catch(Exception e){
 			e.printStackTrace();
-			//Error Message aufrufen
+			
+			//Nachricht ueber NICHT erfolgreiches speichern
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Nicht erfolgreich");
-			alert.setTitle("Speicherung der Einnahme fehlgeschlagen");
+			alert.setMessage("Fehler");
+			alert.setTitle("Einnahme konnte nicht gespeichert werde.");
 			alert.setNegativeButton("OK", null);
 			alert.setCancelable(true);
 			alert.create().show();
 		}
-		finally{
-			//Intent intent = new Intent(this, MainActivity.class);	
-			//startActivity(intent);
-		}
+			
+		
+		
+		
+	}
+	
+	//Wenn button pressed alle Eingaben zuruecksetzen und in MainActivity wechseln
+	public void abbrechen(View view){
+		//Elemente aufrufen
+		EditText betragFeld = (EditText) findViewById(R.id.editText_Eingabe);
+		EditText anmerkungFeld = (EditText) findViewById(R.id.editText_Anmerkungen);
+		Spinner kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
+		
+		//Elemente zuruecksetzen
+		betragFeld.setText("");
+		anmerkungFeld.setText("");
+		kategorieSpin.setSelection(0);
+		
+		//zu Main wechseln
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		
 	}
 	
 	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
 	public void addTransaktion(Integer id, String anmerkung, String datum, String zeit, String kategorie, String betrag){
 		//Zugang zur Datenbank
+		try{
 		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		
 		
 		ContentValues cv = new ContentValues();
 		cv.put(transEntry.COLUMN_NAME_TRANSAKTION_ID, id);
@@ -143,6 +193,46 @@ public class EinnahmeActivity extends BaseActivity {
 		
 		long newRowID;
 		newRowID = db.insert(transEntry.TABLE_NAME, null, cv);
+		
+		db.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+;
+		}
 	}
+	
+	
+	//Neue tranaktionID ermitteln
+	public Integer getNewID(){
+		try{
+			//Zugang zur Datenbank
+			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+			SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+			Integer id = 0;
+			
+			final String SQL_getMaxID = "Select Max(" + transEntry.COLUMN_NAME_TRANSAKTION_ID + ") AS id FROM " + 
+										transEntry.TABLE_NAME;	
+			
+			Cursor c = db.rawQuery(SQL_getMaxID, null);
+			
+			
+				c.moveToFirst();
+				id = c.getInt(0);
+			
+				db.close();
+				
+				return id+1;
+			
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+			return 1;
+		}
+	}
+	
 
 }

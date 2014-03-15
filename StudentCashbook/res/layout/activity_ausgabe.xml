@@ -62,6 +62,7 @@
                  android:fontFamily="sans-serif-thin"
                  android:ems="10"
                  android:gravity="center"
+                 android:inputType="numberDecimal"
                  android:hint="@string/Betrag" >
 
                 <requestFocus />
@@ -82,19 +83,32 @@
                 android:hint="@string/Anmerkung"
                 android:inputType="textMultiLine" />
 
-            <Button
-                android:id="@+id/Anlegen"
-                android:layout_width="300dp"
+             <Button 
+                android:id="@+id/button_ausgabeAbbrechen"
+                android:layout_width="140sp"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/editText_Anmerkungen"
                 android:layout_below="@+id/editText_Anmerkungen"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/styledbutton"
+                android:onClick="abbrechen"
+                android:text="@string/abbrechen_button"
+                android:fontFamily="sans-serif-thin"
+                android:textColor="#ffffff" />
+             
+            <Button
+                android:id="@+id/Anlegen"
+                android:layout_width="140sp"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/editText_Anmerkungen"
+                android:layout_below="@+id/editText_Anmerkungen"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/styledbutton"
+                android:fontFamily="sans-serif-thin"
                 android:clickable="true"
                 android:onClick="addAusgabe"
                 android:text="@string/Anlegen"
-                android:textColor="#ffffff" 
-                android:fontFamily="sans-serif-thin"/>
+                android:textColor="#ffffff" />
             
         </RelativeLayout>
 
