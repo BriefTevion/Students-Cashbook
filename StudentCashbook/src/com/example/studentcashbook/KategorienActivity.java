@@ -6,12 +6,17 @@ import java.util.Date;
 
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -21,11 +26,7 @@ public class KategorienActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//addKategorie("test", "12", "2", "20.03.2014");
-		//addKategorie("test2", "12", "2", "20.03.2014");
-		//addKategorie("test3", "12", "2", "20.03.2014");
-		
+
 		
 	}
 	
@@ -54,13 +55,42 @@ public class KategorienActivity extends BaseActivity {
 	
 	
 	//Button pressed, neue Kategorie hinzufuegen
-	public void createNewKategorie(){
-		String name = "";
-		String budget = "";
-		String restbetrag = "";
+	public void createNewKategorie(View view){
+		EditText name = (EditText) findViewById(R.id.editText_Name);
+		EditText budget = (EditText) findViewById(R.id.editText_budget);
+		
+		String kName= name.getText().toString();
+		String kBudget;
+		
+		if (budget.getText().toString().matches("")){
+			kBudget = "0";
+		}
+		else{
+			kBudget = budget.getText().toString();
+			
+		}
+		
+		String restbetrag = kBudget;
+
 		String datum = DateFormat.getDateInstance().format(new Date());
 		
-		addKategorie(name, budget, restbetrag, datum);
+
+		addKategorie(kName, kBudget, restbetrag, datum);
+		
+		//Nachricht ueber erfolgreiches speichern
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setMessage("Kategorie angelegt");
+		alert.setTitle("Erfolgreich");
+		alert.setNegativeButton("OK", null);
+		alert.setCancelable(true);
+		alert.create().show();
+		
+		
+		getKategorien();
+		
+		name.setText("");
+		budget.setText("");
+		
 	}
 	
 	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
@@ -97,20 +127,43 @@ public class KategorienActivity extends BaseActivity {
 		
 		Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, null, null, null, null, sortOrder);
 		
-		LinearLayout lLayout = (LinearLayout) findViewById(R.id.lLayout);
-		lLayout.setOrientation(LinearLayout.VERTICAL);
+
 		
 		ListView listV = (ListView) findViewById(R.id.list);
 		final ArrayList<String> list = new ArrayList<String>();
 		 
 		while(c.moveToNext()){
 			String kName = c.getString(0);
-			String kBudget = c.getString(1);
-			String kRest = c.getString(2);
+			String kBudget;
+			String kRest;
+			Integer progress;
 			
-			Integer progress = Integer.parseInt(kRest) / Integer.parseInt(kBudget);
+			if(c.getString(1).matches("")){
+				kBudget = "0";
+			}
+			else{
+				kBudget = c.getString(1);
+			}
 			
-			list.add("Kategorie: " + kName + "\nVerbraucht: " + progress + "\nRestbetrag: " + kRest);
+			
+			if(c.getString(2).matches("")){
+				kRest = "0";
+			}
+			else{
+				kRest = c.getString(2);
+			}
+			
+			
+			if(Integer.parseInt(kRest) > 0 && Integer.parseInt(kBudget) > 0){
+				progress = 100-((Integer.parseInt(kRest) / Integer.parseInt(kBudget))*100);
+			}
+			else{
+				progress = 0;
+			}
+			
+			
+			
+			list.add("Kategorie: " + kName + "\nVerbaucht: " + progress + "% \nRestbetrag: " + kRest);
 			
 			ArrayAdapter adapter = new ArrayAdapter(this,
 				        android.R.layout.simple_list_item_1, list);

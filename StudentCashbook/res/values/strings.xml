@@ -51,5 +51,7 @@
     <string name="signup">Sign up</string>
     <string name="spinnerKategorie">Wähle Kategorie aus</string>
     <string name="abbrechen_button">Abbrechen</string>
+    <string name="neuerName">Name</string>
+    <string name="editText_neuesBudget">monatliches Budget (Optional)</string>
 
 </resources>
