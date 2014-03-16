@@ -29,14 +29,13 @@
     <string name="LetzteAusgaben">Letzte Ausgaben</string>
     <string name="Euro">€</string>
     <string name="Datum">Datum</string>
-    <string name="Kategorie">Kategorie hinzufügen</string>
     <string name="SparzielDefinieren">Neues Sparziel definieren</string>
-	<string name="Titel">Titel</string>
-	<string name="faellig">fällig am</string>
-	<string name="date">21.12.2014</string>
-	<string name="uebrig">spare, was monatlich übrig bleibt</string>
-	<string name="fest">festen monatlichen Betrag sparen</string>
-	<string name="Sparbetrag"> 350 €</string>
+    <string name="Titel">Titel</string>
+    <string name="faellig">fällig am</string>
+    <string name="date">21.12.2014</string>
+    <string name="uebrig">spare, was monatlich übrig bleibt</string>
+    <string name="fest">festen monatlichen Betrag sparen</string>
+    <string name="Sparbetrag"> 350 €</string>
     <string name="Uhrzeit">Uhrzeit</string>
     <string name="OrangeRectangle">OrangeRectangle</string>
     <string name="NeuerBenutzer">Neu hier?</string>
@@ -53,5 +52,9 @@
     <string name="abbrechen_button">Abbrechen</string>
     <string name="neuerName">Name</string>
     <string name="editText_neuesBudget">monatliches Budget (Optional)</string>
+    <string name="action_newK">Neue Kategorie</string>
+    <string name="title_activity_neue_kategorie">NeueKategorieActivity</string>
+    <string name="neueKategorie">Neue Kategorie</string>
+    <string name="kategorieUebersicht">Deine Kategorien</string>
 
 </resources>

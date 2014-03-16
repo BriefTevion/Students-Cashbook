@@ -30,7 +30,6 @@ public class MainActivity extends BaseActivity {
 	protected void onStart(){
 		super.onStart();
 		
-		Toast.makeText(this, "Übersicht", Toast.LENGTH_SHORT).show();
 		
 		//Element bekommen
 		lastTrans = (TextView) findViewById(R.id.lastTransaktionen);
@@ -97,10 +96,17 @@ public class MainActivity extends BaseActivity {
 		//solange cursor liest strings zu einem brauchbaren string zusammenfassen
 		while(c.moveToNext()){
 			String datum = c.getString(1);
-			String betrag = c.getString(2);
+			String betrag;
 			String kategorie = c.getString(3);
 			
-			result = result + datum + "			" + kategorie + "			" + betrag + "\n";
+			if(c.getString(2).matches("")){
+				betrag = "0";
+			}
+			else{
+				betrag = c.getString(2);
+			}
+			
+			result = result + datum + "			" + kategorie + "			" + betrag + "€\n";
 			
 		}
 		
