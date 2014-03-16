@@ -10,7 +10,7 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:background="#84c185" >
+         android:background="#3C8DC5" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                  android:layout_alignTop="@+id/DropDown_Kategorien"
                  android:layout_marginTop="80sp"
 				 android:layout_centerHorizontal="true"
-                 android:background="#f0ffff"
+                 android:background="#ffffff"
                  android:fontFamily="sans-serif-thin"
                  android:ems="10"
                  android:gravity="center"
@@ -76,7 +76,7 @@
                 android:layout_below="@+id/editText_Eingabe"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="35sp"
-                android:background="#f0ffff"
+                android:background="#ffffff"
                 android:fontFamily="sans-serif-thin"
                 android:ems="10"
                 android:gravity="top"
@@ -90,11 +90,11 @@
                 android:layout_alignLeft="@+id/editText_Anmerkungen"
                 android:layout_below="@+id/editText_Anmerkungen"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/styledbutton"
+                android:background="@drawable/styledbutton2"
                 android:onClick="abbrechen"
                 android:text="@string/abbrechen_button"
                 android:fontFamily="sans-serif-thin"
-                android:textColor="#ffffff" />
+                android:textColor="#000000" />
              
             <Button
                 android:id="@+id/Anlegen"
@@ -103,12 +103,12 @@
                 android:layout_alignRight="@+id/editText_Anmerkungen"
                 android:layout_below="@+id/editText_Anmerkungen"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/styledbutton"
+                android:background="@drawable/styledbutton2"
                 android:fontFamily="sans-serif-thin"
                 android:clickable="true"
                 android:onClick="addAusgabe"
                 android:text="@string/Anlegen"
-                android:textColor="#ffffff" />
+                android:textColor="#000000" />
             
         </RelativeLayout>
 

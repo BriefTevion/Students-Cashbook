@@ -19,6 +19,7 @@
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/imageView1"
             android:textSize="16sp"
+            android:textColor="#ffffff"
              android:fontFamily="sans-serif-thin" />
 
         <TextView
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageView1"
             android:layout_alignLeft="@+id/textView1"
+            android:textColor="#ffffff"
              android:fontFamily="sans-serif-thin" />
 
         <Button
