@@ -5,5 +5,10 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
-
+	
+     <!-- Add new Einnahme button in the action bar -->
+    <item android:id="@+id/action_add"
+          android:icon="@drawable/ic_action_new"
+          android:title="@string/action_newE" 
+          android:showAsAction="ifRoom"/>
 </menu>

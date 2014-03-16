@@ -148,6 +148,7 @@ public final class R {
         public static final int Titel=0x7f06001f;
         public static final int Uhrzeit=0x7f060025;
         public static final int abbrechen_button=0x7f060032;
+        public static final int action_newE=0x7f06003a;
         public static final int action_newK=0x7f060035;
         public static final int action_settings=0x7f060003;
         public static final int app_name=0x7f060002;

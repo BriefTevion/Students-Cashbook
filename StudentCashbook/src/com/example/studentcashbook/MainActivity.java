@@ -1,16 +1,10 @@
 package com.example.studentcashbook;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.example.studentcashbook.KategorienActivity.itemListAdapter;
-import com.example.studentcashbook.KategorienActivity.itemListData;
-
-import DB.TransaktionenDBHelper;
 import DB.TransaktionenContract.transEntry;
-import android.content.ContentValues;
+import DB.TransaktionenDBHelper;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,12 +12,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends BaseActivity {
 
@@ -37,10 +31,7 @@ public class MainActivity extends BaseActivity {
         
 		ListView view = (ListView) findViewById(R.id.list);
         view.setAdapter(adapter);
-        
-        
-        
-        
+ 
 		
 	}
 	
@@ -58,6 +49,17 @@ public class MainActivity extends BaseActivity {
 		setContentView(R.layout.activity_main);
 	}
 
+	//wenn action button geklickt
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.action_add:
+	            openEinnahme();
+	        default:
+	            return super.onOptionsItemSelected(item);        
+	    }
+	    }
 	
 
 	@Override
@@ -67,6 +69,14 @@ public class MainActivity extends BaseActivity {
 		return true;
 	}
 	
+	//Wenn action button geklickt
+	public void openEinnahme(){
+		Intent intent = new Intent(getApplicationContext(), EinnahmeActivity.class);	
+		startActivity(intent);
+		
+	}
+	
+	//Wenn activity button geklickt
 	public void openEinnahme(View view){
 		Intent intent = new Intent(this, EinnahmeActivity.class);	
 		startActivity(intent);
