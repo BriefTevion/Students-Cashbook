@@ -24,42 +24,15 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20sp" />
         
-        <Button
-            	android:id="@+id/button_Einnahme"
-                android:layout_width="110dp"
-                android:layout_height="100dp"
-                android:layout_below="@+id/Tortendiagramm"
-                android:layout_marginLeft="50sp"
-                android:layout_marginTop="40sp"
-                android:background="@drawable/styledbutton2"
-                android:text="@string/Einnahme"
-                android:textColor="#000000"
-                android:gravity="center"
-                android:onClick="openEinnahme"
-                android:fontFamily="sans-serif-thin"/>
-
-    	<Button
-    	    	android:id="@+id/Ausgabe"
-                android:layout_width="110dp"
-                android:layout_height="100dp"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/Tortendiagramm"
-                android:layout_marginRight="50sp"
-                android:layout_marginTop="40sp"
-                android:background="@drawable/styledbutton2"
-                android:text="@string/Ausgabe"
-                android:textColor="#000000"
-                android:gravity="center"
-                android:onClick="openAusgabe"
-                android:fontFamily="sans-serif-thin"/>
+       
 
     	<TextView
 	    	    android:id="@+id/textView_LetzteTrans"
 	    	    android:layout_width="wrap_content"
 	    	    android:layout_height="wrap_content"
 	    	    android:layout_centerHorizontal="true"
-	    	    android:layout_below="@+id/button_Einnahme"
-	    	    android:layout_marginTop="25sp"
+	    	    android:layout_below="@+id/Tortendiagramm"
+	    	    android:layout_marginTop="165sp"
 				android:textAppearance="?android:attr/textAppearanceMedium" 
 				android:textColor="#ffffff"
 	    	    android:text="@string/LetzteTransaktionen"

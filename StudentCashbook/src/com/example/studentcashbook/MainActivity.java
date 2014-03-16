@@ -54,8 +54,10 @@ public class MainActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.action_add:
+	        case R.id.action_nEinnahme:
 	            openEinnahme();
+	        case R.id.action_nAusgabe:
+	        	openAusgabe();
 	        default:
 	            return super.onOptionsItemSelected(item);        
 	    }
@@ -76,17 +78,14 @@ public class MainActivity extends BaseActivity {
 		
 	}
 	
-	//Wenn activity button geklickt
-	public void openEinnahme(View view){
-		Intent intent = new Intent(this, EinnahmeActivity.class);	
+	
+	//Wenn action button geklickt
+	public void openAusgabe(){
+		Intent intent = new Intent(getApplicationContext(), AusgabeActivity.class);	
 		startActivity(intent);
-		
 	}
 	
-	public void openAusgabe(View view){
-		Intent intent = new Intent(this, AusgabeActivity.class);	
-		startActivity(intent);
-	}
+	
 	
 	
 	

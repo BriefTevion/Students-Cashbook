@@ -58,5 +58,6 @@
     <string name="kategorieUebersicht">Deine Kategorien</string>
     <string name="LetzteTransaktionen">Letzte Transaktionen:</string>
     <string name="action_newE">Neue Einnahme</string>
+    <string name="action_newA">Neue Ausgabe</string>
 
 </resources>
