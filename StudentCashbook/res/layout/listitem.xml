@@ -9,7 +9,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-
             android:src="@drawable/ic_launcher" />
 
         <TextView
@@ -19,8 +18,8 @@
             android:layout_marginLeft="23dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/imageView1"
-            android:text="CodeLearn Chapter 1"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+             android:fontFamily="sans-serif-thin" />
 
         <TextView
             android:id="@+id/textView2"
@@ -28,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageView1"
             android:layout_alignLeft="@+id/textView1"
-            android:text="Description" />
+             android:fontFamily="sans-serif-thin" />
 
         <Button
             android:id="@+id/button1"
@@ -40,7 +39,8 @@
             android:clickable="true"
             android:drawableTop="@drawable/ic_action_delete"
             android:background="@android:color/transparent"
-            android:onClick="onButtonClick"/>
+            android:onClick="onButtonClick"
+             android:fontFamily="sans-serif-thin"/>
 
        
 

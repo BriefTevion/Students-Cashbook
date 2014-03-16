@@ -19,7 +19,7 @@
         <Space
                 android:id="@+id/Tortendiagramm"
                 android:layout_width="400sp"
-                android:layout_height="200sp"
+                android:layout_height="175sp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20sp" />
@@ -56,28 +56,25 @@
                 android:fontFamily="sans-serif-thin"/>
 
     	<TextView
-	    	    android:id="@+id/textView_LetzteAusgaben"
+	    	    android:id="@+id/textView_LetzteTrans"
 	    	    android:layout_width="wrap_content"
 	    	    android:layout_height="wrap_content"
-	    	    android:layout_alignParentLeft="true"
+	    	    android:layout_centerHorizontal="true"
 	    	    android:layout_below="@+id/button_Einnahme"
-	    	    android:layout_marginTop="20sp"
-				android:layout_marginLeft="15sp"
+	    	    android:layout_marginTop="25sp"
 				android:textAppearance="?android:attr/textAppearanceMedium" 
 				android:textColor="#ffffff"
-	    	    android:text="@string/LetzteAusgaben"
-	    	    android:fontFamily="sans-serif-thin"/>
+	    	    android:text="@string/LetzteTransaktionen"
+	    	    android:fontFamily="sans-serif-thin"
+	    	    android:textStyle="bold"/>
 
-    	<TextView
-    	    android:id="@+id/lastTransaktionen"
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-    	    android:layout_below="@+id/textView_LetzteAusgaben"
-			android:layout_marginTop="20sp"
-			android:layout_centerHorizontal="true"
-    	    android:text="-- no data --" 
-    	    android:textSize="20sp"
-    	    android:fontFamily="sans-serif-thin"/>
+    	
+    	<ListView 
+                android:id="@+id/list"
+                android:layout_below="@+id/textView_LetzteTrans"
+                android:layout_marginTop="10sp"
+                android:layout_height="wrap_content"
+        		android:layout_width="match_parent"/>
             
         </RelativeLayout>
 

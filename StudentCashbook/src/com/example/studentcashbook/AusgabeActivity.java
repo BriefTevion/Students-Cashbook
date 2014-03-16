@@ -9,6 +9,7 @@ import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -49,10 +50,24 @@ public class AusgabeActivity extends BaseActivity {
 				list.add(c.getString(0));
 			}
 			
+			//Ueberpruefen ob bereits Kategorien angelegt worden sind
+	        //Dies muss der erste schritt sein
 			//Wenn noch keine Kategorien vorhanden sind, dann umleiten
 			if(list.isEmpty()){
-				Intent intent = new Intent(this, KategorienActivity.class);
-				startActivity(intent);
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.setMessage("Bitte lege zunächst deine Kategorien an");
+				alert.setTitle("Hinweis");
+				alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						
+						Intent intent = new Intent(getApplicationContext(), NeueKategorieActivity.class);
+						startActivity(intent);
+						
+					}
+				});
+				alert.setCancelable(true);
+				alert.create().show();
+
 				
 			}
 		

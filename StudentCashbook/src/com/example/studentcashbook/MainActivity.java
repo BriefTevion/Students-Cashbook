@@ -1,5 +1,13 @@
 package com.example.studentcashbook;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.example.studentcashbook.KategorienActivity.itemListAdapter;
+import com.example.studentcashbook.KategorienActivity.itemListData;
+
 import DB.TransaktionenDBHelper;
 import DB.TransaktionenContract.transEntry;
 import android.content.ContentValues;
@@ -8,21 +16,31 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends BaseActivity {
-	TextView lastTrans;
-	TransaktionenDBHelper dbHelper;
-	String result = "NO DATA";
-	
+
+	itemListAdapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		adapter = new itemListAdapter();
+        
+		ListView view = (ListView) findViewById(R.id.list);
+        view.setAdapter(adapter);
+        
+        
+        
+        
 		
 	}
 	
@@ -30,20 +48,7 @@ public class MainActivity extends BaseActivity {
 	protected void onStart(){
 		super.onStart();
 		
-		
-		//Element bekommen
-		lastTrans = (TextView) findViewById(R.id.lastTransaktionen);
-		
-		//Abfrage als Text des Elementes setzen
-		try{
-		result = getLastThreeTransaktions();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			result = "DB Verbindungsproblem";
-		}
-		finally{
-		lastTrans.setText(result);}
+	
 	}
 	
 	
@@ -73,13 +78,21 @@ public class MainActivity extends BaseActivity {
 		startActivity(intent);
 	}
 	
-	//Abfrage der letzten drei Transaktionen
-	public String getLastThreeTransaktions(){
-		String result = "";
-	try{
-			//Zugang zur Datenbank
-			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-			SQLiteDatabase db = dbHelper.getReadableDatabase();
+	
+	
+	public class itemListData{
+		String name;
+		String datum;
+		String betrag;
+	}
+	
+	public List<itemListData> getDataForListiew()
+	{
+		
+		//Daten abfragen
+		//Zugang zur Datenbank
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
 
 		String [] projection = {
 				transEntry.COLUMN_NAME_TRANSAKTION_ID,
@@ -92,38 +105,91 @@ public class MainActivity extends BaseActivity {
 		
 		Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder, "3");
 		
+		List<itemListData> list = new ArrayList <itemListData>();
 		
-		//solange cursor liest strings zu einem brauchbaren string zusammenfassen
-		while(c.moveToNext()){
-			String datum = c.getString(1);
-			String betrag;
-			String kategorie = c.getString(3);
-			
-			if(c.getString(2).matches("")){
-				betrag = "0";
+			//Daten erhalten
+			while(c.moveToNext()){
+				String name = c.getString(3);
+				String betrag;
+				String datum = c.getString(1);
+				
+				itemListData ild = new itemListData();
+				
+				
+
+					if(c.getString(2).matches("")){
+						betrag = "0";
+					}
+					else{
+						betrag = c.getString(2);
+					}
+							
+						//Daten in Liste übergeben						
+						ild.name = name;
+						ild.datum = datum;
+						ild.betrag = betrag;
+				
+					
+					list.add(ild);
+					
+					
+			}	
+					db.close();
+					return list;
+					
+	}
+	
+	//benutzerdefinierter Adapter
+	public class itemListAdapter extends BaseAdapter{
+		List<itemListData> list =  getDataForListiew();
+		
+		@Override
+		public int getCount() {
+			return list.size();
+
+		}
+		
+		@Override
+		public itemListData getItem(int arg0) {
+			// TODO Auto-generated method stub
+			return list.get(arg0);
+		}
+		
+		@Override
+		public long getItemId(int arg0) {
+			// TODO Auto-generated method stub
+			return arg0;
+		}
+		
+		@Override
+		public View getView(int arg0, View arg1, ViewGroup arg2) {
+
+			if(arg1==null)
+			{
+				LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				arg1 = inflater.inflate(R.layout.listitemmain, arg2,false);
 			}
-			else{
-				betrag = c.getString(2);
-			}
-			
-			result = result + datum + "			" + kategorie + "			" + betrag + "€\n";
-			
+
+			TextView name = (TextView)arg1.findViewById(R.id.textView1);
+			TextView datum = (TextView)arg1.findViewById(R.id.textView2);
+			TextView betrag = (TextView)arg1.findViewById(R.id.textView3);
+
+			itemListData data = list.get(arg0);
+
+			name.setText(data.name);
+			datum.setText(data.datum);
+			betrag.setText(data.betrag +"€");
+
+
+			return arg1;
 		}
 		
-		if(result == ""){
-			result = "Noch keine Transkationen bisher";
+		public itemListData getItems(int position)
+		{
+			return list.get(position);
 		}
 		
-			db.close();
-			
-			return result;
-			
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			
-			return "Error";
-		}
+		
 	}
 
 	

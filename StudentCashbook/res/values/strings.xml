@@ -56,5 +56,6 @@
     <string name="title_activity_neue_kategorie">NeueKategorieActivity</string>
     <string name="neueKategorie">Neue Kategorie</string>
     <string name="kategorieUebersicht">Deine Kategorien</string>
+    <string name="LetzteTransaktionen">Letzte Transaktionen:</string>
 
 </resources>
