@@ -148,8 +148,6 @@ public class KategorienActivity extends BaseActivity {
 		
 		List<itemListData> list = new ArrayList <itemListData>();
 		
-		itemListData ild = new itemListData();
-		
 
 			//Daten erhalten
 			while(c.moveToNext()){
@@ -173,11 +171,10 @@ public class KategorienActivity extends BaseActivity {
 					kRest = c.getString(2);
 				}
 
-
-
-				
 				
 				//Daten in Liste uebergeben
+				itemListData ild = new itemListData();
+				
 				ild.name = kName;
 				ild.rest = kRest;
 				ild.budget = kBudget;
@@ -229,7 +226,6 @@ public class KategorienActivity extends BaseActivity {
 			itemListData data = list.get(arg0);
 
 			name.setText(data.name);
-			
 
 			rest.setText(data.rest + "€ von " + data.budget + "€ übrig");
 
