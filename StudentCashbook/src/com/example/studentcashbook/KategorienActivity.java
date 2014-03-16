@@ -148,15 +148,18 @@ public class KategorienActivity extends BaseActivity {
 		
 		List<itemListData> list = new ArrayList <itemListData>();
 		
+		itemListData ild = new itemListData();
+		
+
 			//Daten erhalten
 			while(c.moveToNext()){
 				String kName = c.getString(0);
 				String kBudget;
 				String kRest;
-				Integer progress;
 
 				if(c.getString(1).matches("")){
 					kBudget = "0";
+					
 				}
 				else{
 					kBudget = c.getString(1);
@@ -171,26 +174,19 @@ public class KategorienActivity extends BaseActivity {
 				}
 
 
-				if(Integer.parseInt(kRest) > 0 && Integer.parseInt(kBudget) > 0){
-					progress = 100-((Integer.parseInt(kRest) / Integer.parseInt(kBudget))*100);
-				}
-				else{
-					progress = 0;
-				}
 
-					
-					//Daten in Liste übergeben
-					
-					
-					itemListData ild = new itemListData();
-					ild.name = kName;
-					ild.rest = kRest;
-					ild.budget = kBudget;
-					
-					list.add(ild);
+				
+				
+				//Daten in Liste uebergeben
+				ild.name = kName;
+				ild.rest = kRest;
+				ild.budget = kBudget;
+
+				list.add(ild);
 					
 					
 			}	
+		
 					db.close();
 					return list;
 					
@@ -233,6 +229,8 @@ public class KategorienActivity extends BaseActivity {
 			itemListData data = list.get(arg0);
 
 			name.setText(data.name);
+			
+
 			rest.setText(data.rest + "€ von " + data.budget + "€ übrig");
 
 			return arg1;

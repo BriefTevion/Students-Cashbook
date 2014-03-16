@@ -31,10 +31,7 @@ public final class R {
         public static final int ic_drawer=0x7f020004;
         public static final int ic_launcher=0x7f020005;
         public static final int rectangle_orange=0x7f020006;
-        public static final int roundedbutton=0x7f020007;
-        public static final int roundededittext=0x7f020008;
-        public static final int styledbutton=0x7f020009;
-        public static final int trivialstyledbutton=0x7f02000a;
+        public static final int styledbutton=0x7f020007;
     }
     public static final class id {
         public static final int Anlegen=0x7f090008;
