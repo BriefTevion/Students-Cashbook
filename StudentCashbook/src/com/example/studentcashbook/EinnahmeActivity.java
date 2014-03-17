@@ -50,25 +50,8 @@ public class EinnahmeActivity extends BaseActivity {
 				list.add(c.getString(0));
 			}
 			
-			//Ueberpruefen ob bereits Kategorien angelegt worden sind
-	        //Dies muss der erste schritt sein
-			//Wenn noch keine Kategorien vorhanden sind, dann umleiten
-			if(list.isEmpty()){
-				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setMessage("Bitte lege zunächst deine Kategorien an");
-				alert.setTitle("Hinweis");
-				alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog,int id) {
-						
-						Intent intent = new Intent(getApplicationContext(), NeueKategorieActivity.class);
-						startActivity(intent);
-						
-					}
-				});
-				alert.setCancelable(true);
-				alert.create().show();
-	
-			}
+			list.add("ohne Kategorie");
+		
 		
 		try{
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
@@ -131,42 +114,47 @@ public class EinnahmeActivity extends BaseActivity {
 
 		Integer id = getNewID();
 
-		try{
-			addTransaktion(id, anmerkungFeld.getText().toString(), 
-					datumFeld.getText().toString(), 
-					zeitFeld.getText().toString(), 
-					kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
-			
-			//Betrag der Kategorie gutschreiben
-			addBetragToKategorie(datumFeld.getText().toString(), kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
-	
-			
-			//Nachricht ueber erfolgreiches speichern
-			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Einnahme gepeichert");
-			alert.setTitle("Erfolgreich");
-			alert.setNegativeButton("OK", null);
-			alert.setCancelable(true);
-			alert.create().show();
-			
-			//Elemente zuruecksetzen
-			betragFeld.setText("");
-			anmerkungFeld.setText("");
-			kategorieSpin.setSelection(0);
+			try{
+				addTransaktion(id, anmerkungFeld.getText().toString(), 
+						datumFeld.getText().toString(), 
+						zeitFeld.getText().toString(), 
+						kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
+				
+				//wenn kategorie 'ohne kategorie' nicht ausgewaehlt worden ist
+				if(kategorieSpin.getSelectedItem().toString()!="ohne Kategorie"){
+
+					//Betrag der Kategorie gutschreiben
+					addBetragToKategorie(datumFeld.getText().toString(), kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
 			
 				}
-		
-		catch(Exception e){
-			e.printStackTrace();
+				
+				
+				//Nachricht ueber erfolgreiches speichern
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.setMessage("Einnahme gepeichert");
+				alert.setTitle("Erfolgreich");
+				alert.setNegativeButton("OK", null);
+				alert.setCancelable(true);
+				alert.create().show();
+				
+				//Elemente zuruecksetzen
+				betragFeld.setText("");
+				anmerkungFeld.setText("");
+				kategorieSpin.setSelection(0);
+				
+					}
 			
-			//Nachricht ueber NICHT erfolgreiches speichern
-			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Fehler");
-			alert.setTitle("Einnahme konnte nicht gespeichert werde.");
-			alert.setNegativeButton("OK", null);
-			alert.setCancelable(true);
-			alert.create().show();
-		}
+			catch(Exception e){
+				e.printStackTrace();
+				
+				//Nachricht ueber NICHT erfolgreiches speichern
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.setMessage("Fehler");
+				alert.setTitle("Einnahme konnte nicht gespeichert werde.");
+				alert.setNegativeButton("OK", null);
+				alert.setCancelable(true);
+				alert.create().show();
+			}
 			
 		
 		

@@ -50,26 +50,9 @@ public class AusgabeActivity extends BaseActivity {
 				list.add(c.getString(0));
 			}
 			
-			//Ueberpruefen ob bereits Kategorien angelegt worden sind
-	        //Dies muss der erste schritt sein
-			//Wenn noch keine Kategorien vorhanden sind, dann umleiten
-			if(list.isEmpty()){
-				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setMessage("Bitte lege zunächst deine Kategorien an");
-				alert.setTitle("Hinweis");
-				alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog,int id) {
-						
-						Intent intent = new Intent(getApplicationContext(), NeueKategorieActivity.class);
-						startActivity(intent);
-						
-					}
-				});
-				alert.setCancelable(true);
-				alert.create().show();
-
+			list.add("ohne Kategorie");
 				
-			}
+			
 		
 		try{
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
@@ -132,7 +115,10 @@ public class AusgabeActivity extends BaseActivity {
 					zeitFeld.getText().toString(), 
 					kategorieSpin.getSelectedItem().toString(), betrag);
 			
-			subBetragToKategorie(datumFeld.getText().toString(), kategorieSpin.getSelectedItem().toString(), betrag);
+			//wenn kategorie 'ohne kategorie' nicht ausgewaehlt worden ist
+			if(kategorieSpin.getSelectedItem().toString()!="ohne Kategorie"){
+				subBetragToKategorie(datumFeld.getText().toString(), kategorieSpin.getSelectedItem().toString(), betrag);
+			}
 			
 			//Nachricht ueber erfolgreiches speichern
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
