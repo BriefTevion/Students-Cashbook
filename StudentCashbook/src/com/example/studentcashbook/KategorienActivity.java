@@ -12,14 +12,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.SyncStateContract.Columns;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,14 +44,28 @@ public class KategorienActivity extends BaseActivity {
 		
 		RelativeLayout rparent = (RelativeLayout) view.getParent();
 		
-		TextView name = (TextView) rparent.getChildAt(1);
-
-
-		deleteListItem(name.getText().toString());
+		final TextView name = (TextView) rparent.getChildAt(1);
 		
-		finish();
-		startActivity(getIntent());
+		//Nachfragen ob item sicher geloescht werden moechte
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setMessage("Möchtest du diese Kategorie löschen?");
+		alert.setTitle("Löschen bestätigen");
+		alert.setNegativeButton("Nicht Löschen",null);
+		alert.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				
+				deleteListItem(name.getText().toString());
+				
+				finish();
+				startActivity(getIntent());
+
+				
+			}
+		});
+		alert.setCancelable(true);
+		alert.create().show();
 		
+
 		
 	}
 
@@ -220,14 +233,28 @@ public class KategorienActivity extends BaseActivity {
 				arg1 = inflater.inflate(R.layout.listitem, arg2,false);
 			}
 
+			ImageView img = (ImageView) arg1.findViewById(R.id.imageView1);
 			TextView name = (TextView)arg1.findViewById(R.id.textView1);
 			TextView rest = (TextView)arg1.findViewById(R.id.textView2);
 
 			itemListData data = list.get(arg0);
+			
+			if(Integer.parseInt(data.budget)==0){
+				img.setImageResource(R.drawable.ic_action_star);
+				rest.setText(data.rest + "€");
+			}
+			else if((Integer.parseInt(data.rest)/Integer.parseInt(data.budget))>0.3){
+				img.setImageResource(R.drawable.ic_action_good);
+				rest.setText(data.rest + "€ von " + data.budget + "€ übrig");
+			}
+			else{
+				img.setImageResource(R.drawable.ic_action_bad);
+				rest.setText(data.rest + "€ von " + data.budget + "€ übrig");
+			}
 
 			name.setText(data.name);
 
-			rest.setText(data.rest + "€ von " + data.budget + "€ übrig");
+			
 
 			return arg1;
 		}

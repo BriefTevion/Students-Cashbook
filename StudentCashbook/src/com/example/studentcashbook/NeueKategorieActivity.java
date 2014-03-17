@@ -122,6 +122,8 @@ public class NeueKategorieActivity extends Activity {
 			
 			long newRowID;
 			newRowID = db.insert(transEntry.TABLE_NAME_Kategorie, null, cv);
+			
+			db.close();
 		}
 		
 		

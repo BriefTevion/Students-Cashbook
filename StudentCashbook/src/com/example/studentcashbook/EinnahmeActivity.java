@@ -137,6 +137,10 @@ public class EinnahmeActivity extends BaseActivity {
 					zeitFeld.getText().toString(), 
 					kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
 			
+			//Betrag der Kategorie gutschreiben
+			addBetragToKategorie(datumFeld.getText().toString(), kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
+	
+			
 			//Nachricht ueber erfolgreiches speichern
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
 			alert.setMessage("Einnahme gepeichert");
@@ -150,8 +154,7 @@ public class EinnahmeActivity extends BaseActivity {
 			anmerkungFeld.setText("");
 			kategorieSpin.setSelection(0);
 			
-			
-		}
+				}
 		
 		catch(Exception e){
 			e.printStackTrace();
@@ -170,6 +173,60 @@ public class EinnahmeActivity extends BaseActivity {
 		
 	}
 	
+	//Kategorie den Betrag gutschreiben
+	private void addBetragToKategorie(String datum, String kName,
+			String betrag) {
+		
+		//Zugang zur Datenbank
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.K_COLUMN_NAME_BEZEICHNER,
+				transEntry.K_COLUMN_NAME_BUDGET,
+				transEntry.K_COLUMN_NAME_RESTBETRAG
+		};
+
+		String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
+
+		try{ 
+			
+		Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, transEntry.K_COLUMN_NAME_BEZEICHNER 
+				+ "= '" + kName +"'", null, null, null, sortOrder);
+		
+		c.moveToFirst();
+		String aktuellerRest = c.getString(2);
+		Integer neuerBetrag = Integer.parseInt(aktuellerRest) + Integer.parseInt(betrag);
+		
+		
+		
+			
+			ContentValues cv = new ContentValues();
+		      cv.put(transEntry.K_COLUMN_NAME_RESTBETRAG, String.valueOf(neuerBetrag));
+		      cv.put(transEntry.K_COLUMN_NAME_LAST_UPDATED, datum);
+		      
+			db.update(transEntry.TABLE_NAME_Kategorie, cv, transEntry.K_COLUMN_NAME_BEZEICHNER 
+					+ "= '" + kName +"'", null);
+		
+		
+		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			//Nachricht ueber NICHT erfolgreiches speichern
+			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+			alert.setMessage("Fehler2");
+			alert.setTitle("Einnahme konnte nicht gespeichert werde.");
+			alert.setNegativeButton("OK", null);
+			alert.setCancelable(true);
+			alert.create().show();
+		}
+		db.close();
+		
+	}
+
+
 	//Wenn button pressed alle Eingaben zuruecksetzen und in MainActivity wechseln
 	public void abbrechen(View view){
 		//Elemente aufrufen
@@ -212,7 +269,6 @@ public class EinnahmeActivity extends BaseActivity {
 		}
 		catch(Exception e){
 			e.printStackTrace();
-;
 		}
 	}
 	

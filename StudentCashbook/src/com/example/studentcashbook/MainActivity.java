@@ -56,8 +56,10 @@ public class MainActivity extends BaseActivity {
 	    switch (item.getItemId()) {
 	        case R.id.action_nEinnahme:
 	            openEinnahme();
+	            return true;
 	        case R.id.action_nAusgabe:
 	        	openAusgabe();
+	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);        
 	    }
