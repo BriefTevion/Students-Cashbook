@@ -44,11 +44,19 @@
         </activity>
         <activity
             android:name="com.example.studentcashbook.MonatEinnahmeActivity"
-            android:label="@string/title_activity_monat_einnahme" >
+            android:label="@string/title_activity_monat_einnahme" 
+            android:parentActivityName="com.example.studentcashbook.MonatlichesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
             android:name="com.example.studentcashbook.MonatAusgabeActivity"
-            android:label="@string/title_activity_monat_ausgabe" >
+            android:label="@string/title_activity_monat_ausgabe" 
+            android:parentActivityName="com.example.studentcashbook.MonatlichesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
             android:name="com.example.studentcashbook.SparzielActivity"
@@ -69,6 +77,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.KategorienActivity" />
+        </activity>
+        <activity
+            android:name="com.example.studentcashbook.MonatlichesActivity"
+            android:label="@string/title_activity_monatliches" >
         </activity>
     </application>
 

@@ -27,11 +27,8 @@ public final class TransaktionenContract {
 		public static final String M_COLUMN_NAME_BEZEICHNER = "name";
 		public static final String M_COLUMN_NAME_DATUM = "datum";
 		public static final String M_COLUMN_NAME_BETRAG = "betrag";
-		
-		public static final String TABLE_NAME_AUTOMATIC_A = "monatlicheAusgabenTable";
-		public static final String MA_COLUMN_NAME_BEZEICHNER = "name";
-		public static final String MA_COLUMN_NAME_DATUM = "datum";
-		public static final String MA_COLUMN_NAME_BETRAG = "betrag";
+		public static final String M_COLUMN_NAME_TAG = "tag";
+
 		
 	}
 }

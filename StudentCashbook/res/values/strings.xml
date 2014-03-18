@@ -59,5 +59,9 @@
     <string name="LetzteTransaktionen">Letzte Transaktionen:</string>
     <string name="action_newE">Neue Einnahme</string>
     <string name="action_newA">Neue Ausgabe</string>
+    <string name="title_activity_monatliches">MonatlichesActivity</string>
+    <string name="action_MonE">Neue monatliche Einnahme</string>
+    <string name="action_MonA">Neue monatliche Ausgabe</string>
+    <string name="neuesMon">Neue hinzufügen</string>
 
 </resources>

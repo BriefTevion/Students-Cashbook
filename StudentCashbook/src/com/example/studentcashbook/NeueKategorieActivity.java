@@ -127,7 +127,7 @@ public class NeueKategorieActivity extends Activity {
 		}
 		
 		
-		//alle Kategorien aus DB laden
+	
 
 		public void changeToKategorien(){
 			Intent intent = new Intent(getApplicationContext(), KategorienActivity.class);	

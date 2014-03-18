@@ -8,7 +8,7 @@
     
     <!-- Add new kategorie button in the action bar -->
     <item android:id="@+id/action_add"
-          android:icon="@drawable/ic_action_new"
+          android:icon="@drawable/ic_action_new_label"
           android:title="@string/action_newK" 
           android:showAsAction="ifRoom"/>
 

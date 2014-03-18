@@ -35,21 +35,15 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 			"CREATE TABLE " + transEntry.TABLE_NAME_AUTOMATIC + " (" +
 					transEntry.M_COLUMN_NAME_BEZEICHNER + " TEXT PRIMARY KEY," + 
 					transEntry.M_COLUMN_NAME_DATUM + TEXT_TYPE + COMMA_SEP +
-					transEntry.M_COLUMN_NAME_BETRAG + TEXT_TYPE + " )";
-	
-	//SQL Statement um Tabelle monatlicheAusgabenTable zu erstellen
-	private static final String SQL_CreateMonatlicheAusgabenTable =
-			"CREATE TABLE " + transEntry.TABLE_NAME_AUTOMATIC_A + " (" +
-					transEntry.MA_COLUMN_NAME_BEZEICHNER + " TEXT PRIMARY KEY," + 
-					transEntry.MA_COLUMN_NAME_DATUM + TEXT_TYPE + COMMA_SEP +
-					transEntry.MA_COLUMN_NAME_BETRAG + TEXT_TYPE + " )";
+					transEntry.M_COLUMN_NAME_BETRAG + TEXT_TYPE  + COMMA_SEP +
+					transEntry.M_COLUMN_NAME_TAG + TEXT_TYPE  + " )";
+
 		
 		
 	//Delete SQL-Statements
 	private static final String SQL_DELETE_ENTRIES_transaktionenTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME;
 	private static final String SQL_DELETE_ENTRIES_kategorienTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_Kategorie;
 	private static final String SQL_DELETE_ENTRIES_monatlicheEinnahmenTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_AUTOMATIC;
-	private static final String SQL_DELETE_ENTRIES_monatlicheAusgabenTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_AUTOMATIC_A;
 
 	
 	public TransaktionenDBHelper(Context context) {
@@ -63,7 +57,6 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 			db.execSQL(SQL_CreateTransaktionenTable);
 			db.execSQL(SQL_CreateKategorienTable);
 			db.execSQL(SQL_CreateMonatlicheEinnahmenTable);
-			db.execSQL(SQL_CreateMonatlicheAusgabenTable);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -75,7 +68,6 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_DELETE_ENTRIES_transaktionenTable);
 		db.execSQL(SQL_DELETE_ENTRIES_kategorienTable);
 		db.execSQL(SQL_DELETE_ENTRIES_monatlicheEinnahmenTable);
-		db.execSQL(SQL_DELETE_ENTRIES_monatlicheAusgabenTable);
 
 		onCreate(db);
 

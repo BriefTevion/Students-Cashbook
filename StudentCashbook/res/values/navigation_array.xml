@@ -5,8 +5,7 @@
         id="@android:id/drawerItems">
         
         <item>Übersicht</item>
-        <item>Monatl. Einnahmen</item>
-        <item>Monatl. Ausgaben</item>
+        <item>Monatliches</item>
         <item>Kategorien</item>
         <item>Sparziele</item>
         <item>Einstellungen</item>

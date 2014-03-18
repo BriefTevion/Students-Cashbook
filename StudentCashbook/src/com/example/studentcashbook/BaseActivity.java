@@ -107,26 +107,22 @@ public class BaseActivity extends Activity {
 		switch(number){
 
 		case 1:
-			Intent intent0 = new Intent(this, MainActivity.class);
-			startActivity(intent0);
-			break;
-		case 2:
-			Intent intent = new Intent(this, MonatEinnahmeActivity.class);
+			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			break;
-		case 3:
-			Intent intent2 = new Intent(this, MonatAusgabeActivity.class);
+		case 2:
+			Intent intent2 = new Intent(this, MonatlichesActivity.class);
 			startActivity(intent2);
 			break;
-		case 4:
+		case 3:
 			Intent intent3 = new Intent(this, KategorienActivity.class);
 			startActivity(intent3);
 			break;
-		case 5:
+		case 4:
 			Intent intent4 = new Intent(this, SparzielActivity.class);
 			startActivity(intent4);
 			break;
-		case 6:
+		case 5:
 			Intent intent5 = new Intent(this, EinstellungenActivity.class);
 			startActivity(intent5);
 			break;
@@ -147,21 +143,19 @@ public class BaseActivity extends Activity {
 			if(item.contains("Übersicht")){
 				number = 1;
 			}
-			else if(item.contains("Monatl. Einnahmen")){
+			else if(item.contains("Monatliches")){
 				number = 2;
 			}
-			else if(item.contains("Monatl. Ausgaben")){
+			else if(item.contains("Kategorien")){
 				number = 3;
 			}
-			else if(item.contains("Kategorien")){
+			else if(item.contains("Sparziele")){
 				number = 4;
 			}
-			else if(item.contains("Sparziele")){
+			else if(item.contains("Einstellungen")){
 				number = 5;
 			}
-			else if(item.contains("Einstellungen")){
-				number = 6;
-			}
+			
 
 			changeActivity(number);
 

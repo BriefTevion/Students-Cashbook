@@ -240,7 +240,7 @@ public class KategorienActivity extends BaseActivity {
 			itemListData data = list.get(arg0);
 			
 			if(Integer.parseInt(data.budget)==0){
-				img.setImageResource(R.drawable.ic_action_star);
+				img.setImageResource(R.drawable.ic_action_labels);
 				rest.setText(data.rest + "€");
 			}
 			else if((Integer.parseInt(data.rest)/Integer.parseInt(data.budget))>0.3){
