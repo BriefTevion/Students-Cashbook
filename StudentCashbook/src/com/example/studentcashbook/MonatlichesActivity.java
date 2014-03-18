@@ -30,20 +30,21 @@ itemListAdapter adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//try{
+		try{
 		adapter = new itemListAdapter();
         
 		ListView view = (ListView) findViewById(R.id.listMonatliches);
         view.setAdapter(adapter);
-//		}
-//		catch(Exception e){
-//			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-//			alert.setMessage("Fehler beim Laden der Daten");
-//			alert.setTitle("Fehlgeschlagen");
-//			alert.setNegativeButton("OK",null);
-//			alert.setCancelable(true);
-//			alert.create().show();
-//		}
+        
+		}
+		catch(Exception e){
+			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+			alert.setMessage("Fehler beim Laden der Daten");
+			alert.setTitle("Fehlgeschlagen");
+			alert.setNegativeButton("OK",null);
+			alert.setCancelable(true);
+			alert.create().show();
+		}
 		
 	}
 
@@ -58,7 +59,7 @@ itemListAdapter adapter;
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
 		    // Handle presses on the action bar items
-			try{
+
 		    switch (item.getItemId()) {
 		    case R.id.action_nMonatlicheEinnahme:
 	            openNeuMonEinnahme();
@@ -68,10 +69,7 @@ itemListAdapter adapter;
 	            return true;
 		        default:
 		            return super.onOptionsItemSelected(item);        
-		    }
-			}
-		catch(Exception e){
-			return false;
+
 		}
 		 }
 
@@ -87,6 +85,10 @@ itemListAdapter adapter;
 		
 	}
 	
+	@Override
+	public void startAct(){
+		setContentView(R.layout.activity_monatliches);
+	}
 
 	@Override
 	protected void onStart(){
@@ -95,10 +97,7 @@ itemListAdapter adapter;
 	}
 	
 	 
-	@Override
-	public void startAct(){
-		setContentView(R.layout.activity_monatliches);
-	}
+	
 	
 	
 	//Wenn DELETE Button geklickt
@@ -116,7 +115,7 @@ itemListAdapter adapter;
 			alert.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
 					
-					//deleteListItem(name.getText().toString());
+					deleteListItem(name.getText().toString());
 					
 					finish();
 					startActivity(getIntent());
@@ -157,7 +156,7 @@ itemListAdapter adapter;
 	
 	public class itemListData{
 		String name;
-		String tag;
+		String zumTag;
 		String betrag;
 	}
 	
@@ -172,6 +171,7 @@ itemListAdapter adapter;
 		String [] projection = {
 				transEntry.M_COLUMN_NAME_BEZEICHNER,
 				transEntry.M_COLUMN_NAME_BETRAG,
+				transEntry.M_COLUMN_NAME_DATUM,
 				transEntry.M_COLUMN_NAME_TAG
 		};
 
@@ -185,15 +185,28 @@ itemListAdapter adapter;
 			//Daten erhalten
 			while(c.moveToNext()){
 				
-				String mName = c.getString(0);
-				String mBudget = c.getString(1);
-				String mTag = c.getString(2);
+				String mName;
+				String mBudget;
+				String mTag;
+				
+				if(c.getString(0)==""|| c.getString(1)==""||c.getString(3)==""){
+					 mName = "0";
+					 mBudget = "0";
+					 mTag = "0";
+				}
+				else{
+					 mName = c.getString(0);
+					 mBudget = c.getString(1);
+					 mTag = c.getString(3);
+				}
+				
+				
 
 				//Daten in Liste uebergeben
 				itemListData ild = new itemListData();
 				
 				ild.name = mName;
-				ild.tag = mTag;
+				ild.zumTag = mTag;
 				ild.betrag = mBudget;
 
 				list.add(ild);
@@ -248,11 +261,11 @@ itemListAdapter adapter;
 			
 			if(Integer.parseInt(data.betrag)>=0){
 				img.setImageResource(R.drawable.ic_action_star);
-				datum.setText("Abbuchen von " + data.betrag + "€ zum: " + data.tag + ". eines Monats");
+				datum.setText("Zubuchen von " + data.betrag + "€ zum: " + data.zumTag + ". des Monats");
 			}
 			else{
 				img.setImageResource(R.drawable.ic_action_not_important);
-				datum.setText("Abbuchen von" + data.betrag + "€ zum: " + data.tag  + ". eines Monats");
+				datum.setText("Abbuchen von " + data.betrag + "€ zum: " + data.zumTag  + ". des Monats");
 			}
 
 			

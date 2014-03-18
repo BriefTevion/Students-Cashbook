@@ -31,7 +31,7 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 					transEntry.K_COLUMN_NAME_LAST_UPDATED + TEXT_TYPE + " )";
 	
 	//SQL Statement um Tabelle monatlicheEinnahmenTable zu erstellen
-	private static final String SQL_CreateMonatlicheEinnahmenTable =
+	private static final String SQL_CreateMonatlicheTable =
 			"CREATE TABLE " + transEntry.TABLE_NAME_AUTOMATIC + " (" +
 					transEntry.M_COLUMN_NAME_BEZEICHNER + " TEXT PRIMARY KEY," + 
 					transEntry.M_COLUMN_NAME_DATUM + TEXT_TYPE + COMMA_SEP +
@@ -43,7 +43,7 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 	//Delete SQL-Statements
 	private static final String SQL_DELETE_ENTRIES_transaktionenTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME;
 	private static final String SQL_DELETE_ENTRIES_kategorienTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_Kategorie;
-	private static final String SQL_DELETE_ENTRIES_monatlicheEinnahmenTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_AUTOMATIC;
+	private static final String SQL_DELETE_ENTRIES_monatlicheTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_AUTOMATIC;
 
 	
 	public TransaktionenDBHelper(Context context) {
@@ -56,7 +56,7 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 		try{
 			db.execSQL(SQL_CreateTransaktionenTable);
 			db.execSQL(SQL_CreateKategorienTable);
-			db.execSQL(SQL_CreateMonatlicheEinnahmenTable);
+			db.execSQL(SQL_CreateMonatlicheTable);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL(SQL_DELETE_ENTRIES_transaktionenTable);
 		db.execSQL(SQL_DELETE_ENTRIES_kategorienTable);
-		db.execSQL(SQL_DELETE_ENTRIES_monatlicheEinnahmenTable);
+		db.execSQL(SQL_DELETE_ENTRIES_monatlicheTable);
 
 		onCreate(db);
 
