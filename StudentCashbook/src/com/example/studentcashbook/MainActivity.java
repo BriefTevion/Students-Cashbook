@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.view.PagerTabStrip;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,27 +24,38 @@ import android.widget.TextView;
 public class MainActivity extends BaseActivity {
 
 	itemListAdapter adapter;
+	TabPagerAdapter TabAdapter;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		//ListView
 		adapter = new itemListAdapter();
         
 		ListView view = (ListView) findViewById(R.id.list);
         view.setAdapter(adapter);
- 
-		
+
+        //Swipe View
+        TabAdapter = new TabPagerAdapter(getSupportFragmentManager());
+        
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(TabAdapter);
+        
+        PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
+        pts.setDrawFullUnderline(false);
+        
+
 	}
 	
 	@Override
 	protected void onStart(){
 		super.onStart();
-		
-	
 	}
 	
 	
+
 	@Override
 	public void startAct(){
 		setContentView(R.layout.activity_main);
@@ -85,6 +98,8 @@ public class MainActivity extends BaseActivity {
 		Intent intent = new Intent(getApplicationContext(), AusgabeActivity.class);	
 		startActivity(intent);
 	}
+	
+
 	
 	
 	
@@ -149,7 +164,9 @@ public class MainActivity extends BaseActivity {
 					
 	}
 	
-	//benutzerdefinierter Adapter
+
+	
+	//Adapter fuer die ListView
 	public class itemListAdapter extends BaseAdapter{
 		List<itemListData> list =  getDataForListiew();
 		
@@ -200,7 +217,11 @@ public class MainActivity extends BaseActivity {
 		}
 		
 		
+		
+		
 	}
+	
+	
 
 	
 
