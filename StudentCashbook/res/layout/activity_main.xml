@@ -20,7 +20,7 @@
 			    xmlns:android="http://schemas.android.com/apk/res/android"
 			    android:id="@+id/pager"
 			    android:layout_width="match_parent"
-			    android:layout_height="305sp">
+			    android:layout_height="325sp">
 			    
 	            <android.support.v4.view.PagerTabStrip
 			        android:id="@+id/pager_title_strip"
@@ -41,7 +41,7 @@
 	    	    android:layout_height="wrap_content"
 	    	    android:layout_centerHorizontal="true"
 	    	    android:layout_below="@+id/pager"
-	    	    android:layout_marginTop="35sp"
+	    	    android:layout_marginTop="15sp"
 				android:textAppearance="?android:attr/textAppearanceMedium" 
 				android:textColor="#ffffff"
 	    	    android:text="@string/LetzteTransaktionen"

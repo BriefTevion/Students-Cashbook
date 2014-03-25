@@ -77,7 +77,7 @@ public final class R {
         public static final int imageView_Strich=0x7f09002c;
         public static final int lLayout=0x7f09000c;
         public static final int left_drawer=0x7f090009;
-        public static final int linearLayout=0x7f090030;
+        public static final int linearLayoutPieChart=0x7f090030;
         public static final int list=0x7f09000e;
         public static final int listMonatliches=0x7f09001b;
         public static final int listView_Sparziele=0x7f09002d;

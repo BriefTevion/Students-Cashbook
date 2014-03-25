@@ -1,7 +1,5 @@
 package studentcashbook.Activities;
 
-import com.example.studentcashbook.R;
-
 import Crypt.CryptHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,10 +7,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.studentcashbook.R;
 
 public class NeuerNutzerActivity extends Activity {
 
@@ -65,7 +64,6 @@ public void BenutzerNeuAnlegen(View view){
 		editor.putString("PASSWORD", passwortEncrypt);
 		editor.commit();
 		
-		Log.v("test",passwortEncrypt );
 		
 		//UI-Elemente zur??cksetzen
 		PasswortFeld.setText("");

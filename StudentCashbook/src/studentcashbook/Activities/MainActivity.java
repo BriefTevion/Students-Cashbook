@@ -1,9 +1,15 @@
 package studentcashbook.Activities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import com.example.studentcashbook.R;
+import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
+import org.achartengine.model.CategorySeries;
+import org.achartengine.renderer.DefaultRenderer;
+import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import Charts.TabPagerAdapter;
 import DB.TransaktionenContract.transEntry;
@@ -12,27 +18,38 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.studentcashbook.R;
 
 public class MainActivity extends BaseActivity {
 
 	itemListAdapter adapter;
 	TabPagerAdapter TabAdapter;
+	GraphicalView pieChartView = null;
+	private DefaultRenderer pieRenderer= new DefaultRenderer();
+	//Werte abhaenig  von Anzahl der Werte
+	private static int[] colors = {Color.BLUE, Color.RED};
+	private CategorySeries pieSeries = new CategorySeries("");
 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContent(getApplicationContext());
 		
 		//ListView
 		adapter = new itemListAdapter();
@@ -48,6 +65,7 @@ public class MainActivity extends BaseActivity {
         
         PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
         pts.setDrawFullUnderline(false);
+       
         
 
 	}
@@ -55,8 +73,8 @@ public class MainActivity extends BaseActivity {
 	@Override
 	protected void onStart(){
 		super.onStart();
+		
 	}
-	
 	
 
 	@Override
@@ -104,10 +122,6 @@ public class MainActivity extends BaseActivity {
 	
 
 	
-	
-	
-	
-	
 	public class itemListData{
 		String name;
 		String datum;
@@ -152,7 +166,7 @@ public class MainActivity extends BaseActivity {
 						betrag = c.getString(2);
 					}
 							
-						//Daten in Liste ??bergeben						
+						//Daten in Liste uebergeben						
 						ild.name = name;
 						ild.datum = datum;
 						ild.betrag = betrag;
@@ -167,6 +181,15 @@ public class MainActivity extends BaseActivity {
 					
 	}
 	
+
+	private static Context x;
+	 public static Context getContext(){
+		 return x;
+	 }
+	 
+	 public static void setContent(Context y){
+		 x = y;
+	 }
 
 	
 	//Adapter fuer die ListView
@@ -208,7 +231,7 @@ public class MainActivity extends BaseActivity {
 
 			name.setText(data.name);
 			datum.setText(data.datum);
-			betrag.setText(data.betrag +"???");
+			betrag.setText(data.betrag +"€");
 
 
 			return arg1;
@@ -223,7 +246,7 @@ public class MainActivity extends BaseActivity {
 		
 		
 	}
-	
+
 	
 
 	

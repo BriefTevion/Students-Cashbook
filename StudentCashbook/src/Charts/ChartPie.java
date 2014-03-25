@@ -1,8 +1,7 @@
 package Charts;
 
-import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -11,48 +10,59 @@ import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import studentcashbook.Activities.MainActivity;
-
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import com.example.studentcashbook.R;
 
 public class ChartPie extends Fragment {
 
+	
 	GraphicalView pieChartView = null;
 	private DefaultRenderer pieRenderer= new DefaultRenderer();
 	//Werte abhaenig  von Anzahl der Werte
 	private static int[] colors = {Color.BLUE, Color.RED};
 	private CategorySeries pieSeries = new CategorySeries("");
 	
+	
+	
+	
 	 @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		 View windows = inflater.inflate(R.layout.chartpie_frag, container, false);
-        Context context = null;
-        
-        //createPie(context, inflater, container);
-        
+		 try{
+			 //LinearLayout layout = (LinearLayout) windows.findViewById(R.id.linearLayoutPieChart);
+			 //layout.addView(createPie());
+			 
+			 RelativeLayout vG = (RelativeLayout) windows.findViewById(R.id.linearLayoutPieChart);
+				vG.addView(createPie());
+			}
+			catch(Exception e){
+				Log.v("test", e.getMessage());
+			}
+		 
+		 
         return windows;
         
 }
 	 
-	 //Tortendiagramm erstellen
-	 public void createPie(Context context, LayoutInflater inflater, ViewGroup container){
+	//Tortendiagramm erstellen
+	 public GraphicalView createPie(){
 		 
 		 //Datenabfrage aus Datenbank
-		 TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		 TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(MainActivity.getContext());	
 		 SQLiteDatabase db = dbHelper.getReadableDatabase();
 		 Integer einnahmeGesamt = 0;
 		 Integer ausgabeGesamt = 0;
@@ -74,11 +84,14 @@ public class ChartPie extends Fragment {
 		 while(c.moveToNext()){
 			 
 			 //Konvertieren des Datums von String zu Date
-			 try {
-				date = (Date) sdfDate.parse(c.getString(1));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+
+				try {
+					//date = (Date) sdfDate.parse(c.getString(1));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					Log.v("test", e.getMessage());
+				}
+
 			 
 			
 			//den aktuellen Monat bekommen
@@ -104,23 +117,31 @@ public class ChartPie extends Fragment {
 		 double[] values = {einnahmeGesamt, ausgabeGesamt};
 		 String[] categoryNames ={"Einnahme", "Ausgabe"};
 		 
-		 for(int i=0;i<2; i++){
+		 
+		 
+		 for(int i=0;i<=1; i++){
 			 pieSeries.add(categoryNames[i], values[i]);
 			 SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
 			 renderer.setColor(colors[(pieSeries.getItemCount() - 1) % colors.length]);
 			 renderer.setDisplayChartValues(true);
 			 pieRenderer.addSeriesRenderer(renderer);
 		 }
-		 
-		 
-		 pieChartView = ChartFactory.getPieChartView(context, pieSeries, pieRenderer);
-		 
-		 View windows = inflater.inflate(R.layout.chartpie_frag, container, false);
-	        
-	     LinearLayout ll = (LinearLayout) windows.findViewById(R.id.linearLayout);
-	 
 
+		 pieRenderer.setLabelsTextSize(30);
+		 pieRenderer.setShowLegend(false);
+		 pieRenderer.setDisplayValues(true);
+		 
+		 pieChartView = ChartFactory.getPieChartView(MainActivity.getContext(), pieSeries, pieRenderer);
+
+		 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT );
+		 pieChartView.setLayoutParams(params);
+		
+
+	     
+	     return pieChartView;
 		 
 	 }
+
+	 
 	 
 }

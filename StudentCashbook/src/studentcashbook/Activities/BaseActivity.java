@@ -141,7 +141,7 @@ public class BaseActivity extends FragmentActivity {
 			String item = (String) ((TextView)view).getText();
 			int number=0;
 
-			if(item.contains("??bersicht")){
+			if(item.contains("Übersicht")){
 				number = 1;
 			}
 			else if(item.contains("Monatliches")){
