@@ -14,10 +14,10 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.studentcashbook.MainActivity"
+            android:name="studentcashbook.Activities.MainActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name="com.example.studentcashbook.LoginActivity"
+            android:name="studentcashbook.Activities.LoginActivity"
             android:label="@string/title_activity_login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,60 +26,60 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.studentcashbook.NeuerNutzerActivity"
+            android:name="studentcashbook.Activities.NeuerNutzerActivity"
             android:label="@string/title_activity_neuer_nutzer"
-            android:parentActivityName="com.example.studentcashbook.LoginActivity" >
+            android:parentActivityName="studentcashbook.Activities.LoginActivity" >
         </activity>
         <activity
-            android:name="com.example.studentcashbook.EinnahmeActivity"
+            android:name="studentcashbook.Activities.EinnahmeActivity"
             android:label="@string/title_activity_einnahme" >
         </activity>
         <activity
-            android:name="com.example.studentcashbook.AusgabeActivity"
+            android:name="studentcashbook.Activities.AusgabeActivity"
             android:label="@string/title_activity_ausgabe" >
         </activity>
         <activity
-            android:name="com.example.studentcashbook.KategorienActivity"
+            android:name="studentcashbook.Activities.KategorienActivity"
             android:label="@string/title_activity_kategorien" >
         </activity>
         <activity
-            android:name="com.example.studentcashbook.MonatEinnahmeActivity"
+            android:name="studentcashbook.Activities.MonatEinnahmeActivity"
             android:label="@string/title_activity_monat_einnahme" 
-            android:parentActivityName="com.example.studentcashbook.MonatlichesActivity" >
+            android:parentActivityName="studentcashbook.Activities.MonatlichesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
-            android:name="com.example.studentcashbook.MonatAusgabeActivity"
+            android:name="studentcashbook.Activities.MonatAusgabeActivity"
             android:label="@string/title_activity_monat_ausgabe" 
-            android:parentActivityName="com.example.studentcashbook.MonatlichesActivity" >
+            android:parentActivityName="studentcashbook.Activities.MonatlichesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
-            android:name="com.example.studentcashbook.SparzielActivity"
+            android:name="studentcashbook.Activities.SparzielActivity"
             android:label="@string/title_activity_sparziel" >
         </activity>
         <activity
-            android:name="com.example.studentcashbook.NeuesSparzielActivity"
+            android:name="studentcashbook.Activities.NeuesSparzielActivity"
             android:label="@string/title_activity_neues_sparziel" >
         </activity>
         <activity
-            android:name="com.example.studentcashbook.EinstellungenActivity"
+            android:name="studentcashbook.Activities.EinstellungenActivity"
             android:label="@string/title_activity_einstellungen" >
         </activity>
         <activity
-            android:name="com.example.studentcashbook.NeueKategorieActivity"
+            android:name="studentcashbook.Activities.NeueKategorieActivity"
             android:label="@string/title_activity_neue_kategorie"
-            android:parentActivityName="com.example.studentcashbook.KategorienActivity" >
+            android:parentActivityName="studentcashbook.Activities.KategorienActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.KategorienActivity" />
         </activity>
         <activity
-            android:name="com.example.studentcashbook.MonatlichesActivity"
+            android:name="studentcashbook.Activities.MonatlichesActivity"
             android:label="@string/title_activity_monatliches" >
         </activity>
     </application>
