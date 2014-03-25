@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//gen/com/example/studentcashbook/R.java=UTF-8
+encoding//src/Charts/TabPagerAdapter.java=UTF-8
 encoding//src/Crypt/CryptHelper.java=UTF-8
 encoding//src/com/example/studentcashbook/AusgabeActivity.java=UTF-8
 encoding//src/com/example/studentcashbook/BaseActivity.java=UTF-8
@@ -11,4 +12,3 @@ encoding//src/com/example/studentcashbook/MonatAusgabeActivity.java=UTF-8
 encoding//src/com/example/studentcashbook/MonatEinnahmeActivity.java=UTF-8
 encoding//src/com/example/studentcashbook/MonatlichesActivity.java=UTF-8
 encoding//src/com/example/studentcashbook/NeuerNutzerActivity.java=UTF-8
-encoding//src/com/example/studentcashbook/TabPagerAdapter.java=UTF-8

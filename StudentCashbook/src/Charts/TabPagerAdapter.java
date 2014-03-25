@@ -1,4 +1,4 @@
-package com.example.studentcashbook;
+package Charts;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
