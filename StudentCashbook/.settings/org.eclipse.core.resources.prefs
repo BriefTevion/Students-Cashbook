@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//gen/com/example/studentcashbook/R.java=UTF-8
+encoding//src/Crypt/CryptHelper.java=UTF-8
 encoding//src/com/example/studentcashbook/AusgabeActivity.java=UTF-8
 encoding//src/com/example/studentcashbook/BaseActivity.java=UTF-8
 encoding//src/com/example/studentcashbook/EinnahmeActivity.java=UTF-8

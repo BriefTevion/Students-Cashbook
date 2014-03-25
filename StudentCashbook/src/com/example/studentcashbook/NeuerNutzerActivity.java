@@ -1,11 +1,12 @@
 package com.example.studentcashbook;
 
-import android.os.Bundle;
-import android.preference.PreferenceManager;
+import Crypt.CryptHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -47,8 +48,17 @@ public void BenutzerNeuAnlegen(View view){
 		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		SharedPreferences.Editor editor = spref.edit();
 		
-		//Werte speichern;
-		editor.putString("PASSWORD", Passwort);
+		//Eingabe verschluesseln		
+		String passwortEncrypt="";
+		try {
+			passwortEncrypt = CryptHelper.encrypt("PASSWORD", Passwort);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//verschluesselter Wert speichern;
+		editor.putString("PASSWORD", passwortEncrypt);
 		editor.commit();
 		
 		//UI-Elemente zurücksetzen

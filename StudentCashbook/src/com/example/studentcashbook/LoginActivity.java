@@ -1,5 +1,6 @@
 package com.example.studentcashbook;
 
+import Crypt.CryptHelper;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
@@ -34,7 +35,7 @@ public class LoginActivity extends Activity {
 		//Holen der Preferences
 		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		
-		//Name auslesen
+		//Passwort auslesen & keine Entschluesselung noetig
 		String Password = spref.getString("PASSWORD", "");
 		
 		
@@ -60,7 +61,7 @@ public class LoginActivity extends Activity {
 		
 		//Werte der UI Elemente holen
 		//<<<<<<<<<<<<<<<<<<<Verschlüsselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
-		String Passwort = PasswortFeld.getText().toString();
+		String PasswortInput = PasswortFeld.getText().toString();
 		
 		//Holen der Preferences
 		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -68,9 +69,17 @@ public class LoginActivity extends Activity {
 		//Daten auslesen
 		String PasswortMemory = spref.getString("PASSWORD", "");
 		
+		//verschlusseln der Eingabe 
+		String PasswortInputEncrypt="";
+		try{
+			PasswortInputEncrypt = CryptHelper.encrypt("PASSWORD", PasswortInput);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		//Daten vergleichen
-		int resultPswd = Passwort.compareTo(PasswortMemory);		
+		int resultPswd = PasswortInputEncrypt.compareTo(PasswortMemory);		
 		
 		
 		//Wenn Passwort uebereinstimmend	
