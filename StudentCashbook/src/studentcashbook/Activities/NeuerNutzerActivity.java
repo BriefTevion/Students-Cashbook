@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -50,10 +51,11 @@ public void BenutzerNeuAnlegen(View view){
 		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		SharedPreferences.Editor editor = spref.edit();
 		
+		
 		//Eingabe verschluesseln		
 		String passwortEncrypt="";
 		try {
-			passwortEncrypt = CryptHelper.encrypt("PASSWORD", Passwort);
+			passwortEncrypt = CryptHelper.toHex(Passwort);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,6 +64,8 @@ public void BenutzerNeuAnlegen(View view){
 		//verschluesselter Wert speichern;
 		editor.putString("PASSWORD", passwortEncrypt);
 		editor.commit();
+		
+		Log.v("test",passwortEncrypt );
 		
 		//UI-Elemente zur??cksetzen
 		PasswortFeld.setText("");
@@ -78,7 +82,7 @@ public void BenutzerNeuAnlegen(View view){
 			//Fehler melden
 			//Error Message aufrufen
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Passw??rter stimmen nicht ??berein");
+			alert.setMessage("Passwoerter stimmen nicht ueberein");
 			alert.setTitle("Anmeldung fehlgeschagen");
 			alert.setNegativeButton("OK", null);
 			alert.setCancelable(true);

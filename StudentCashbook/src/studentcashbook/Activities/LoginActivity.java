@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -74,11 +75,12 @@ public class LoginActivity extends Activity {
 		//verschlusseln der Eingabe 
 		String PasswortInputEncrypt="";
 		try{
-			PasswortInputEncrypt = CryptHelper.encrypt("PASSWORD", PasswortInput);
+			PasswortInputEncrypt = CryptHelper.toHex(PasswortInput);
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
+
 		
 		//Daten vergleichen
 		int resultPswd = PasswortInputEncrypt.compareTo(PasswortMemory);		
