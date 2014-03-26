@@ -37,9 +37,9 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
        String ret = "";
 		
 		if(position==0){
-        	ret="Pie Chart";
+        	ret="Dieser Monat";
         }else if(position==1){
-        	ret="Bar Chart";
+        	ret="Katgorien";
         }else if(position==2){
         	ret="Sonstiges";
         }else{

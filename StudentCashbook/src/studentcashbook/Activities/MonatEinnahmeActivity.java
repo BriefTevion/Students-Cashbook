@@ -82,7 +82,7 @@ public class MonatEinnahmeActivity extends Activity  {
 		
 		//Nachricht ueber erfolgreiches speichern
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		alert.setMessage("Gesch??ft angelegt");
+		alert.setMessage("Geschäft angelegt");
 		alert.setTitle("Erfolgreich");
 		alert.setNegativeButton("OK",new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {

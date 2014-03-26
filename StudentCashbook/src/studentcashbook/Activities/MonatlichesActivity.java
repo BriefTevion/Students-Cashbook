@@ -111,10 +111,10 @@ itemListAdapter adapter;
 			
 			//Nachfragen ob item sicher geloescht werden moechte
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("M??chtest du diese Kategorie l??schen?");
-			alert.setTitle("L??schen best??tigen");
-			alert.setNegativeButton("Nicht L??schen",null);
-			alert.setPositiveButton("L??schen", new DialogInterface.OnClickListener() {
+			alert.setMessage("Möchtest du diese Kategorie löschen?");
+			alert.setTitle("Löschen bestötigen");
+			alert.setNegativeButton("Nicht Löschen",null);
+			alert.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
 					
 					deleteListItem(name.getText().toString());
@@ -263,11 +263,11 @@ itemListAdapter adapter;
 			
 			if(Integer.parseInt(data.betrag)>=0){
 				img.setImageResource(R.drawable.ic_action_star);
-				datum.setText("Zubuchen von " + data.betrag + "??? zum: " + data.zumTag + ". des Monats");
+				datum.setText("Zubuchen von " + data.betrag + "€ zum: " + data.zumTag + ". des Monats");
 			}
 			else{
 				img.setImageResource(R.drawable.ic_action_not_important);
-				datum.setText("Abbuchen von " + data.betrag + "??? zum: " + data.zumTag  + ". des Monats");
+				datum.setText("Abbuchen von " + data.betrag + "€ zum: " + data.zumTag  + ". des Monats");
 			}
 
 			

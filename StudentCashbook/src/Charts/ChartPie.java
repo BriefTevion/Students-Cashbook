@@ -1,6 +1,7 @@
 package Charts;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.achartengine.ChartFactory;
@@ -81,12 +82,21 @@ public class ChartPie extends Fragment {
 		 
 		 count = c.getCount();
 		 
+		 int buchungsMonat=0;
+		 
 		 while(c.moveToNext()){
 			 
 			 //Konvertieren des Datums von String zu Date
+			 //ausserdem auslesen des erstellten Monats
 
 				try {
-					//date = (Date) sdfDate.parse(c.getString(1));
+					date = (Date) sdfDate.parse(c.getString(1));
+					
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(date);
+					buchungsMonat = cal.get(Calendar.MONTH);
+
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					Log.v("test", e.getMessage());
@@ -95,9 +105,11 @@ public class ChartPie extends Fragment {
 			 
 			
 			//den aktuellen Monat bekommen
+			Calendar ca = Calendar.getInstance();
+			int aktuellerMonat = ca.get(Calendar.MONTH);
 			
 			 //Wenn Datum innerhalb diesen Monats
-			 //if(){
+			 if(buchungsMonat == aktuellerMonat){
  
 				 
 				 if(c.getString(2).contains("-")){
@@ -106,7 +118,7 @@ public class ChartPie extends Fragment {
 					 einnahmeGesamt = einnahmeGesamt + Integer.parseInt(c.getString(2));
 					 
 				 }
-			 //}
+			 }
 			 
 		 }
 		 
@@ -130,6 +142,7 @@ public class ChartPie extends Fragment {
 		 pieRenderer.setLabelsTextSize(30);
 		 pieRenderer.setShowLegend(false);
 		 pieRenderer.setDisplayValues(true);
+		 pieRenderer.setPanEnabled(false);
 		 
 		 pieChartView = ChartFactory.getPieChartView(MainActivity.getContext(), pieSeries, pieRenderer);
 
