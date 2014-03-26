@@ -132,7 +132,7 @@ itemListAdapter adapter;
 			
 		}
 
-		//Ausgew??hlter Eintrag loeschen
+		//Ausgewaehlter Eintrag loeschen
 		private void deleteListItem(String name){
 			//Zugang zur Datenbank
 			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
@@ -143,7 +143,7 @@ itemListAdapter adapter;
 			}
 			catch(Exception e){
 				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setMessage("Eintrag konnte nicht gel??scht werden");
+				alert.setMessage("Eintrag konnte nicht gelöscht werden");
 				alert.setTitle("Fehlgeschlagen");
 				alert.setNegativeButton(name,null);
 				alert.setCancelable(true);

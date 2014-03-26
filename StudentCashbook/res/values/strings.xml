@@ -32,7 +32,7 @@
     <string name="SparzielDefinieren">Neues Sparziel definieren</string>
     <string name="Titel">Titel</string>
     <string name="faellig">fällig am</string>
-    <string name="date">21.12.2014</string>
+    <string name="date">Datum</string>
     <string name="uebrig">spare, was monatlich übrig bleibt</string>
     <string name="fest">festen monatlichen Betrag sparen</string>
     <string name="Sparbetrag"> 350 €</string>
@@ -64,5 +64,6 @@
     <string name="action_MonA">Neue monatliche Ausgabe</string>
     <string name="neuesMon">Neue hinzufügen</string>
     <string name="sparzieleUebersicht">Deine Sparziele</string>
+    <string name="action_add_sparziel">Neues Sparziel</string>
 
 </resources>

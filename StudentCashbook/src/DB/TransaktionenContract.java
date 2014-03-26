@@ -28,6 +28,16 @@ public final class TransaktionenContract {
 		public static final String M_COLUMN_NAME_DATUM = "datum";
 		public static final String M_COLUMN_NAME_BETRAG = "betrag";
 		public static final String M_COLUMN_NAME_TAG = "tag";
+		
+		
+		public static final String TABLE_NAME_TARGET = "monatlicheSparzieleTable";
+		public static final String T_COLUMN_NAME_BEZEICHNER = "titel";
+		public static final String T_COLUMN_NAME_DATUM = "datum";
+		public static final String T_COLUMN_NAME_BETRAG = "betrag";
+		public static final String T_COLUMN_NAME_SPARBETRAG = "sparbetrag";
+		public static final String T_COLUMN_NAME_GUTHABEN = "guthaben";
+		
+		
 
 		
 	}

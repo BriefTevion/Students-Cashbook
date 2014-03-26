@@ -37,6 +37,15 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 					transEntry.M_COLUMN_NAME_DATUM + TEXT_TYPE + COMMA_SEP +
 					transEntry.M_COLUMN_NAME_BETRAG + TEXT_TYPE  + COMMA_SEP +
 					transEntry.M_COLUMN_NAME_TAG + TEXT_TYPE  + " )";
+	
+	//SQL Statement um Tabelle sparzieleTable zu erstellen
+		private static final String SQL_CreateSparzieleTable =
+				"CREATE TABLE " + transEntry.TABLE_NAME_TARGET+ " (" +
+				transEntry.T_COLUMN_NAME_BEZEICHNER + " TEXT PRIMARY KEY," +  
+				transEntry.T_COLUMN_NAME_DATUM + TEXT_TYPE + COMMA_SEP +
+				transEntry.T_COLUMN_NAME_BETRAG + TEXT_TYPE  + COMMA_SEP +
+				transEntry.T_COLUMN_NAME_SPARBETRAG + TEXT_TYPE  + COMMA_SEP +
+				transEntry.T_COLUMN_NAME_GUTHABEN + TEXT_TYPE  + " )";
 
 		
 		
@@ -44,7 +53,8 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 	private static final String SQL_DELETE_ENTRIES_transaktionenTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME;
 	private static final String SQL_DELETE_ENTRIES_kategorienTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_Kategorie;
 	private static final String SQL_DELETE_ENTRIES_monatlicheTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_AUTOMATIC;
-
+	private static final String SQL_DELETE_ENTRIES_sparzielTable = "DROP TABLE IF EXISTS " + transEntry.TABLE_NAME_TARGET;
+	
 	
 	public TransaktionenDBHelper(Context context) {
 		super(context, DATABASE_NAME , null, DATABASE_VERSION);
@@ -57,6 +67,7 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 			db.execSQL(SQL_CreateTransaktionenTable);
 			db.execSQL(SQL_CreateKategorienTable);
 			db.execSQL(SQL_CreateMonatlicheTable);
+			db.execSQL(SQL_CreateSparzieleTable);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -68,6 +79,7 @@ public class TransaktionenDBHelper extends SQLiteOpenHelper {
 		db.execSQL(SQL_DELETE_ENTRIES_transaktionenTable);
 		db.execSQL(SQL_DELETE_ENTRIES_kategorienTable);
 		db.execSQL(SQL_DELETE_ENTRIES_monatlicheTable);
+		db.execSQL(SQL_DELETE_ENTRIES_sparzielTable);
 
 		onCreate(db);
 

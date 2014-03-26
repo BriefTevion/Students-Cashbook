@@ -10,7 +10,7 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:background="#84c185" >
+         android:background="#3C8DC5" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,101 +22,93 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/SparzielDefinieren"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textSize="25sp"
+                android:textAppearance="?android:attr/textAppearanceLarge" 
+                android:fontFamily="sans-serif-thin"/>
 
             <EditText
                 android:id="@+id/editText_Titel"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50sp"
                 android:layout_below="@+id/textView_Sparziel"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="35dp"
                 android:ems="10" 
                 android:hint="@string/Titel"
-                android:textColorHint="#ffffff">
+                android:background="#ffffff"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center">
                 
             </EditText>
 
             <EditText
-                android:id="@+id/editText_Betrag"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/editText_Titel"
+                android:id="@+id/editText_BetragInput"
+                android:layout_width="140dp"
+                android:layout_height="50sp"
                 android:layout_below="@+id/editText_Titel"
+                android:layout_alignRight="@+id/editText_Titel"
                 android:layout_marginTop="15dp"
+                android:background="#ffffff"
                 android:ems="10"
-				android:hint="@string/Betrag"
-                android:textColorHint="#ffffff"/>
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center"
+                android:hint="@string/Betrag" />
 
-            <TextView
-                android:id="@+id/textView_Euro"
-                android:layout_width="12dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText_Titel"
-                android:layout_toRightOf="@+id/editText_Betrag"
-                android:layout_marginTop="20dp"
-                android:text="@string/Euro"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#ffffff" />
-
-            <TextView
-                android:id="@+id/textView_faellig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/editText_Betrag"
-                android:layout_below="@+id/editText_Betrag"
-                android:layout_marginTop="15dp"
-                android:text="@string/faellig"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"/>
+   
 
             <EditText
-                android:id="@+id/editText_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView_faellig"
-                android:layout_alignBottom="@+id/textView_faellig"
-                android:layout_alignRight="@+id/editText_Titel"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/textView_faellig"
+                android:id="@+id/editText_datumEingabe"
+                android:layout_width="140sp"
+                android:layout_height="50sp"
+                android:layout_below="@+id/editText_Titel"
+                android:layout_alignLeft="@+id/editText_Titel"
+                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:hint="@string/date"
-                android:inputType="date"
-                android:textColorHint="#ffffff" />
+                android:background="#ffffff"
+                android:fontFamily="sans-serif-thin" 
+                android:gravity="center"
+                android:inputType="date"/>
             
 
             <RadioButton
                 android:id="@+id/radioButton_uebrig"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView_faellig"
-                android:layout_below="@+id/editText_date"
+                android:layout_alignLeft="@+id/editText_datumEingabe"
+                android:layout_below="@+id/editText_datumEingabe" 
                 android:layout_marginTop="15dp"
                 android:text="@string/uebrig"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:onClick="onRadioButtonClicked"
+                 />
             
             <RadioButton
                 android:id="@+id/radioButton_fest"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView_faellig"
+                android:layout_alignLeft="@+id/radioButton_uebrig"
                 android:layout_below="@+id/radioButton_uebrig"
+                android:layout_marginTop="15dp"
                 android:text="@string/fest"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:onClick="onRadioButtonClicked"
+                 />
 
             <SeekBar
                 android:id="@+id/seekBar_Betrag"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView_faellig"
+                 android:layout_alignLeft="@+id/radioButton_fest"
                 android:layout_below="@+id/radioButton_fest"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:progress="0"
-            	android:max="100" />
+            	android:max="100" 
+            	android:fontFamily="sans-serif"/>
 
             <TextView
                 android:id="@+id/textView_Sparbetrag"
@@ -127,44 +119,40 @@
                 android:layout_alignTop="@+id/seekBar_Betrag"
                 android:layout_toRightOf="@+id/seekBar_Betrag"
                 android:gravity="left|top"
-                android:text="@string/Sparbetrag"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffff"
-                android:textStyle="bold" />
+                android:textStyle="bold" 
+                android:fontFamily="sans-serif"/>
 
             <Button
                 android:id="@+id/button_Anlegen"
-                android:layout_width="300dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/seekBar_Betrag"
-                android:layout_centerHorizontal="true"
+                android:layout_alignRight="@+id/textView_Sparbetrag"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/styledbutton"
                 android:clickable="true"
-                android:fontFamily="Tahoma"
-                android:onClick="buttonPressed"
+                android:onClick="zielAnlegen"
                 android:text="@string/Anlegen"
-                android:textColor="#ffffff"/>
-
-            <ImageView
-                android:id="@+id/imageView_Strich"
-                android:layout_width="310dp"
-                android:layout_height="2dp"
-                android:layout_below="@+id/button_Anlegen"
-                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff"
+                android:fontFamily="sans-serif"
+                />   
+                
+            <Button
+                android:id="@+id/button_Abbrechen"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seekBar_Betrag"
+                android:layout_alignLeft="@+id/seekBar_Betrag"
                 android:layout_marginTop="15dp"
-                android:src="#ffffff" />
-            
-            <ListView 
-    	    	android:id="@+id/listView_Sparziele" 
-    	    	android:layout_width="wrap_content"
-	    	    android:layout_height="wrap_content"
-	    	    android:layout_centerHorizontal="true"
-	    	    android:layout_alignLeft="@+id/editText_Titel"
-				android:layout_alignRight="@+id/editText_Titel"
-        		android:layout_below="@+id/imageView_Strich"
-	    	    android:layout_marginTop="10dp"
-	    	    android:background="#ffffff"/>    
+                android:background="@drawable/styledbutton"
+                android:clickable="true"
+                android:onClick="abbrechen"
+                android:text="@string/abbrechen_button"
+                android:textColor="#ffffff"
+                android:fontFamily="sans-serif"
+                />  
         </RelativeLayout>
 
     </FrameLayout>
