@@ -55,6 +55,7 @@
                 android:background="#ffffff"
                 android:ems="10"
                 android:fontFamily="sans-serif-thin"
+                android:inputType="number"
                 android:gravity="center"
                 android:hint="@string/Betrag" />
 

@@ -21,7 +21,7 @@
     <string name="Benutzername">Benutzername</string>
     <string name="Logo">Logo</string>
     <string name="Geld">Geld</string>
-    <string name="Betrag">Betrag</string>
+    <string name="Betrag">€</string>
     <string name="Passwort">Passwort</string>
     <string name="Einnahme">Einnahme</string>
     <string name="Einnahme_hin">Monatliche Einnahme\nhinzufügen</string>
