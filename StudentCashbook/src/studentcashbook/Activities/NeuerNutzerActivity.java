@@ -72,6 +72,8 @@ public void BenutzerNeuAnlegen(View view){
 		//Zur Mainactivity wechseln
 		Intent intent = new Intent(this, MainActivity.class);	
 		startActivity(intent);
+		
+		finish();
 		}
 		
 		//Wenn die Eingaben nicht uebereinstimmen

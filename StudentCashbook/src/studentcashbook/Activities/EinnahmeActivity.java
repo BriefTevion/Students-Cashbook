@@ -135,14 +135,21 @@ public class EinnahmeActivity extends BaseActivity {
 				AlertDialog.Builder alert = new AlertDialog.Builder(this);
 				alert.setMessage("Einnahme gepeichert");
 				alert.setTitle("Erfolgreich");
-				alert.setNegativeButton("OK", null);
+				alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						
+						finish();
+						
+						//zu Main wechseln
+						Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+						startActivity(intent);
+					
+						
+					}
+				});
 				alert.setCancelable(true);
 				alert.create().show();
-				
-				//Elemente zuruecksetzen
-				betragFeld.setText("");
-				anmerkungFeld.setText("");
-				kategorieSpin.setSelection(0);
+
 				
 					}
 			

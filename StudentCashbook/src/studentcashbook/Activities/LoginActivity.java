@@ -45,7 +45,9 @@ public class LoginActivity extends Activity {
 		if (Password == ""){
 			Intent intent = new Intent(this, NeuerNutzerActivity.class);	
 			startActivity(intent);
-		}
+			
+			finish();
+			}
 		//wenn die Registrierung bereits vollzogen ist
 		else{
 			setContentView(R.layout.activity_login);

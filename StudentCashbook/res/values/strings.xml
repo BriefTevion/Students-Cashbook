@@ -65,5 +65,8 @@
     <string name="neuesMon">Neue hinzufügen</string>
     <string name="sparzieleUebersicht">Deine Sparziele</string>
     <string name="action_add_sparziel">Neues Sparziel</string>
+    <string name="title_activity_splash_screen">Student Cashbook</string>
+    <string name="splashScreen">sponsored by</string>
+    <string name="splashScreenSponsor">Hier könnte\ndein Logo sein!</string>
 
 </resources>

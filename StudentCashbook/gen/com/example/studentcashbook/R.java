@@ -76,7 +76,7 @@ public final class R {
         public static final int imageView1=0x7f09000f;
         public static final int lLayout=0x7f09000c;
         public static final int left_drawer=0x7f090009;
-        public static final int linearLayoutPieChart=0x7f09002d;
+        public static final int linearLayoutPieChart=0x7f09002e;
         public static final int list=0x7f09000e;
         public static final int listMonatliches=0x7f09001b;
         public static final int listSparziele=0x7f09002b;
@@ -87,9 +87,9 @@ public final class R {
         public static final int radioButton_fest=0x7f090026;
         public static final int radioButton_uebrig=0x7f090025;
         public static final int seekBar_Betrag=0x7f090027;
-        public static final int textView=0x7f09002c;
+        public static final int textView=0x7f09002d;
         public static final int textView1=0x7f09000d;
-        public static final int textView2=0x7f09002e;
+        public static final int textView2=0x7f09002c;
         public static final int textView3=0x7f090030;
         public static final int textView_Datum=0x7f090002;
         public static final int textView_LetzteTrans=0x7f090015;
@@ -111,14 +111,15 @@ public final class R {
         public static final int activity_neuer_nutzer=0x7f03000a;
         public static final int activity_neues_sparziel=0x7f03000b;
         public static final int activity_sparziel=0x7f03000c;
-        public static final int chartbar_frag=0x7f03000d;
-        public static final int chartmisc_frag=0x7f03000e;
-        public static final int chartpie_frag=0x7f03000f;
-        public static final int drawer_listview_item=0x7f030010;
-        public static final int listitem=0x7f030011;
-        public static final int listitemmain=0x7f030012;
-        public static final int listitemmonatlich=0x7f030013;
-        public static final int listitemsparziele=0x7f030014;
+        public static final int activity_splash_screen=0x7f03000d;
+        public static final int chartbar_frag=0x7f03000e;
+        public static final int chartmisc_frag=0x7f03000f;
+        public static final int chartpie_frag=0x7f030010;
+        public static final int drawer_listview_item=0x7f030011;
+        public static final int listitem=0x7f030012;
+        public static final int listitemmain=0x7f030013;
+        public static final int listitemmonatlich=0x7f030014;
+        public static final int listitemsparziele=0x7f030015;
     }
     public static final class menu {
         public static final int ausgabe=0x7f080000;
@@ -135,6 +136,7 @@ public final class R {
         public static final int neuer_nutzer=0x7f08000b;
         public static final int neues_sparziel=0x7f08000c;
         public static final int sparziel=0x7f08000d;
+        public static final int splash_screen=0x7f08000e;
     }
     public static final class string {
         public static final int Anlegen=0x7f06000e;
@@ -188,6 +190,8 @@ public final class R {
         public static final int signup=0x7f060030;
         public static final int sparzieleUebersicht=0x7f060040;
         public static final int spinnerKategorie=0x7f060031;
+        public static final int splashScreen=0x7f060043;
+        public static final int splashScreenSponsor=0x7f060044;
         public static final int title_activity_ausgabe=0x7f060007;
         public static final int title_activity_base=0x7f06002c;
         public static final int title_activity_einnahme=0x7f060006;
@@ -202,6 +206,7 @@ public final class R {
         public static final int title_activity_neuer_nutzer=0x7f060028;
         public static final int title_activity_neues_sparziel=0x7f06000c;
         public static final int title_activity_sparziel=0x7f06000b;
+        public static final int title_activity_splash_screen=0x7f060042;
         public static final int uebrig=0x7f060022;
     }
     public static final class style {

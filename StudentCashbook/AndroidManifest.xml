@@ -19,11 +19,7 @@
         <activity
             android:name="studentcashbook.Activities.LoginActivity"
             android:label="@string/title_activity_login" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="studentcashbook.Activities.NeuerNutzerActivity"
@@ -44,7 +40,7 @@
         </activity>
         <activity
             android:name="studentcashbook.Activities.MonatEinnahmeActivity"
-            android:label="@string/title_activity_monat_einnahme" 
+            android:label="@string/title_activity_monat_einnahme"
             android:parentActivityName="studentcashbook.Activities.MonatlichesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -52,7 +48,7 @@
         </activity>
         <activity
             android:name="studentcashbook.Activities.MonatAusgabeActivity"
-            android:label="@string/title_activity_monat_ausgabe" 
+            android:label="@string/title_activity_monat_ausgabe"
             android:parentActivityName="studentcashbook.Activities.MonatlichesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -81,6 +77,15 @@
         <activity
             android:name="studentcashbook.Activities.MonatlichesActivity"
             android:label="@string/title_activity_monatliches" >
+        </activity>
+        <activity
+            android:name="studentcashbook.Activities.SplashScreen"
+            android:label="@string/title_activity_splash_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
