@@ -59,6 +59,7 @@ public class ChartPie extends Fragment {
         
 }
 	 
+	 
 	//Tortendiagramm erstellen
 	 public GraphicalView createPie(){
 		 

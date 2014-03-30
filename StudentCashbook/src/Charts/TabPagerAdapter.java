@@ -37,9 +37,9 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
        String ret = "";
 		
 		if(position==0){
-        	ret="Dieser Monat";
+        	ret="Einmalig diesen Monat";
         }else if(position==1){
-        	ret="Katgorien";
+        	ret="Monatlich";
         }else if(position==2){
         	ret="Sonstiges";
         }else{
