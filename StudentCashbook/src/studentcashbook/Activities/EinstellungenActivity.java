@@ -1,37 +1,26 @@
 package studentcashbook.Activities;
 
+import javax.crypto.KeyGenerator;
+
+import android.inputmethodservice.Keyboard.Key;
+import android.os.Bundle;
+import android.preference.PreferenceActivity;
+
 import com.example.studentcashbook.R;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.widget.Toast;
-
-public class EinstellungenActivity extends BaseActivity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-	}
+public class EinstellungenActivity extends PreferenceActivity {
+    
+	 final static String keyTippButton = "pref_key_tipps_button";
+	 final static String keyTippAuto = "pref_key_tipps_auto";
+	 final static String keySpracheChange = "pref_key_sprache_change";
+	 final static String keyPswdChange = "pref_key_passwort_change";
 	
+	@SuppressWarnings("deprecation")
 	@Override
-	protected void onStart(){
-		super.onStart();
-		
-		Toast.makeText(this, "Einstellungen", Toast.LENGTH_SHORT).show();
-	}
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.layout.activity_einstellungen);
+    }
 	
-	@Override
-	public void startAct(){
-		
-		setContentView(R.layout.activity_einstellungen);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.einstellungen, menu);
-		return true;
-	}
 
 }

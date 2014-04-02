@@ -189,6 +189,7 @@ public final class R {
         public static final int drawer_close=0x7f060001;
         public static final int drawer_open=0x7f060000;
         public static final int editText_neuesBudget=0x7f060034;
+        public static final int einstellungenUebersicht=0x7f060046;
         public static final int faellig=0x7f060020;
         public static final int fest=0x7f060023;
         public static final int hello_world=0x7f060004;
@@ -197,6 +198,17 @@ public final class R {
         public static final int neueKategorie=0x7f060037;
         public static final int neuerName=0x7f060033;
         public static final int neuesMon=0x7f06003f;
+        public static final int pref_passwort_einstellungen_title=0x7f06004f;
+        public static final int pref_sprache_einstellungen_title=0x7f06004d;
+        public static final int pref_summary_passwort_change=0x7f060050;
+        public static final int pref_summary_sprache_change=0x7f060049;
+        public static final int pref_summary_tipps_auto=0x7f060048;
+        public static final int pref_summary_tipps_button=0x7f060047;
+        public static final int pref_tipps_einstellungen_title=0x7f06004b;
+        public static final int pref_title_passwort_change=0x7f060051;
+        public static final int pref_title_sprache_change=0x7f06004e;
+        public static final int pref_title_tipps_auto=0x7f06004c;
+        public static final int pref_title_tipps_button=0x7f06004a;
         public static final int signup=0x7f060030;
         public static final int sparzieleUebersicht=0x7f060040;
         public static final int spinnerKategorie=0x7f060031;

@@ -69,5 +69,17 @@
     <string name="splashScreen">sponsored by</string>
     <string name="splashScreenSponsor">Hier könnte\ndein Logo sein!</string>
     <string name="action_newTipp">Neuer Spartipp</string>
+    <string name="einstellungenUebersicht">Deine Einstellungen</string>
+    <string name="pref_summary_tipps_button">Tipps Button anzeigen</string>
+    <string name="pref_summary_tipps_auto">Autmatische Tipps anzeigen zulassen</string>
+    <string name="pref_summary_sprache_change">Sprache ändern</string>
+    <string name="pref_title_tipps_button">Action Button</string>
+    <string name="pref_tipps_einstellungen_title">Tipps</string>
+    <string name="pref_title_tipps_auto">Automatiches Anzeigen</string>
+    <string name="pref_sprache_einstellungen_title">Sprache</string>
+    <string name="pref_title_sprache_change">Ändern</string>
+    <string name="pref_passwort_einstellungen_title">Passwort</string>
+    <string name="pref_summary_passwort_change">Passwort ändern</string>
+    <string name="pref_title_passwort_change">Ändern</string>
 
 </resources>

@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -22,6 +23,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -69,14 +71,18 @@ public class MainActivity extends BaseActivity {
         PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
         pts.setDrawFullUnderline(false);
         
-      //Tipps anzeigen
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        //highscoreTable.setText("Wait while downloading highscores ...");
-        if (networkInfo != null && networkInfo.isConnected()) {
-          StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
-          downloadTask.execute();
-        }
+		//Pruefen, ob Action Button Tipps angezeigt wird
+//		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
+//		String syncConnPref = sharedPref.getString(EinstellungenActivity.keyTippButton,"");
+//		
+//		if(syncConnPref=="true"){
+//			View tippButton = (View) findViewById(R.id.action_tipp);
+//			tippButton.setVisibility(View.VISIBLE);
+//		}
+//		else{
+//			View tippButton = (View) findViewById(R.id.action_tipp);
+//			tippButton.setVisibility(View.GONE);
+//		}
         
 	}
 	
@@ -189,9 +195,11 @@ public class MainActivity extends BaseActivity {
           StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
           downloadTask.execute();
         }
+	}     
+        
         
 
-	}
+	
 	
 
 	

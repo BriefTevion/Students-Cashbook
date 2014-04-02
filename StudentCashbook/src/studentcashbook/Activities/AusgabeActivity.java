@@ -5,17 +5,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.example.studentcashbook.R;
-
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
+import Network.StartNetworkConnectAsync;
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -24,6 +28,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.studentcashbook.R;
 
 public class AusgabeActivity extends BaseActivity {
 
@@ -135,11 +141,19 @@ public class AusgabeActivity extends BaseActivity {
 					Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 					startActivity(intent);	
 					
+					//Tipp anzeigen
+					//Zunaechst pruefen, ob Einstellungen es zulassen
+					SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
+					String syncConnPref = sharedPref.getString(EinstellungenActivity.keyTippAuto,"");
+					
+					if(syncConnPref=="true"){
+						openNewTipp();
+					}
+					
 				}
 			});
 			alert.setCancelable(true);
 			alert.create().show();
-
 
 			
 		}
@@ -156,6 +170,17 @@ public class AusgabeActivity extends BaseActivity {
 			alert.create().show();
 		}
 	}
+	
+	//Neuen Tipp nach abgeschlossener Transaktion anzeigen
+	public  void openNewTipp(){
+		//Tipps anzeigen
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+          StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
+          downloadTask.execute();
+        }
+	}     
 	
 		//Kategorie den Betrag abziehen
 		private void subBetragToKategorie(String datum, String kName,
