@@ -1,6 +1,7 @@
 package Network;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class StartNetworkConnectAsync extends AsyncTask<String, Void, String> {
 
@@ -13,10 +14,14 @@ public class StartNetworkConnectAsync extends AsyncTask<String, Void, String> {
 		}catch(Exception e){
 			return e.getMessage();
 		}
-		
-		
+	
 }
-
+	
+	// onPostExecute displays the results of the AsyncTask.	
+ 	@Override	
+ 	protected void onPostExecute(String tipp) {
+ 		Log.v("test", "Tipp: " + tipp);
+ 	}
 	
 	}
 

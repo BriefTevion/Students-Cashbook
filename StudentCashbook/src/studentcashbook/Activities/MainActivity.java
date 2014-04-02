@@ -1,24 +1,23 @@
 package studentcashbook.Activities;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
-import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import Charts.TabPagerAdapter;
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
+import Network.StartNetworkConnectAsync;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
@@ -29,7 +28,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -67,6 +65,17 @@ public class MainActivity extends BaseActivity {
         pts.setDrawFullUnderline(false);
        
         
+        //Tipps anzeigen
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        //highscoreTable.setText("Wait while downloading highscores ...");
+        if (networkInfo != null && networkInfo.isConnected()) {
+          StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
+          downloadTask.execute();
+        } else {
+        	//highscoreTable.setText("No network connection available to download highscores!");
+        	Log.v("test", "fertige");
+        }		
 
 	}
 	

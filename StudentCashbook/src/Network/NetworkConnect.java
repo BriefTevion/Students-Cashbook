@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +37,11 @@ public class NetworkConnect {
 				
 				String contentAsString = convertStreamToString(is);
 				
+				
 				String tipp = parseDownload(contentAsString);
+				
+
+				
 				
 				return tipp;
 			}
@@ -71,24 +77,52 @@ public class NetworkConnect {
 			
 			StringBuffer parsedString = new StringBuffer();
 			String tipp = null;
+			String nachricht ="Fehler";
+			List al = new ArrayList<TippsListEntry>();
 			
 			try {
 				JSONArray tipps = new JSONArray(rawString);
 				
-				//zufaellige ID finden
-				int randomID = (int) Math.random() * tipps.length();
-
-				//Nachricht der zufaelligen ID erhalten
-				JSONObject h = tipps.getJSONObject(randomID);
- 
-			    String nachricht = h.getString(TAG_MESSAGE);
-   
-			  return nachricht;
+				 for(int i = 0; i < tipps.length(); i++) {
+				        JSONObject h = tipps.getJSONObject(i);
+				        
+				        // Filter out rubbish entries
+				        if (h.optString(TAG_TITLE) != "" && h.optInt(TAG_MESSAGE) != 0) {
+				        	
+				        	TippsListEntry tle = new TippsListEntry(h.optInt(TAG_MESSAGE), h.optString(TAG_TITLE), h.optString(TAG_ID));
+				        	al.add(tle);
+				        }
+				    }
+					
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			
+				TippsListEntry[] a = new TippsListEntry[al.size()];
+				al.toArray(a);
 				
-			} catch (JSONException e) {
-				e.printStackTrace();
-				return null;
-			}
+				// Bubble sort
+				  for (int n = a.length; n > 1; n--) {
+				    for (int i = 0; i < n-1; i++) {
+				      if (a[i].getID() < a[i+1].getID()) {
+				    	  TippsListEntry temp = a[i];
+				        a[i] = a[i+1];
+				        a[i+1] = temp;
+				      }
+				    }
+				  }
+				
+				 //zufaelliger Tipp
+				  int randomTipp = (int) (Math.random()*a.length);
+
+					  
+					parsedString.append(a[randomTipp].getTitle() + " \n\n");
+					parsedString.append(a[randomTipp].getDescription());
+			
+					return parsedString.toString();
+				
+				  }
+			
 	}
 	
 	
@@ -121,4 +155,4 @@ public class NetworkConnect {
 //	} 
 	
 
-}
+
