@@ -10,4 +10,6 @@
     android:paddingStart="14.5sp"
     android:paddingEnd="14.5sp"
     android:minHeight="35sp"
+    android:background="#04031A"
+    
 />

@@ -12,12 +12,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class NetworkConnect {
 
 	// JSON Node names
-	private static final String TAG_ID = "ID";
+	private static final String TAG_ID = "id";
 	private static final String TAG_TITLE = "Title";
 	private static final String TAG_MESSAGE = "Description";
+	private static final String TAG_URL = "URL";
 	
 		
 	//Methode um eine Verbindung zum Server aufzubauen und um gewuenschte Daten zu erhalten
@@ -26,7 +29,7 @@ public class NetworkConnect {
 			InputStream is = null;
 			
 			try{
-				URL url = new URL("http://space-labs.appspot.com/repo/2185003/budget/api.html");
+				URL url = new URL("http://space-labs.appspot.com/repo/2185003/budget/api/tipps.sjs");
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				
 				conn.setRequestMethod("GET");
@@ -76,31 +79,33 @@ public class NetworkConnect {
 	private static String parseDownload(String rawString) {
 			
 			StringBuffer parsedString = new StringBuffer();
-			String tipp = null;
+			String tipp = "";
 			String nachricht ="Fehler";
 			List al = new ArrayList<TippsListEntry>();
 			
 			try {
 				JSONArray tipps = new JSONArray(rawString);
 				
+				
+				
 				 for(int i = 0; i < tipps.length(); i++) {
 				        JSONObject h = tipps.getJSONObject(i);
 				        
-				        // Filter out rubbish entries
-				        if (h.optString(TAG_TITLE) != "" && h.optInt(TAG_MESSAGE) != 0) {
 				        	
-				        	TippsListEntry tle = new TippsListEntry(h.optInt(TAG_MESSAGE), h.optString(TAG_TITLE), h.optString(TAG_ID));
+				        	TippsListEntry tle = new TippsListEntry( h.optInt(TAG_ID), h.optString(TAG_TITLE), h.optString(TAG_MESSAGE), h.optString(TAG_URL));
 				        	al.add(tle);
-				        }
 				    }
 					
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			
+			
+			
 				TippsListEntry[] a = new TippsListEntry[al.size()];
 				al.toArray(a);
 				
+
 				// Bubble sort
 				  for (int n = a.length; n > 1; n--) {
 				    for (int i = 0; i < n-1; i++) {
@@ -112,13 +117,15 @@ public class NetworkConnect {
 				    }
 				  }
 				
+				  
 				 //zufaelliger Tipp
 				  int randomTipp = (int) (Math.random()*a.length);
-
-					  
-					parsedString.append(a[randomTipp].getTitle() + " \n\n");
+				  
+				  	parsedString.append(a[randomTipp].getTitle() + "\n\n");
 					parsedString.append(a[randomTipp].getDescription());
-			
+					parsedString.append("-" + a[randomTipp].getURL().toString());
+
+					
 					return parsedString.toString();
 				
 				  }

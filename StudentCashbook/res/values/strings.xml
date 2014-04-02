@@ -68,5 +68,6 @@
     <string name="title_activity_splash_screen">Student Cashbook</string>
     <string name="splashScreen">sponsored by</string>
     <string name="splashScreenSponsor">Hier könnte\ndein Logo sein!</string>
+    <string name="action_newTipp">Neuer Spartipp</string>
 
 </resources>

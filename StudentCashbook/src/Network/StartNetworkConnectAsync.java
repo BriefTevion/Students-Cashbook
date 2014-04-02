@@ -1,7 +1,7 @@
 package Network;
 
+import studentcashbook.Activities.MainActivity;
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class StartNetworkConnectAsync extends AsyncTask<String, Void, String> {
 
@@ -20,9 +20,9 @@ public class StartNetworkConnectAsync extends AsyncTask<String, Void, String> {
 	// onPostExecute displays the results of the AsyncTask.	
  	@Override	
  	protected void onPostExecute(String tipp) {
- 		Log.v("test", "Tipp: " + tipp);
+ 		MainActivity.showTipp(tipp);
  	}
 	
-	}
+}
 
 

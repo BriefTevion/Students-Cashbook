@@ -24,21 +24,27 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int geldscheine=0x7f020000;
-        public static final int ic_action_bad=0x7f020001;
-        public static final int ic_action_delete=0x7f020002;
-        public static final int ic_action_edit=0x7f020003;
-        public static final int ic_action_good=0x7f020004;
-        public static final int ic_action_labels=0x7f020005;
-        public static final int ic_action_new=0x7f020006;
-        public static final int ic_action_new_label=0x7f020007;
-        public static final int ic_action_not_important=0x7f020008;
-        public static final int ic_action_star=0x7f020009;
-        public static final int ic_drawer=0x7f02000a;
-        public static final int ic_launcher=0x7f02000b;
-        public static final int rectangle_orange=0x7f02000c;
-        public static final int styledbutton=0x7f02000d;
-        public static final int styledbutton2=0x7f02000e;
+        public static final int einstellungen=0x7f020000;
+        public static final int geldscheine=0x7f020001;
+        public static final int ic_action_bad=0x7f020002;
+        public static final int ic_action_delete=0x7f020003;
+        public static final int ic_action_edit=0x7f020004;
+        public static final int ic_action_good=0x7f020005;
+        public static final int ic_action_labels=0x7f020006;
+        public static final int ic_action_new=0x7f020007;
+        public static final int ic_action_new_label=0x7f020008;
+        public static final int ic_action_not_important=0x7f020009;
+        public static final int ic_action_star=0x7f02000a;
+        public static final int ic_drawer=0x7f02000b;
+        public static final int ic_launcher=0x7f02000c;
+        public static final int kategorien=0x7f02000d;
+        public static final int monatliches=0x7f02000e;
+        public static final int rectangle_orange=0x7f02000f;
+        public static final int sparziele=0x7f020010;
+        public static final int styledbutton=0x7f020011;
+        public static final int styledbutton2=0x7f020012;
+        public static final int tipps=0x7f020013;
+        public static final int uebersicht=0x7f020014;
     }
     public static final class id {
         public static final int Anlegen=0x7f090008;
@@ -47,11 +53,12 @@ public final class R {
         public static final int Passwort=0x7f090012;
         public static final int Pswdzuruecksetzen=0x7f090010;
         public static final int action_add=0x7f090034;
-        public static final int action_nAusgabe=0x7f090036;
-        public static final int action_nEinnahme=0x7f090035;
-        public static final int action_nMonatlicheAusgabe=0x7f090038;
-        public static final int action_nMonatlicheEinnahme=0x7f090037;
+        public static final int action_nAusgabe=0x7f090037;
+        public static final int action_nEinnahme=0x7f090036;
+        public static final int action_nMonatlicheAusgabe=0x7f090039;
+        public static final int action_nMonatlicheEinnahme=0x7f090038;
         public static final int action_settings=0x7f090033;
+        public static final int action_tipp=0x7f090035;
         public static final int anlegen=0x7f090020;
         public static final int button1=0x7f090031;
         public static final int button_Abbrechen=0x7f09002a;
@@ -175,6 +182,7 @@ public final class R {
         public static final int action_newA=0x7f06003b;
         public static final int action_newE=0x7f06003a;
         public static final int action_newK=0x7f060035;
+        public static final int action_newTipp=0x7f060045;
         public static final int action_settings=0x7f060003;
         public static final int app_name=0x7f060002;
         public static final int date=0x7f060021;

@@ -11,13 +11,16 @@ import Charts.TabPagerAdapter;
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
 import Network.StartNetworkConnectAsync;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
@@ -42,6 +45,7 @@ public class MainActivity extends BaseActivity {
 	//Werte abhaenig  von Anzahl der Werte
 	private static int[] colors = {Color.BLUE, Color.RED};
 	private CategorySeries pieSeries = new CategorySeries("");
+	private static Context mContext;
 
 	
 	@Override
@@ -49,6 +53,7 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContent(getApplicationContext());
 		
+		mContext = this;
 		//ListView
 		adapter = new itemListAdapter();
         
@@ -63,20 +68,16 @@ public class MainActivity extends BaseActivity {
         
         PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
         pts.setDrawFullUnderline(false);
-       
         
-        //Tipps anzeigen
+      //Tipps anzeigen
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         //highscoreTable.setText("Wait while downloading highscores ...");
         if (networkInfo != null && networkInfo.isConnected()) {
           StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
           downloadTask.execute();
-        } else {
-        	//highscoreTable.setText("No network connection available to download highscores!");
-        	Log.v("test", "fertige");
-        }		
-
+        }
+        
 	}
 	
 	@Override
@@ -96,6 +97,9 @@ public class MainActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
+	    	case R.id.action_tipp:
+	    		openNewTipp();
+	    		return true;
 	        case R.id.action_nEinnahme:
 	            openEinnahme();
 	            return true;
@@ -127,6 +131,66 @@ public class MainActivity extends BaseActivity {
 	public void openAusgabe(){
 		Intent intent = new Intent(getApplicationContext(), AusgabeActivity.class);	
 		startActivity(intent);
+	}
+	
+	//Tipp anzeigen
+		public static void showTipp(String nachricht){
+			String urlString= "";
+			String message = nachricht;
+			
+			if(message.contains("http")){
+				String [] mArray = nachricht.split("-");
+				if(mArray.length>0){
+					urlString = mArray[1];
+					message = mArray[0];
+				}
+			}
+			else{
+				message = message.substring(0,  message.length()-1);
+			}
+			
+			final String URL = urlString;
+		
+			
+			try{
+			AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+			alert.setMessage(message);
+			alert.setPositiveButton("OK", null);
+			
+			if(URL!=""){
+			
+			alert.setNegativeButton("Weitere Infos", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setData(Uri.parse(URL));
+					mContext.startActivity(intent);
+				
+					
+				}
+			});
+			}
+			alert.setCancelable(true);
+			alert.create().show();
+			}
+			catch(Exception e){
+				Log.v("test", e.getMessage());
+			}
+			
+
+		}
+
+	//Action button neuer Tipp geklickt
+	public  void openNewTipp(){
+		//Tipps anzeigen
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+          StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
+          downloadTask.execute();
+        }
+        
+
 	}
 	
 
@@ -257,7 +321,6 @@ public class MainActivity extends BaseActivity {
 	}
 
 	
-
 	
 
 }
