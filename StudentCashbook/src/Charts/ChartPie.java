@@ -19,11 +19,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.studentcashbook.R;
 
@@ -43,18 +46,27 @@ public class ChartPie extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		 View windows = inflater.inflate(R.layout.chartpie_frag, container, false);
-		 try{
-			 //LinearLayout layout = (LinearLayout) windows.findViewById(R.id.linearLayoutPieChart);
-			 //layout.addView(createPie());
+		 RelativeLayout vG = (RelativeLayout) windows.findViewById(R.id.linearLayoutPieChart);
+		 TextView tv = (TextView) windows.findViewById(R.id.default_Pie);
+		 
+		 if(checkIfNull()==true){
+
+			 tv.setText("Diesen Monat wurden noch keine Transkationen durchgeführt.");
+			 tv.setVisibility(View.VISIBLE);
 			 
-			 RelativeLayout vG = (RelativeLayout) windows.findViewById(R.id.linearLayoutPieChart);
-				vG.addView(createPie());
-			}
-			catch(Exception e){
-				Log.v("test", e.getMessage());
-			}
+			 
+		 }
+		 else{
+			 tv.setVisibility(View.GONE);
 		 
-		 
+			 try{		 	
+					vG.addView(createPie());
+				}
+				catch(Exception e){
+					Log.v("test", e.getMessage());
+				}
+			 
+		 }
         return windows;
         
 }
@@ -154,6 +166,85 @@ public class ChartPie extends Fragment {
 	     
 	     return pieChartView;
 		 
+	 }
+	 
+	 
+	 public boolean checkIfNull(){
+		 
+		//Datenabfrage aus Datenbank
+		 TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(MainActivity.getContext());	
+		 SQLiteDatabase db = dbHelper.getReadableDatabase();
+		 Integer einnahmeGesamt = 0;
+		 Integer ausgabeGesamt = 0;
+		 Date date = null;
+		 SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy");
+		 Integer count = 0;
+		 
+		 String [] projection = {
+					transEntry.COLUMN_NAME_TRANSAKTION_ID,
+					transEntry.COLUMN_NAME_DATUM,
+					transEntry.COLUMN_NAME_BETRAG,
+					transEntry.COLUMN_NAME_KATEGORIE
+			};
+		 
+		 Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, null);
+		 
+		 count = c.getCount();
+		 
+		 if(count>0){
+		 
+		 
+				 int buchungsMonat=0;
+				 
+				 while(c.moveToNext()){
+					 
+					 //Konvertieren des Datums von String zu Date
+					 //ausserdem auslesen des erstellten Monats
+		
+						try {
+							date = (Date) sdfDate.parse(c.getString(1));
+							
+							Calendar cal = Calendar.getInstance();
+							cal.setTime(date);
+							buchungsMonat = cal.get(Calendar.MONTH);
+		
+							
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							Log.v("test", e.getMessage());
+						}
+		
+					 
+					
+					//den aktuellen Monat bekommen
+					Calendar ca = Calendar.getInstance();
+					int aktuellerMonat = ca.get(Calendar.MONTH);
+					
+					 //Wenn Datum innerhalb diesen Monats
+					 if(buchungsMonat == aktuellerMonat){
+		 
+						 
+						 if(c.getString(2).contains("-")){
+							 ausgabeGesamt = ausgabeGesamt - Integer.parseInt(c.getString(2));
+						 }else{
+							 einnahmeGesamt = einnahmeGesamt + Integer.parseInt(c.getString(2));
+							 
+						 }
+					 }
+					 
+				 }
+		 }
+		 
+		 db.close();
+		 
+		 //Wenn keine aktuellen Daten verfuegbar, dann return true
+		 if(einnahmeGesamt==0 || ausgabeGesamt==0){
+			 return true;
+		 }
+		 else{
+			 return false;
+		 }
+
 	 }
 
 	 

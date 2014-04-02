@@ -120,7 +120,6 @@ public class ChartBar extends Fragment{
          multiRenderer.setYLabelsColor(0,Color.BLACK);
          multiRenderer.setChartTitleTextSize(25);
          multiRenderer.setApplyBackgroundColor(true);
-         multiRenderer.setXLabelsAlign(Align.CENTER);
          multiRenderer.setMarginsColor(Color.parseColor("#3C8DC5"));
          multiRenderer.setShowAxes(false);
          multiRenderer.setShowLabels(false);
@@ -136,14 +135,15 @@ public class ChartBar extends Fragment{
 	         multiRenderer.setYAxisMax(monatlEinnahmenGesamt);
          }
 
-	     
 	     multiRenderer.addSeriesRenderer(mEinRenderer);
 	     multiRenderer.addSeriesRenderer(mAusRenderer);
 	     
 	     
+	     
+	     
 	     barChartView = ChartFactory.getBarChartView(MainActivity.getContext(), dataset, multiRenderer, Type.DEFAULT );
 
-	     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(300, LinearLayout.LayoutParams.WRAP_CONTENT  );
+	     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(500, LinearLayout.LayoutParams.WRAP_CONTENT  );
 		 params.setMargins(30, 0, 0, 0);
 	     barChartView.setLayoutParams(params);
 		

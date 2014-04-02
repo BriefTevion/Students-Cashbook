@@ -5,6 +5,16 @@
     android:gravity="center"
     android:orientation="vertical"
     android:id="@+id/linearLayoutPieChart" >
+    
+     <TextView
+        android:id="@+id/default_Pie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-thin"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
 
 
 </RelativeLayout>
