@@ -71,18 +71,10 @@ public class MainActivity extends BaseActivity {
         PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
         pts.setDrawFullUnderline(false);
         
-		//Pruefen, ob Action Button Tipps angezeigt wird
-//		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
-//		String syncConnPref = sharedPref.getString(EinstellungenActivity.keyTippButton,"");
-//		
-//		if(syncConnPref=="true"){
-//			View tippButton = (View) findViewById(R.id.action_tipp);
-//			tippButton.setVisibility(View.VISIBLE);
-//		}
-//		else{
-//			View tippButton = (View) findViewById(R.id.action_tipp);
-//			tippButton.setVisibility(View.GONE);
-//		}
+        
+       
+        	
+        
         
 	}
 	
@@ -122,6 +114,10 @@ public class MainActivity extends BaseActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		
+        
+	  
+		
 		return true;
 	}
 	

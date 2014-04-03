@@ -1,10 +1,9 @@
 package studentcashbook.Activities;
 
-import javax.crypto.KeyGenerator;
-
-import android.inputmethodservice.Keyboard.Key;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 
 import com.example.studentcashbook.R;
 
@@ -22,5 +21,23 @@ public class EinstellungenActivity extends PreferenceActivity {
         addPreferencesFromResource(R.layout.activity_einstellungen);
     }
 	
+	//Check ob tipp button angezeigt werden darf
+	public static Boolean getKeyTippButton(){
+		
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
+		Boolean syncConnPref = sharedPref.getBoolean(keyTippButton,false);
+		
+		return syncConnPref;
+	}
+	
+	
+	//Check ob automatisch tipps angezeigt werden duerfen
+	public static Boolean getKeyTippAuto(){
+		
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
+		Boolean syncConnPref = sharedPref.getBoolean(keyTippAuto, false);
+		
+		return syncConnPref;
+	}
 
 }

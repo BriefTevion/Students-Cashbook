@@ -143,6 +143,7 @@ public class EinnahmeActivity extends BaseActivity {
 						//zu Main wechseln
 						Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 						startActivity(intent);
+
 					
 						
 					}

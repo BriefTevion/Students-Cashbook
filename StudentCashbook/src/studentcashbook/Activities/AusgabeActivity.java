@@ -143,10 +143,8 @@ public class AusgabeActivity extends BaseActivity {
 					
 					//Tipp anzeigen
 					//Zunaechst pruefen, ob Einstellungen es zulassen
-					SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
-					String syncConnPref = sharedPref.getString(EinstellungenActivity.keyTippAuto,"");
 					
-					if(syncConnPref=="true"){
+					if(EinstellungenActivity.getKeyTippAuto()==true){
 						openNewTipp();
 					}
 					

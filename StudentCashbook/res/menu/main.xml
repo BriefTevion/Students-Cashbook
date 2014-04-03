@@ -5,7 +5,7 @@
 	            android:icon="@drawable/tipps"
 	            android:title="@string/action_newTipp" 
 	            android:showAsAction="ifRoom"
-	            android:visible="true"/>
+	            />
 	
      <!-- Add new Einnahme button in the action bar -->
     <item
