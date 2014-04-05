@@ -191,7 +191,7 @@ public class ChartPie extends Fragment {
 		 
 		 count = c.getCount();
 		 
-		 if(count>0){
+		 if(count>=1){
 		 
 		 
 				 int buchungsMonat=0;

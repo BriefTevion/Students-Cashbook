@@ -5,11 +5,6 @@
        android:title="@string/pref_tipps_einstellungen_title"
        android:key="pref_key_tipps_einstellungen">
        <CheckBoxPreference
-           android:key="pref_key_tipps_button"
-           android:summary="@string/pref_summary_tipps_button"
-           android:title="@string/pref_title_tipps_button"
-           android:defaultValue="true" />
-       <CheckBoxPreference
            android:key="pref_key_tipps_auto"
            android:summary="@string/pref_summary_tipps_auto"
            android:title="@string/pref_title_tipps_auto"
