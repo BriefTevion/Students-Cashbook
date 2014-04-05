@@ -35,6 +35,7 @@ public void BenutzerNeuAnlegen(View view){
 		//Zugriff auf UI Element
 		EditText PasswortFeld = (EditText) findViewById(R.id.neuesPasswortEingabe);
 		EditText PasswortWdh = (EditText) findViewById(R.id.passwortWdh);
+		EditText eingabeSecureFrage = (EditText) findViewById(R.id.eingabe_secureFrage);
 		
 	
 		//Werte der UI Elemente holen
@@ -62,6 +63,7 @@ public void BenutzerNeuAnlegen(View view){
 		
 		//verschluesselter Wert speichern;
 		editor.putString("PASSWORD", passwortEncrypt);
+		editor.putString("SECUREFRAGE", CryptHelper.toHex(eingabeSecureFrage.getText().toString()));
 		editor.commit();
 		
 		

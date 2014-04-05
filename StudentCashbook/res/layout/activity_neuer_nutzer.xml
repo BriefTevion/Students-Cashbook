@@ -47,20 +47,6 @@
         android:hint="@string/PasswortWdh_edit_neuerNutzer"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/anlegen"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/passwortWdh"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30sp"
-        android:background="@drawable/styledbutton2"
-        android:clickable="true"
-        android:onClick="BenutzerNeuAnlegen"
-        android:text="@string/AnlegenButton_neuerNutzer"
-        android:fontFamily="sans-serif-thin" 
-        android:textColor="#000000"/>
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -72,5 +58,46 @@
         android:text="@string/signup"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/anlegen"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/passwortWdh"
+        android:layout_below="@+id/eingabe_secureFrage"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/styledbutton2"
+        android:clickable="true"
+        android:fontFamily="sans-serif-thin"
+        android:onClick="BenutzerNeuAnlegen"
+        android:text="@string/AnlegenButton_neuerNutzer"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/secureFrage"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passwortWdh"
+        android:layout_below="@+id/passwortWdh"
+        android:layout_marginTop="20dp"
+        android:text="@string/secureFrage"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:textSize="15sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/eingabe_secureFrage"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/secureFrage"
+        android:layout_below="@+id/secureFrage"
+        android:layout_marginTop="10sp"
+        android:background="#ffffff"
+        android:ems="10"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:hint="@string/eingabe_secureFrage"
+        android:inputType="textPassword" />
     
 </RelativeLayout>

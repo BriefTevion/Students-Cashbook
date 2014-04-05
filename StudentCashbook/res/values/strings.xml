@@ -79,5 +79,7 @@
     <string name="pref_passwort_einstellungen_title">Passwort</string>
     <string name="pref_summary_passwort_change">Passwort ändern</string>
     <string name="pref_title_passwort_change">Ändern</string>
+    <string name="secureFrage">Der Name deines ersten Haustiers?</string>
+    <string name="eingabe_secureFrage">Name</string>
 
 </resources>
