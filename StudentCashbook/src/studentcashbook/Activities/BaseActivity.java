@@ -1,6 +1,6 @@
 /*
- * Diese Klasse beinhaltet ausschlie??lich alle Notwendigen Methoden f??r den Navigation Drawer dieser App
- * Auf sie kann ??ber extend zugegriffen werden.
+ * Diese Klasse beinhaltet ausschliesslich alle Notwendigen Methoden fuer den Navigation Drawer dieser App
+ * Auf sie kann ueber extend zugegriffen werden.
  */
 
 package studentcashbook.Activities;
@@ -127,6 +127,10 @@ public class BaseActivity extends FragmentActivity {
 			Intent intent5 = new Intent(this, EinstellungenActivity.class);
 			startActivity(intent5);
 			break;
+		case 6:
+			Intent intent6 = new Intent(this, LoginActivity.class);
+			startActivity(intent6);
+			break;
 		}
 		
 		dl.closeDrawer(dLv);
@@ -155,6 +159,9 @@ public class BaseActivity extends FragmentActivity {
 			}
 			else if(item.contains("Einstellungen")){
 				number = 5;
+			}
+			else if(item.contains("Abmelden")){
+				number = 6;
 			}
 			
 
