@@ -3,26 +3,29 @@ package studentcashbook.Activities;
 import Crypt.CryptHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.studentcashbook.R;
 
 
 public class LoginActivity extends Activity {
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-	}
 
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -111,9 +114,22 @@ public class LoginActivity extends Activity {
 	
 	
 	public void PasswortZuruecksetzen(View view) {
+		//LayoutInflater inflater = getLayoutInflater();
+		//RelativeLayout f1 = (RelativeLayout) findViewById(R.id.relativeLayout);
+		//f1.addView(inflater.inflate(R.layout.alert_securefrage, f1, false));
 		
 		
 		
+		
+	}
+	
+	public void secureAlertConfirmPressed(){
+		Log.v("test", "test");
+		//LayoutInflater inflater = getLayoutInflater();
+		RelativeLayout f1 = (RelativeLayout) findViewById(R.id.relativeLayout);
+		//f1.addView(inflater.inflate(R.layout.alert_neues_password, f1, false));
+		LinearLayout ll = (LinearLayout) findViewById(R.id.alert_secureFrage);
+		f1.removeView(ll);
 	}
 	
 

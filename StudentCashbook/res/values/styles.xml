@@ -37,5 +37,8 @@
     <item name="android:shadowDy" >1</item>
     <item name="android:shadowRadius" >2</item>
   </style>
+  <style name="Theme.SettingsBackground" parent="@android:style/Theme.Holo.Light.Dialog">
+	
+</style>
 
 </resources>

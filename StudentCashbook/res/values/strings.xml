@@ -81,5 +81,6 @@
     <string name="pref_title_passwort_change">Ändern</string>
     <string name="secureFrage">Der Name deines ersten Haustiers?</string>
     <string name="eingabe_secureFrage">Name</string>
+    <string name="neuesPassword">Gib dein neues Password ein:</string>
 
 </resources>
