@@ -4,26 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.achartengine.GraphicalView;
-import org.achartengine.model.CategorySeries;
-import org.achartengine.renderer.DefaultRenderer;
 
 import Charts.TabPagerAdapter;
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
 import Network.StartNetworkConnectAsync;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.sax.RootElement;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -32,8 +29,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.studentcashbook.R;
@@ -43,11 +43,8 @@ public class MainActivity extends BaseActivity {
 	itemListAdapter adapter;
 	TabPagerAdapter TabAdapter;
 	GraphicalView pieChartView = null;
-	private DefaultRenderer pieRenderer= new DefaultRenderer();
-	//Werte abhaenig  von Anzahl der Werte
-	private static int[] colors = {Color.BLUE, Color.RED};
-	private CategorySeries pieSeries = new CategorySeries("");
 	private static Context mContext;
+	private static ProgressBar progressCircle = null;
 
 	
 	@Override
@@ -71,6 +68,8 @@ public class MainActivity extends BaseActivity {
         PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
         pts.setDrawFullUnderline(false);
         
+        //ProgressKreis zuordnen
+        progressCircle = (ProgressBar) findViewById(R.id.progressBar);
         
        
         	
@@ -140,6 +139,8 @@ public class MainActivity extends BaseActivity {
 			String urlString= "";
 			String message = nachricht;
 			
+			
+			
 			if(message.contains("http")){
 				String [] mArray = nachricht.split("-");
 				if(mArray.length>0){
@@ -155,6 +156,9 @@ public class MainActivity extends BaseActivity {
 		
 			
 			try{
+			        	
+			progressCircle.setVisibility(View.GONE);
+			
 			AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
 			alert.setMessage(message);
 			alert.setPositiveButton("OK", null);
@@ -167,8 +171,8 @@ public class MainActivity extends BaseActivity {
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.setData(Uri.parse(URL));
 					mContext.startActivity(intent);
-				
 					
+	
 				}
 			});
 			}
@@ -182,19 +186,22 @@ public class MainActivity extends BaseActivity {
 
 		}
 
+
 	//Action button neuer Tipp geklickt
 	public  void openNewTipp(){
 		//Tipps anzeigen
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+       
+        progressCircle.setVisibility(View.VISIBLE);
+        
+        
         if (networkInfo != null && networkInfo.isConnected()) {
           StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
           downloadTask.execute();
         }
 	}     
         
-        
-
 	
 	
 

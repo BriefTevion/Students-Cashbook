@@ -3,6 +3,7 @@ package studentcashbook.Activities;
 import Crypt.CryptHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -109,7 +110,9 @@ public class LoginActivity extends Activity {
 	}
 	
 	
-	public void PasswortZuruecksetzen(View view){
+	public void PasswortZuruecksetzen(View view) {
+		
+		
 		
 	}
 	
