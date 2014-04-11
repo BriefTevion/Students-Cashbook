@@ -1,13 +1,14 @@
 package studentcashbook.Activities;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources.Theme;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,18 @@ public class EinstellungenActivity extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.layout.activity_einstellungen);
+        Preference newPswd = (Preference) findPreference(keyPswdChange);
+        newPswd.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+                     public boolean onPreferenceClick(Preference preference) {
+                    	 
+                    	//Activity PasswordZurueck aufrufen 
+                    	Intent intent = new Intent(getApplicationContext(), PasswordZurueckActivity.class);
+     					startActivity(intent);	
+     					
+                    	 
+                    	 return true;
+                     }
+                 });
         
         
         
