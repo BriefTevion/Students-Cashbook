@@ -71,7 +71,7 @@ public class KategorienActivity extends BaseActivity {
 		
 	}
 
-	//Ausgew??hlter Eintrag loeschen
+	//Ausgewaehlter Eintrag loeschen
 	private void deleteListItem(String name){
 		//Zugang zur Datenbank
 		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	

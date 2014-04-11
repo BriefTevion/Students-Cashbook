@@ -114,23 +114,12 @@ public class LoginActivity extends Activity {
 	
 	
 	public void PasswortZuruecksetzen(View view) {
-		//LayoutInflater inflater = getLayoutInflater();
-		//RelativeLayout f1 = (RelativeLayout) findViewById(R.id.relativeLayout);
-		//f1.addView(inflater.inflate(R.layout.alert_securefrage, f1, false));
-		
-		
+		Intent intent = new Intent(this, PasswordZurueckActivity.class);	
+		startActivity(intent);
 		
 		
 	}
-	
-	public void secureAlertConfirmPressed(){
-		Log.v("test", "test");
-		//LayoutInflater inflater = getLayoutInflater();
-		RelativeLayout f1 = (RelativeLayout) findViewById(R.id.relativeLayout);
-		//f1.addView(inflater.inflate(R.layout.alert_neues_password, f1, false));
-		LinearLayout ll = (LinearLayout) findViewById(R.id.alert_secureFrage);
-		f1.removeView(ll);
-	}
+
 	
 
 }
