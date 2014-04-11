@@ -5,39 +5,50 @@
 
 package studentcashbook.Activities;
 
-import com.example.studentcashbook.R;
+import java.util.ArrayList;
+import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.studentcashbook.R;
 
 public class BaseActivity extends FragmentActivity {
 	private String[] activitiesList;
 	private DrawerLayout dl;
 	private ListView dLv;
 	private ActionBarDrawerToggle abdt;
+	itemListAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		startAct();
-		//DrawerList initialisieren
-		activitiesList = getResources().getStringArray(R.array.string_array_navigation_drawer);
+		
+		try{
 		dl = (DrawerLayout) findViewById(R.id.drawer_layout);
 		dLv = (ListView) findViewById(R.id.left_drawer);
 
-		//Adapter erzeugen f??r die ListView
-		dLv.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_listview_item, activitiesList));
+		//Adapter erzeugen fuer die ListView
+		adapter = new itemListAdapter();
+
+        dLv.setAdapter(adapter);
 
 		// Set the list's click listener
         dLv.setOnItemClickListener(new DrawerItemClickListener());
@@ -53,6 +64,10 @@ public class BaseActivity extends FragmentActivity {
 
 		//ActionBarDrawerToggle als Drawer Listener setzen
 		dl.setDrawerListener(abdt);
+		}
+		catch(Exception e){
+			Log.v("test", e.getMessage());
+		}
 
 		//Pfeil-Icon setzen
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -61,7 +76,7 @@ public class BaseActivity extends FragmentActivity {
 
 	}
 
-	//Konfiguration wird ??bergeben
+	//Konfiguration wird uebergeben
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
@@ -97,7 +112,7 @@ public class BaseActivity extends FragmentActivity {
 	
 	
 	
-	//zum ??ffnen der entsprechenden Activitiy
+	//zum oeffnen der entsprechenden Activitiy
 	public void startAct(){
 		
 		setContentView(R.layout.activity_main);
@@ -142,7 +157,8 @@ public class BaseActivity extends FragmentActivity {
 		public void onItemClick(AdapterView parent, View view, int position, long id) {
 			//Toast.makeText(MainActivity.this, ((TextView)view).getText(), Toast.LENGTH_LONG).show();
 
-			String item = (String) ((TextView)view).getText();
+			TextView text = (TextView) view.findViewById(R.id.textView1);
+			String item = text.getText().toString();
 			int number=0;
 
 			if(item.contains("Übersicht")){
@@ -171,7 +187,111 @@ public class BaseActivity extends FragmentActivity {
 	    }
 
 	}
+	
+	public class itemListData{
+		String name;
+	}
+	
+	public List<itemListData> getDataForDrawer()
+	{
+		
+		//Daten abfragen
+		String [] projection = getResources().getStringArray(R.array.string_array_navigation_drawer);
+				
+		List<itemListData> list = new ArrayList <itemListData>();
+		
+
+			for(int i=0; i<projection.length; i++){
+				String kName = projection[i];
+
+				//Daten in Liste uebergeben
+				itemListData ild = new itemListData();
+				ild.name = kName;
+				list.add(ild);
+					
+					
+			}	
+
+					return list;
+					
+	}
+
+	//benutzerdefinierter Adapter
+		public class itemListAdapter extends BaseAdapter{
+			List<itemListData> list =  getDataForDrawer();
+			
+			@Override
+			public int getCount() {
+				return list.size();
+
+			}
+			
+			@Override
+			public itemListData getItem(int arg0) {
+				// TODO Auto-generated method stub
+				return list.get(arg0);
+			}
+			
+			@Override
+			public long getItemId(int arg0) {
+				// TODO Auto-generated method stub
+				return arg0;
+			}
+			
+			@Override
+			public View getView(int arg0, View arg1, ViewGroup arg2) {
+
+				if(arg1==null)
+				{
+					LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+					arg1 = inflater.inflate(R.layout.drawer_listview_item, arg2,false);
+				}
+
+				ImageView img = (ImageView) arg1.findViewById(R.id.imageView1);
+				TextView name = (TextView)arg1.findViewById(R.id.textView1);
+
+
+				itemListData data = list.get(arg0);
+				
+				if(data.name.contains("Übersicht")){
+					img.setImageResource(R.drawable.ic_action_dock);
+					name.setText(data.name);
+				}
+				else if(data.name.contains("Monatliches")){
+					img.setImageResource(R.drawable.monatliches_ic);
+					name.setText(data.name);
+				}
+				else if(data.name.contains("Kategorien")){
+					img.setImageResource(R.drawable.kategorien_ic);
+					name.setText(data.name);
+				}
+				else if(data.name.contains("Sparziele")){
+					img.setImageResource(R.drawable.sparziele_ic);
+					name.setText(data.name);
+				}
+				else if(data.name.contains("Einstellungen")){
+					img.setImageResource(R.drawable.einstellungen_ic);
+					name.setText(data.name);
+				}
+				else if(data.name.contains("Abmelden")){
+					img.setImageResource(R.drawable.ic_launcher);
+					name.setText(data.name);
+				}
+
+
+				
+
+				return arg1;
+			}
+			
+			public itemListData getItems(int position)
+			{
+				return list.get(position);
+			}
+			
+			
+		}
+
+
 }
-
-
 

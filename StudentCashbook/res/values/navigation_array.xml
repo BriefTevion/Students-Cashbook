@@ -11,6 +11,8 @@
         <item>Einstellungen</item>
         <item>Abmelden</item>
     </string-array>
+    
+    
     <string name="drawer_open">Open Navigation</string>
     <string name="drawer_close">Close Navigation</string>
 </resources>
