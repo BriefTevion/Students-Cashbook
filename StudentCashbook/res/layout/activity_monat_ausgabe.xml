@@ -45,7 +45,7 @@
                  android:layout_below="@+id/editText_Name"
                  android:ems="10"
                  android:gravity="center"
-                 android:hint="betrag"
+                 android:hint="@string/Euro"
                  android:layout_centerHorizontal="true"
                  android:fontFamily="sans-serif-thin"
                  android:inputType="number"/>

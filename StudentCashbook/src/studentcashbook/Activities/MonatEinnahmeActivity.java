@@ -3,8 +3,6 @@ package studentcashbook.Activities;
 import java.text.DateFormat;
 import java.util.Date;
 
-import com.example.studentcashbook.R;
-
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
 import android.annotation.TargetApi;
@@ -17,10 +15,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.studentcashbook.R;
 
 public class MonatEinnahmeActivity extends Activity  {
 
@@ -75,10 +76,19 @@ public class MonatEinnahmeActivity extends Activity  {
 		EditText betrag = (EditText) findViewById(R.id.editText_betrag);
 		EditText tag = (EditText) findViewById(R.id.editText_Tag);
 		
+		String tagString;
+		if(tag.getText().toString().isEmpty() || tag.getText().toString()=="0"){
+			tagString = "1";
+		}
+		else{
+			tagString = tag.getText().toString();
+		}
+		
+		
 		
 		String datum = DateFormat.getDateInstance().format(new Date());
 		try{
-		putMonatlicheEinnahmeInTable(name.getText().toString(), betrag.getText().toString(), datum, tag.getText().toString());
+		putMonatlicheEinnahmeInTable(name.getText().toString(), betrag.getText().toString(), datum, tagString);
 		
 		//Nachricht ueber erfolgreiches speichern
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);

@@ -77,9 +77,16 @@ public class MonatAusgabeActivity extends Activity {
 		
 		String betrag = "-" + betragF.getText().toString();
 		String datum = DateFormat.getDateInstance().format(new Date());
+		String tagString;
+		if(tag.getText().toString().isEmpty() || tag.getText().toString()=="0"){
+			tagString = "1";
+		}
+		else{
+			tagString = tag.getText().toString();
+		}
 		
 		try{
-		putMonatlicheEinnahmeInTable(name.getText().toString(), betrag, datum, tag.getText().toString());
+		putMonatlicheEinnahmeInTable(name.getText().toString(), betrag, datum, tagString);
 
 		//Nachricht ueber erfolgreiches speichern
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
