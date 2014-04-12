@@ -32,7 +32,6 @@ public class ChartRestbudgets extends Fragment{
 	
 	GraphicalView pieChartView = null;
 	private DefaultRenderer pieRenderer= new DefaultRenderer();
-	//Werte abhaenig  von Anzahl der Werte
 	private static int[] colors = {Color.BLUE, Color.WHITE};
 	private CategorySeries pieSeries = new CategorySeries("");
 
@@ -123,9 +122,6 @@ public class ChartRestbudgets extends Fragment{
 			
 		 
 		}
-		else{
-			
-		}
 		
 		db.close();
 		return pieChartView; 
@@ -143,8 +139,7 @@ public class ChartRestbudgets extends Fragment{
 		 Integer count = 0;
 		 
 		 String [] projection = {
-					transEntry.K_COLUMN_NAME_BEZEICHNER,
-					transEntry.K_COLUMN_NAME_RESTBETRAG
+					transEntry.K_COLUMN_NAME_BEZEICHNER
 			};
 		 
 		 Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, null, null, null, null, null);

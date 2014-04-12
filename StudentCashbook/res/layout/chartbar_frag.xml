@@ -4,7 +4,17 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:id="@+id/relativeLayoutBarChart" >
+    android:id="@+id/linearLayoutMonatlichesChart" >
+    
+     <TextView
+        android:id="@+id/default_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-thin"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
 
 
 </RelativeLayout>

@@ -39,7 +39,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 		if(position==0){
         	ret="Einmalig diesen Monat";
         }else if(position==1){
-        	ret="Monatlich";
+        	ret="Monatliches";
         }else if(position==2){
         	ret="Restbudgets";
         }else{

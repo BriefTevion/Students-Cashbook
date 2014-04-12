@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//gen/com/example/studentcashbook/R.java=UTF-8
+encoding//src/Charts/ChartBar.java=UTF-8
 encoding//src/Charts/ChartEinAusgaben.java=UTF-8
 encoding//src/Charts/ChartRestbudgets.java=UTF-8
 encoding//src/Charts/TabPagerAdapter.java=UTF-8

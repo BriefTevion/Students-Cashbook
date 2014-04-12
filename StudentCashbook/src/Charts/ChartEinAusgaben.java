@@ -140,7 +140,7 @@ public class ChartEinAusgaben extends Fragment {
 		 
 		//Daten aus Abfrage in Tortendiagramm einbauen
 		 double[] values = {einnahmeGesamt, ausgabeGesamt};
-		 String[] categoryNames ={"Einnahme", "Ausgabe"};
+		 String[] categoryNames ={"Einnahmen", "Ausgaben"};
 		 
 		 
 		 
