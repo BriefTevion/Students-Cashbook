@@ -82,6 +82,11 @@ public class MainActivity extends BaseActivity {
         
 	}
 	
+	//Back Taste ausgeschalten
+	@Override
+	public void onBackPressed() {
+	}
+	
 	@Override
 	protected void onStart(){
 		super.onStart();

@@ -28,6 +28,11 @@ public class NeuerNutzerActivity extends Activity {
 		return true;
 	}
 	
+	//Back Taste ausgeschalten
+	@Override
+	public void onBackPressed() {
+	}
+	
 	
 
 public void BenutzerNeuAnlegen(View view){

@@ -33,6 +33,11 @@ public class LoginActivity extends Activity {
 		return true;
 	}
 	
+	//Back Taste ausgeschalten
+	@Override
+	public void onBackPressed() {
+	}
+	
 	@Override
 	protected void onStart() {
 		super.onStart();
