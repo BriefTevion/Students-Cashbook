@@ -1,6 +1,6 @@
 package Network;
 
-import studentcashbook.Activities.BaseActivity;
+import studentcashbook.activities.BaseActivity;
 import android.os.AsyncTask;
 
 public class StartNetworkConnectForNotifications extends AsyncTask<String, Void, String> {

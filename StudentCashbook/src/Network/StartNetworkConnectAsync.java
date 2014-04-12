@@ -1,6 +1,6 @@
 package Network;
 
-import studentcashbook.Activities.MainActivity;
+import studentcashbook.activities.MainActivity;
 import android.os.AsyncTask;
 
 public class StartNetworkConnectAsync extends AsyncTask<String, Void, String> {

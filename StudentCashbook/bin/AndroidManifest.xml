@@ -15,78 +15,78 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="studentcashbook.Activities.MainActivity"
+            android:name="studentcashbook.activities.MainActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name="studentcashbook.Activities.LoginActivity"
+            android:name="studentcashbook.activities.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name="studentcashbook.Activities.NeuerNutzerActivity"
+            android:name="studentcashbook.activities.NeuerNutzerActivity"
             android:label="@string/title_activity_neuer_nutzer"
-            android:parentActivityName="studentcashbook.Activities.LoginActivity" >
+            android:parentActivityName="studentcashbook.activities.LoginActivity" >
         </activity>
         <activity
-            android:name="studentcashbook.Activities.EinnahmeActivity"
+            android:name="studentcashbook.activities.EinnahmeActivity"
             android:label="@string/title_activity_einnahme" >
         </activity>
         <activity
-            android:name="studentcashbook.Activities.AusgabeActivity"
+            android:name="studentcashbook.activities.AusgabeActivity"
             android:label="@string/title_activity_ausgabe" >
         </activity>
         <activity
-            android:name="studentcashbook.Activities.KategorienActivity"
+            android:name="studentcashbook.activities.KategorienActivity"
             android:label="@string/title_activity_kategorien" >
         </activity>
         <activity
-            android:name="studentcashbook.Activities.MonatEinnahmeActivity"
+            android:name="studentcashbook.activities.MonatEinnahmeActivity"
             android:label="@string/title_activity_monat_einnahme"
-            android:parentActivityName="studentcashbook.Activities.MonatlichesActivity" >
+            android:parentActivityName="studentcashbook.activities.MonatlichesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
-            android:name="studentcashbook.Activities.MonatAusgabeActivity"
+            android:name="studentcashbook.activities.MonatAusgabeActivity"
             android:label="@string/title_activity_monat_ausgabe"
-            android:parentActivityName="studentcashbook.Activities.MonatlichesActivity" >
+            android:parentActivityName="studentcashbook.activities.MonatlichesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
-            android:name="studentcashbook.Activities.SparzielActivity"
+            android:name="studentcashbook.activities.SparzielActivity"
             android:label="@string/title_activity_sparziel" >
         </activity>
         <activity
-            android:name="studentcashbook.Activities.NeuesSparzielActivity"
+            android:name="studentcashbook.activities.NeuesSparzielActivity"
             android:label="@string/title_activity_neues_sparziel" >
         </activity>
         <activity
-            android:name="studentcashbook.Activities.EinstellungenActivity"
+            android:name="studentcashbook.activities.EinstellungenActivity"
             android:label="@string/title_activity_einstellungen"
-            android:parentActivityName="studentcashbook.Activities.MainActivity"
+            android:parentActivityName="studentcashbook.activities.MainActivity"
             android:theme="@style/Theme.SettingsBackground" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.MainActivity" />
         </activity>
         <activity
-            android:name="studentcashbook.Activities.NeueKategorieActivity"
+            android:name="studentcashbook.activities.NeueKategorieActivity"
             android:label="@string/title_activity_neue_kategorie"
-            android:parentActivityName="studentcashbook.Activities.KategorienActivity" >
+            android:parentActivityName="studentcashbook.activities.KategorienActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.KategorienActivity" />
         </activity>
         <activity
-            android:name="studentcashbook.Activities.MonatlichesActivity"
+            android:name="studentcashbook.activities.MonatlichesActivity"
             android:label="@string/title_activity_monatliches" >
         </activity>
         <activity
-            android:name="studentcashbook.Activities.SplashScreen"
+            android:name="studentcashbook.activities.SplashScreen"
             android:label="@string/title_activity_splash_screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -95,10 +95,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="studentcashbook.Activities.PasswordZurueckActivity"
+            android:name="studentcashbook.activities.PasswordZurueckActivity"
             android:label="@string/title_activity_password_zurueck"
             android:theme="@style/Theme.passwortZurueck" >
         </activity>
+
+        <!-- Receiver for Widget -->
+        <receiver
+            android:name="widget.WidgetLoader"
+            android:label="@string/title_activity_login" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider" />
+        </receiver>
+
     </application>
 
 </manifest>

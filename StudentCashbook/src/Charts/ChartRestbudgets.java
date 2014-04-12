@@ -10,7 +10,7 @@ import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
-import studentcashbook.Activities.MainActivity;
+import studentcashbook.activities.MainActivity;
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
 import android.database.Cursor;

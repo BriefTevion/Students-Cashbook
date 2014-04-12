@@ -11,7 +11,7 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import studentcashbook.Activities.MainActivity;
+import studentcashbook.activities.MainActivity;
 import DB.TransaktionenContract.transEntry;
 import DB.TransaktionenDBHelper;
 import android.database.Cursor;
