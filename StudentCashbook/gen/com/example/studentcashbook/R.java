@@ -225,10 +225,12 @@ public final class R {
         public static final int pref_summary_passwort_change=0x7f07004e;
         public static final int pref_summary_sprache_change=0x7f070048;
         public static final int pref_summary_tipps_auto=0x7f070047;
+        public static final int pref_summary_tipps_notifications=0x7f070054;
         public static final int pref_tipps_einstellungen_title=0x7f070049;
         public static final int pref_title_passwort_change=0x7f07004f;
         public static final int pref_title_sprache_change=0x7f07004c;
         public static final int pref_title_tipps_auto=0x7f07004a;
+        public static final int pref_title_tipps_notifications=0x7f070055;
         public static final int secureFrage=0x7f070050;
         public static final int signup=0x7f070030;
         public static final int sparzieleUebersicht=0x7f070040;

@@ -8,12 +8,20 @@ package studentcashbook.Activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import Network.StartNetworkConnectForNotifications;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,6 +43,7 @@ public class BaseActivity extends FragmentActivity {
 	private ListView dLv;
 	private ActionBarDrawerToggle abdt;
 	itemListAdapter adapter;
+	static Context mcontext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +81,8 @@ public class BaseActivity extends FragmentActivity {
 		//Pfeil-Icon setzen
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
+		
+		mcontext = getApplicationContext();
 
 
 	}
@@ -145,10 +156,96 @@ public class BaseActivity extends FragmentActivity {
 		case 6:
 			Intent intent6 = new Intent(this, LoginActivity.class);
 			startActivity(intent6);
+			if(EinstellungenActivity.getKeyTippNotifications()==true){
+				try{
+				startNotificationContentDownload();
+				}
+				catch(Exception e){
+					Log.v("test", e.getMessage());
+				}
+			}
 			break;
 		}
 		
 		dl.closeDrawer(dLv);
+	}
+
+	private void startNotificationContentDownload(){
+		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        
+        
+        if (networkInfo != null && networkInfo.isConnected()) {
+          StartNetworkConnectForNotifications downloadTask = new StartNetworkConnectForNotifications();
+          downloadTask.execute();
+        }
+		
+	}
+	
+	
+	//Benachrichtigung senden
+	public static void sendNotification(String nachricht) {
+		String urlString= "";
+		String message = nachricht;	
+		
+		if(message.contains("http")){
+			String [] mArray = nachricht.split("-");
+			if(mArray.length>0){
+				
+				urlString = mArray[1];
+				message = mArray[0];
+			}
+		}
+		else{
+			message = message.substring(0,  message.length()-1);
+			urlString="";
+		}
+		
+		final String URL = urlString;
+		String [] mText = message.split("\n\n");
+		
+		
+		//Builder erstellen
+		NotificationCompat.Builder mBuilder =
+			    new NotificationCompat.Builder(mcontext)
+			    .setSmallIcon(R.drawable.ic_tipps)
+			    .setContentTitle(mText[0])
+			    .setContentText(mText[1]);
+		
+		NotificationCompat.InboxStyle inboxStyle =
+		        new NotificationCompat.InboxStyle();
+		String[] events = new String[1];
+		events[0] = mText[1];
+		events[0] = new String("Für mehr Infos klicken!");
+		// Titel des BigView
+		inboxStyle.setBigContentTitle(mText[0]);
+		
+		// Moves events into the big view
+		for (int i=0; i < events.length; i++) {
+
+		    inboxStyle.addLine(events[i]);
+		}
+		// Moves the big view style object into the notification object.
+		mBuilder.setStyle(inboxStyle);
+		
+		// Gets an instance of the NotificationManager service
+		NotificationManager mNotifyMgr = 
+		        (NotificationManager) mcontext.getSystemService(NOTIFICATION_SERVICE);
+		
+		if(URL!=""){
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse(URL));
+	
+			PendingIntent pending = PendingIntent.getActivity(mcontext, 0, intent, Intent.FLAG_ACTIVITY_NEW_TASK);
+		    mBuilder.setContentIntent(pending);
+		}
+		
+		// Sets an ID for the notification
+		int mNotificationId = 001;
+	
+		// Builds the notification and issues it.
+		mNotifyMgr.notify(mNotificationId, mBuilder.build());
+		
 	}
 
 

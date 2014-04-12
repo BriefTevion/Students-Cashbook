@@ -10,6 +10,11 @@
            android:summary="@string/pref_summary_tipps_auto"
            android:title="@string/pref_title_tipps_auto"
            android:defaultValue="true" />
+        <CheckBoxPreference
+           android:key="pref_key_tipps_notifications"
+           android:summary="@string/pref_summary_tipps_notifications"
+           android:title="@string/pref_title_tipps_notifications"
+           android:defaultValue="true" />
    </PreferenceCategory>
    
    

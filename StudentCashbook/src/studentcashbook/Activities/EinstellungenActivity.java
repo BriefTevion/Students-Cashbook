@@ -1,6 +1,9 @@
 package studentcashbook.Activities;
 
 import android.annotation.TargetApi;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -10,6 +13,9 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,10 +24,11 @@ import com.example.studentcashbook.R;
 public class EinstellungenActivity extends PreferenceActivity {
     
 	 final static String keyTippAuto = "pref_key_tipps_auto";
+	 final static String keyTippNotifications = "pref_key_tipps_notifications";
 	 final static String keySpracheChange = "pref_key_sprache_change";
 	 final static String keyPswdChange = "pref_key_passwort_change";
 	
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unused" })
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +46,11 @@ public class EinstellungenActivity extends PreferenceActivity {
                      }
                  });
         
-        
-        
+
      }
 	
-	
-	
+
+
 	//Check ob automatisch tipps angezeigt werden duerfen
 	public static Boolean getKeyTippAuto(){
 		
@@ -53,6 +59,15 @@ public class EinstellungenActivity extends PreferenceActivity {
 		
 		return syncConnPref;
 	}
+	
+	//Check ob tipps benachrichtigungen zugelassen sind
+		public static Boolean getKeyTippNotifications(){
+			
+			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.getContext());
+			Boolean syncConnPref = sharedPref.getBoolean(keyTippNotifications, false);
+			
+			return syncConnPref;
+		}
 	
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.

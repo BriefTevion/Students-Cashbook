@@ -71,10 +71,7 @@ public class MainActivity extends BaseActivity {
         
         //ProgressKreis zuordnen
         progressCircle = (ProgressBar) findViewById(R.id.progressBar);
-
-       
-	  	
-        
+ 
         
 	}
 	

@@ -83,5 +83,7 @@
     <string name="eingabe_secureFrage">Name</string>
     <string name="neuesPassword">Gib dein neues Passwort ein:</string>
     <string name="title_activity_password_zurueck">Passwort zurücksetzen</string>
+    <string name="pref_summary_tipps_notifications">Benachrichtigungen</string>
+    <string name="pref_title_tipps_notifications">Erhalte regelmäßige Tipps-Benachrichtigungen</string>
 
 </resources>
