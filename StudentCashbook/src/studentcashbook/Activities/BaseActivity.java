@@ -254,7 +254,7 @@ public class BaseActivity extends FragmentActivity {
 				itemListData data = list.get(arg0);
 				
 				if(data.name.contains("Übersicht")){
-					img.setImageResource(R.drawable.ic_action_dock);
+					img.setImageResource(R.drawable.uebersicht_ic);
 					name.setText(data.name);
 				}
 				else if(data.name.contains("Monatliches")){
@@ -274,7 +274,7 @@ public class BaseActivity extends FragmentActivity {
 					name.setText(data.name);
 				}
 				else if(data.name.contains("Abmelden")){
-					img.setImageResource(R.drawable.ic_launcher);
+					img.setImageResource(R.drawable.logout_ic);
 					name.setText(data.name);
 				}
 
