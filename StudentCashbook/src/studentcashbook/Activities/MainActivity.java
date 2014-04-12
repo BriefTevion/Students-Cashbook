@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity {
 		
 		mContext = this;
 		//ListView
-		try{
+		
 		adapter = new itemListAdapter();
         
 		ListView view = (ListView) findViewById(R.id.list);
@@ -71,11 +71,7 @@ public class MainActivity extends BaseActivity {
         
         //ProgressKreis zuordnen
         progressCircle = (ProgressBar) findViewById(R.id.progressBar);
-		}
-	
-	catch(Exception e){
-		Log.v("test", "2" + e.getMessage());
-	}
+
        
 	  	
         

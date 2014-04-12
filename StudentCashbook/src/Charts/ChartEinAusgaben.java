@@ -30,13 +30,13 @@ import android.widget.TextView;
 
 import com.example.studentcashbook.R;
 
-public class ChartPie extends Fragment {
+public class ChartEinAusgaben extends Fragment {
 
 	
 	GraphicalView pieChartView = null;
 	private DefaultRenderer pieRenderer= new DefaultRenderer();
 	//Werte abhaenig  von Anzahl der Werte
-	private static int[] colors = {Color.BLUE, Color.RED};
+	private static int[] colors = {Color.WHITE, Color.BLUE};
 	private CategorySeries pieSeries = new CategorySeries("");
 	
 	
@@ -45,12 +45,12 @@ public class ChartPie extends Fragment {
 	 @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		 View windows = inflater.inflate(R.layout.chartpie_frag, container, false);
+		 View windows = inflater.inflate(R.layout.charteinausgaben_frag, container, false);
 		 RelativeLayout vG = (RelativeLayout) windows.findViewById(R.id.linearLayoutPieChart);
 		 TextView tv = (TextView) windows.findViewById(R.id.default_Pie);
 		 
+		 
 		 if(checkIfNull()==true){
-
 			 tv.setText("Diesen Monat wurden noch keine Transkationen durchgeführt.");
 			 tv.setVisibility(View.VISIBLE);
 			 
@@ -191,6 +191,8 @@ public class ChartPie extends Fragment {
 		 
 		 count = c.getCount();
 		 
+		 Log.v("test", "count " + count );
+		 
 		 if(count>=1){
 		 
 		 
@@ -237,8 +239,9 @@ public class ChartPie extends Fragment {
 		 
 		 db.close();
 		 
+		 
 		 //Wenn keine aktuellen Daten verfuegbar, dann return true
-		 if(einnahmeGesamt==0 || ausgabeGesamt==0){
+		 if(einnahmeGesamt==0 && ausgabeGesamt==0){
 			 return true;
 		 }
 		 else{

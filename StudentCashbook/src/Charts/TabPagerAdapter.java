@@ -15,13 +15,13 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 		switch (i) {
 		case 0:
 			//Fragement for Android Tab
-			return new ChartPie();
+			return new ChartEinAusgaben();
 		case 1:
 			//Fragment for Ios Tab
 			return new ChartBar();
 		case 2:
 			//Fragment for Windows Tab
-			return new ChartMisc();
+			return new ChartRestbudgets();
 		}
 		return null;
 	}
@@ -41,7 +41,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
         }else if(position==1){
         	ret="Monatlich";
         }else if(position==2){
-        	ret="Sonstiges";
+        	ret="Restbudgets";
         }else{
         	
         }
