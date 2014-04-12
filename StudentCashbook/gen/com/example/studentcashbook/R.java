@@ -277,12 +277,17 @@ public final class R {
          */
         public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
-        public static final int Main_button_text=0x7f080002;
-        public static final int Theme_SettingsBackground=0x7f080004;
-        public static final int Theme_passwortZurueck=0x7f080005;
-        public static final int trivial_button_text=0x7f080003;
+        public static final int Main_button_text=0x7f080004;
+        public static final int Theme_SettingsBackground=0x7f080006;
+        public static final int Theme_passwortZurueck=0x7f080007;
+        /**  Action Bar Styling 
+         */
+        public static final int studentCashbooksBar=0x7f080002;
+        /**  ActionBar title text Styling 
+         */
+        public static final int studentCashbooksBarTitleText=0x7f080003;
+        public static final int trivial_button_text=0x7f080005;
     }
 }
