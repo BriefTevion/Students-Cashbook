@@ -27,29 +27,29 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int einstellungen_ic=0x7f020000;
-        public static final int geldscheine=0x7f020001;
-        public static final int ic_action_bad=0x7f020002;
-        public static final int ic_action_delete=0x7f020003;
-        public static final int ic_action_dock=0x7f020004;
-        public static final int ic_action_edit=0x7f020005;
-        public static final int ic_action_good=0x7f020006;
-        public static final int ic_action_labels=0x7f020007;
-        public static final int ic_action_new=0x7f020008;
-        public static final int ic_action_new_label=0x7f020009;
-        public static final int ic_action_not_important=0x7f02000a;
-        public static final int ic_action_star=0x7f02000b;
-        public static final int ic_drawer=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
-        public static final int kategorien_ic=0x7f02000e;
-        public static final int logout_ic=0x7f02000f;
-        public static final int monatliches_ic=0x7f020010;
-        public static final int rectangle_orange=0x7f020011;
-        public static final int sparziele_ic=0x7f020012;
-        public static final int styledbutton=0x7f020013;
-        public static final int styledbutton2=0x7f020014;
-        public static final int tipps=0x7f020015;
-        public static final int uebersicht_ic=0x7f020016;
+        public static final int geldscheine=0x7f020000;
+        public static final int ic_action_bad=0x7f020001;
+        public static final int ic_action_delete=0x7f020002;
+        public static final int ic_action_dock=0x7f020003;
+        public static final int ic_action_edit=0x7f020004;
+        public static final int ic_action_good=0x7f020005;
+        public static final int ic_action_labels=0x7f020006;
+        public static final int ic_action_new=0x7f020007;
+        public static final int ic_action_new_label=0x7f020008;
+        public static final int ic_action_not_important=0x7f020009;
+        public static final int ic_action_star=0x7f02000a;
+        public static final int ic_drawer=0x7f02000b;
+        public static final int ic_einstellungen=0x7f02000c;
+        public static final int ic_kategorien=0x7f02000d;
+        public static final int ic_launcher=0x7f02000e;
+        public static final int ic_logout=0x7f02000f;
+        public static final int ic_monatliches=0x7f020010;
+        public static final int ic_tipps=0x7f020011;
+        public static final int ic_ueber=0x7f020012;
+        public static final int ic_ziele=0x7f020013;
+        public static final int rectangle_orange=0x7f020014;
+        public static final int styledbutton=0x7f020015;
+        public static final int styledbutton2=0x7f020016;
     }
     public static final class id {
         public static final int Anlegen=0x7f0a0008;

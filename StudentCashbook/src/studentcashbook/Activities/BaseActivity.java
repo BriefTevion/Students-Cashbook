@@ -254,27 +254,27 @@ public class BaseActivity extends FragmentActivity {
 				itemListData data = list.get(arg0);
 				
 				if(data.name.contains("Übersicht")){
-					img.setImageResource(R.drawable.uebersicht_ic);
+					img.setImageResource(R.drawable.ic_ueber);
 					name.setText(data.name);
 				}
 				else if(data.name.contains("Monatliches")){
-					img.setImageResource(R.drawable.monatliches_ic);
+					img.setImageResource(R.drawable.ic_monatliches);
 					name.setText(data.name);
 				}
 				else if(data.name.contains("Kategorien")){
-					img.setImageResource(R.drawable.kategorien_ic);
+					img.setImageResource(R.drawable.ic_kategorien);
 					name.setText(data.name);
 				}
 				else if(data.name.contains("Sparziele")){
-					img.setImageResource(R.drawable.sparziele_ic);
+					img.setImageResource(R.drawable.ic_ziele);
 					name.setText(data.name);
 				}
 				else if(data.name.contains("Einstellungen")){
-					img.setImageResource(R.drawable.einstellungen_ic);
+					img.setImageResource(R.drawable.ic_einstellungen);
 					name.setText(data.name);
 				}
 				else if(data.name.contains("Abmelden")){
-					img.setImageResource(R.drawable.logout_ic);
+					img.setImageResource(R.drawable.ic_logout);
 					name.setText(data.name);
 				}
 

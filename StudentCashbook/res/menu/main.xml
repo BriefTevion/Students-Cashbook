@@ -2,7 +2,7 @@
 
     <item
 	            android:id="@+id/action_tipp"
-	            android:icon="@drawable/tipps"
+	            android:icon="@drawable/ic_tipps"
 	            android:title="@string/action_newTipp" 
 	            android:showAsAction="ifRoom"
 	            />
