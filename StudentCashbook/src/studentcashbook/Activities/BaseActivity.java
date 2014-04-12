@@ -191,7 +191,7 @@ public class BaseActivity extends FragmentActivity {
 		if(message.contains("http")){
 			String [] mArray = nachricht.split("-");
 			if(mArray.length>0){
-				
+							
 				urlString = mArray[1];
 				message = mArray[0];
 			}
@@ -214,9 +214,9 @@ public class BaseActivity extends FragmentActivity {
 		
 		NotificationCompat.InboxStyle inboxStyle =
 		        new NotificationCompat.InboxStyle();
-		String[] events = new String[1];
+		String[] events = new String[2];
 		events[0] = mText[1];
-		events[0] = new String("Für mehr Infos klicken!");
+		events[1] = new String("Für mehr Infos klicken!");
 		// Titel des BigView
 		inboxStyle.setBigContentTitle(mText[0]);
 		
@@ -235,7 +235,7 @@ public class BaseActivity extends FragmentActivity {
 		if(URL!=""){
 			Intent intent = new Intent(Intent.ACTION_VIEW);
 			intent.setData(Uri.parse(URL));
-	
+		
 			PendingIntent pending = PendingIntent.getActivity(mcontext, 0, intent, Intent.FLAG_ACTIVITY_NEW_TASK);
 		    mBuilder.setContentIntent(pending);
 		}
