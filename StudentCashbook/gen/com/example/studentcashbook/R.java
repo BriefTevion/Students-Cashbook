@@ -45,12 +45,14 @@ public final class R {
         public static final int ic_launcher=0x7f02000e;
         public static final int ic_logout=0x7f02000f;
         public static final int ic_monatliches=0x7f020010;
-        public static final int ic_tipps=0x7f020011;
-        public static final int ic_ueber=0x7f020012;
-        public static final int ic_ziele=0x7f020013;
-        public static final int rectangle_orange=0x7f020014;
-        public static final int styledbutton=0x7f020015;
-        public static final int styledbutton2=0x7f020016;
+        public static final int ic_switch_off=0x7f020011;
+        public static final int ic_tipps=0x7f020012;
+        public static final int ic_ueber=0x7f020013;
+        public static final int ic_ziele=0x7f020014;
+        public static final int rectangle_orange=0x7f020015;
+        public static final int styledbutton=0x7f020016;
+        public static final int styledbutton2=0x7f020017;
+        public static final int widget_vorschau=0x7f020018;
     }
     public static final class id {
         public static final int Anlegen=0x7f0b0008;

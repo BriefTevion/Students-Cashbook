@@ -165,6 +165,12 @@ public class BaseActivity extends FragmentActivity {
 				}
 			}
 			break;
+		case 7:
+			Intent intent7 = new Intent(Intent.ACTION_MAIN);
+			intent7.addCategory(Intent.CATEGORY_HOME);
+			intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent7);
+			break;
 		}
 		
 		dl.closeDrawer(dLv);
@@ -216,7 +222,7 @@ public class BaseActivity extends FragmentActivity {
 		        new NotificationCompat.InboxStyle();
 		String[] events = new String[2];
 		events[0] = mText[1];
-		events[1] = new String("F??r mehr Infos klicken!");
+		events[1] = new String("Für mehr Infos klicken!");
 		// Titel des BigView
 		inboxStyle.setBigContentTitle(mText[0]);
 		
@@ -258,7 +264,7 @@ public class BaseActivity extends FragmentActivity {
 			String item = text.getText().toString();
 			int number=0;
 
-			if(item.contains("??bersicht")){
+			if(item.contains("Übersicht")){
 				number = 1;
 			}
 			else if(item.contains("Monatliches")){
@@ -275,6 +281,9 @@ public class BaseActivity extends FragmentActivity {
 			}
 			else if(item.contains("Abmelden")){
 				number = 6;
+			}
+			else if(item.contains("Ausschalten")){
+				number = 7;
 			}
 			
 
@@ -350,7 +359,7 @@ public class BaseActivity extends FragmentActivity {
 
 				itemListData data = list.get(arg0);
 				
-				if(data.name.contains("??bersicht")){
+				if(data.name.contains("Übersicht")){
 					img.setImageResource(R.drawable.ic_ueber);
 					name.setText(data.name);
 				}
@@ -372,6 +381,10 @@ public class BaseActivity extends FragmentActivity {
 				}
 				else if(data.name.contains("Abmelden")){
 					img.setImageResource(R.drawable.ic_logout);
+					name.setText(data.name);
+				}
+				else if(data.name.contains("Ausschalten")){
+					img.setImageResource(R.drawable.ic_switch_off);
 					name.setText(data.name);
 				}
 

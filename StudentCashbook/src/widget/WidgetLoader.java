@@ -54,7 +54,7 @@ public class WidgetLoader extends AppWidgetProvider {
 		
 			//Daten erhalten
 			while(c.moveToNext()){
-				data = data + c.getString(1) + " " + c.getString(3) + "\t" + c.getString(2) + "€\n";
+				data = data + c.getString(1) + " " + c.getString(3) + "    " + c.getString(2) + "€\n";
 			}
 		db.close();
 		return data;

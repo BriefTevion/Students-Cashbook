@@ -3,6 +3,7 @@
     android:minWidth="180dp"
     android:minHeight="60dp"
     android:updatePeriodMillis="600000"
-    android:initialLayout="@layout/widgetlayout">
+    android:initialLayout="@layout/widgetlayout"
+    android:previewImage="@drawable/widget_vorschau">
     
 </appwidget-provider>
