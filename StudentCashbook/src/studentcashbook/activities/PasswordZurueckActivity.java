@@ -1,3 +1,6 @@
+/*
+ * Dies Klasse beinhaltet alle Methoden zum zuruecksetzen des Passwortes.
+ */
 package studentcashbook.activities;
 
 import android.app.Activity;

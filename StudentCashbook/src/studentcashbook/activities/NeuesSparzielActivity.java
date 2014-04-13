@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse beinhaltet alle Methoden um die Activity "Anlegen eines neuen Sparzieles" zu bearbeiten
+ */
 package studentcashbook.activities;
 
 import java.text.ParseException;

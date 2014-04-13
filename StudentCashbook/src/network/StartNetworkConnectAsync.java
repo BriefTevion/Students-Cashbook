@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse startet den Download der Tipps-Daten und uebergibt die Daten zur Anzeige eines Tipp-Alerts.
+ */
 package network;
 
 import studentcashbook.activities.MainActivity;

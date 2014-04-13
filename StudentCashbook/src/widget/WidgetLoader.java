@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse laedt Daten bei update in das Widget.
+ */
 package widget;
 
 
@@ -53,10 +56,14 @@ public class WidgetLoader extends AppWidgetProvider {
 		
 		String data="";
 		
+		if(c.getCount()>1){
+		
 			//Daten erhalten
 			while(c.moveToNext()){
 				data = data + c.getString(1) + " " + c.getString(3) + "    " + c.getString(2) + "€\n";
 			}
+			
+		}
 		db.close();
 		return data;
 	

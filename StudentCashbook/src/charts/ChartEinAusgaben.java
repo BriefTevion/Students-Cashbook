@@ -1,3 +1,7 @@
+/*
+ * Diese Klasse erstellt das Kuchendiagramm fuer die einmaligen Einnahmen und Ausgaben des aktuellen Monats.
+ */
+
 package charts;
 
 import java.text.SimpleDateFormat;

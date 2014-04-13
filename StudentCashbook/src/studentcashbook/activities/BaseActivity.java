@@ -1,5 +1,5 @@
 /*
- * Diese Klasse beinhaltet ausschliesslich alle Notwendigen Methoden fuer den Navigation Drawer dieser App
+ * Diese Klasse beinhaltet ausschliesslich alle notwendigen Methoden fuer den Navigation Drawer dieser App
  * Auf sie kann ueber extend zugegriffen werden.
  */
 

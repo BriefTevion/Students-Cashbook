@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse beinhaltet alle Methoden um die Activity "Anlegen einer neuen einmaligen Einnahme" zu bearbeiten.
+ */
 package studentcashbook.activities;
 
 import java.text.DateFormat;

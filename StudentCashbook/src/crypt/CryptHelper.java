@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse stellt Methoden für die Ver- und Entschluesselung
+ */
 package crypt;
 
 import java.security.SecureRandom;

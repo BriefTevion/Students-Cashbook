@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse erstellt das Kuchendiagramm fuer die monatlichen Einnahmen und Ausgaben.
+ */
 package charts;
 
 import org.achartengine.ChartFactory;

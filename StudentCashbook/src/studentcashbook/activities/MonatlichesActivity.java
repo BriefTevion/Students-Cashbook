@@ -1,3 +1,7 @@
+/*
+ * Diese Klasse laedt alle bereits erstellten monatlichen Transaktionen.
+ * Außerdem beinhaltet sie alle Methoden zur Bearbeitung dieser Liste.
+ */
 package studentcashbook.activities;
 
 import java.util.ArrayList;

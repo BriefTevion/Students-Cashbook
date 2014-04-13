@@ -1,3 +1,7 @@
+/*
+ * Diese Klasse erstellt bei Installation die Tabellen.
+ * Bei Bedarf stellt sie auch Methoden zum upgraden oder loeschen der Datenbank.
+ */
 package db;
 
 import db.TransaktionenContract.transEntry;

@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse beinhaltet alle Tabellen- sowie Spaltennamen der Datenbank.
+ */
 package db;
 
 import android.provider.BaseColumns;

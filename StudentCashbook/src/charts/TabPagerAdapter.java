@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse laed die Diagramme, um sie den jeweiligen Fragmenten in der MainActivity zu zuweisen.
+ */
 package charts;
 
 import android.support.v4.app.Fragment;

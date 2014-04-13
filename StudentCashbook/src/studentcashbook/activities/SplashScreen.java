@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse laedt den ersten Screen(Splash Screen) der App fuer drei Sekunden.
+ */
 package studentcashbook.activities;
 
 import android.app.Activity;

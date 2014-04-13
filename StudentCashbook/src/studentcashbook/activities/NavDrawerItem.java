@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse stellt den Aufbau eines Items im Navigation Drawer dar.
+ */
 package studentcashbook.activities;
 
 public class NavDrawerItem {

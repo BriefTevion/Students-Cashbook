@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse stellt Methoden zum Laden der Tipps-Daten vom Server "space-labs.appspot.com".
+ */
 package network;
 
 import java.io.BufferedReader;
@@ -131,35 +134,4 @@ public class NetworkConnect {
 				  }
 			
 	}
-	
-	
-	
-	//Methode um eine Verbindung zum Server aufzubauen und neue Tipps zu pushen
-//		public String uploadTipps() throws Exception{
-//
-//				InputStream is = null;
-//				
-//				try{
-//					//URL url = new URL("http://space-labs.appspot.com/repo/465001/highscore_add.sjs?Name=" + player + "&Level=" + level + "&Points=" + points + "&Client=" + client);
-//					//HttpURLConnection conn = (HttpURLConnection) url.openConnection();	
-//					
-//					conn.setRequestMethod("GET");	
-//					conn.connect();	
-//			         		
-//					//int response = conn.getResponseCode();	
-//					is = conn.getInputStream();	
-//					
-//					// Convert the InputStream into a string	
-//				         	String contentAsString = convertStreamToString (is);	
-//				         		
-//					return contentAsString;	
-//							        	
-//				    } finally {	
-//				        if (is != null) {	
-//				            is.close();	
-//				        } 	
-//				    }
-//	} 
-	
-
 

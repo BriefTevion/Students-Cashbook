@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse beinhaltet alle Methoden rund um den Anmeldescreen.
+ */
 package studentcashbook.activities;
 
 import android.app.Activity;

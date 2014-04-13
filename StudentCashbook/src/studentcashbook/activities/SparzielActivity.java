@@ -1,3 +1,7 @@
+/*
+ * Die Klasse laedt alle bereits erstellen Sparziele in eine Liste.
+ * Außerdem beinhaltet sie alle Methoden zur Bearbeitung dieser Liste.
+ */
 package studentcashbook.activities;
 
 import java.util.ArrayList;

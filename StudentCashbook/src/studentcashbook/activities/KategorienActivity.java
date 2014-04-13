@@ -1,3 +1,7 @@
+/*
+ * Diese Klasse beinhaltet alle Methoden um die Activity "Kategorien" zu bearbeiten.
+ * Außerdem beinhaltet sie alle Methoden zur Bearbeitung dieser Liste.
+ */
 package studentcashbook.activities;
 
 import java.util.ArrayList;

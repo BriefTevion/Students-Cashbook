@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse erstellt das Kuchendiagramm, das die Restbudgets der Kategorien zeigt.
+ */
 package charts;
 
 import java.text.SimpleDateFormat;

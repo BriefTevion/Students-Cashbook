@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse stellt den Aufbau eines Tipss in der Tippslist dar.
+ */
 package network;
 
 public class TippsListEntry {

@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse beinhaltet alle Methoden rund um die Uebersicht.
+ */
 package studentcashbook.activities;
 
 import java.util.ArrayList;

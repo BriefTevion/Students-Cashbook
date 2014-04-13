@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse startet die Einstellungen und gibt die eingestellten Praeferenzen zurueck.
+ */
 package studentcashbook.activities;
 
 import android.annotation.TargetApi;

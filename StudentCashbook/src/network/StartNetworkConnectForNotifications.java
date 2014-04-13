@@ -1,3 +1,6 @@
+/*
+ * Diese Klasse startet den Download der Tipps-Daten und uebergibt die Daten zur Versendung einer Notification.
+ */
 package network;
 
 import studentcashbook.activities.BaseActivity;
