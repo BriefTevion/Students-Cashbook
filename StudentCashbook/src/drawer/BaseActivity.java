@@ -8,17 +8,16 @@ package drawer;
 import java.util.ArrayList;
 import java.util.List;
 
+import network.StartNetworkConnectForNotifications;
 import studentcashbook.activities.EinstellungenActivity;
 import studentcashbook.activities.KategorienActivity;
 import studentcashbook.activities.LoginActivity;
 import studentcashbook.activities.MainActivity;
 import studentcashbook.activities.MonatlichesActivity;
 import studentcashbook.activities.SparzielActivity;
-
-import network.StartNetworkConnectForNotifications;
-
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -26,10 +25,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -174,10 +173,31 @@ public class BaseActivity extends FragmentActivity {
 			}
 			break;
 		case 7:
-			Intent intent7 = new Intent(Intent.ACTION_MAIN);
-			intent7.addCategory(Intent.CATEGORY_HOME);
-			intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(intent7);
+			//Abmelde-Alert anzeigen
+			ProgressDialog pd = ProgressDialog.show(this, "", 
+                    "Abmelden. Bitte warten...", true);
+			
+			
+			
+			new Handler().postDelayed(new Runnable() {
+				 
+	            /*
+	             * Abmelde-Alert zwei Sekunden zeigen bis App geschlossen wird
+	             */
+	 
+	            @Override
+	            public void run() {
+
+	            	finish();
+	            	Intent intent7 = new Intent(Intent.ACTION_MAIN);
+	    			intent7.addCategory(Intent.CATEGORY_HOME);
+	    			intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    			startActivity(intent7);
+	            	
+	                
+	            }
+	        }, 1000);
+			
 			break;
 		}
 		
