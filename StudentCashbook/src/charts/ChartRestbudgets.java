@@ -1,4 +1,4 @@
-package Charts;
+package charts;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,8 +11,6 @@ import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import studentcashbook.activities.MainActivity;
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -27,6 +25,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.studentcashbook.R;
+
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
 
 public class ChartRestbudgets extends Fragment{
 	

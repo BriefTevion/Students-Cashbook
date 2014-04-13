@@ -1,4 +1,4 @@
-package Network;
+package network;
 
 import studentcashbook.activities.MainActivity;
 import android.os.AsyncTask;

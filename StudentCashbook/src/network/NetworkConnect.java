@@ -1,4 +1,4 @@
-package Network;
+package network;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

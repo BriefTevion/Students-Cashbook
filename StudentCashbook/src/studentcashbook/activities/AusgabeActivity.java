@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
-import Network.StartNetworkConnectAsync;
+import network.StartNetworkConnectAsync;
+
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,6 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.studentcashbook.R;
+
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
 
 public class AusgabeActivity extends BaseActivity {
 

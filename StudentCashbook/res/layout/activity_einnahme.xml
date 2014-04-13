@@ -97,7 +97,7 @@
                 android:background="@drawable/styledbutton2"
                 android:onClick="abbrechen"
                 android:text="@string/abbrechen_button"
-                android:fontFamily="sans-serif-thin"
+                android:fontFamily="sans-serif"
                 android:textColor="#000000" />
                 
 
@@ -110,7 +110,7 @@
                 android:layout_below="@+id/editText_Anmerkungen"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/styledbutton2"
-                android:fontFamily="sans-serif-thin"
+                android:fontFamily="sans-serif"
                 android:onClick="addEinnahme"
                 android:text="@string/Anlegen"
                 android:textColor="#000000" />

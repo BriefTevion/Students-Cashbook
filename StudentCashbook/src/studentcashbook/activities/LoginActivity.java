@@ -1,6 +1,5 @@
 package studentcashbook.activities;
 
-import Crypt.CryptHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -15,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.studentcashbook.R;
+
+import crypt.CryptHelper;
 
 
 public class LoginActivity extends Activity {
@@ -68,12 +69,12 @@ public class LoginActivity extends Activity {
 	//Called when Anmelde Button clicked
 	public void buttonPressed(View view){
 		
-		//Eingaben pr??fen
+		//Eingaben pruefen
 		//Zugriff auf UI Element
 		EditText PasswortFeld = (EditText) findViewById(R.id.Passwort);
 		
 		//Werte der UI Elemente holen
-		//<<<<<<<<<<<<<<<<<<<Verschl??sselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
+		//<<<<<<<<<<<<<<<<<<<Verschluesselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
 		String PasswortInput = PasswortFeld.getText().toString();
 		
 		//Holen der Preferences
@@ -111,7 +112,7 @@ public class LoginActivity extends Activity {
 			alert.setCancelable(true);
 			alert.create().show();
 
-			//Passworteingabe zur??cksetzen
+			//Passworteingabe zuruecksetzen
 			PasswortFeld.setText("");
 		}
 	

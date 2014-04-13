@@ -81,8 +81,8 @@ public final class R {
         public static final int button_neuesMonatliches=0x7f0b001d;
         public static final int button_neuesPasswordSetzen=0x7f0b0038;
         public static final int content_frame=0x7f0b0001;
-        public static final int default_Pie=0x7f0b003c;
-        public static final int default_text=0x7f0b003a;
+        public static final int default_Pie=0x7f0b003a;
+        public static final int default_text=0x7f0b003c;
         public static final int drawer_layout=0x7f0b0000;
         public static final int editText_Anmerkungen=0x7f0b0003;
         public static final int editText_BetragInput=0x7f0b0028;
@@ -99,8 +99,8 @@ public final class R {
         public static final int imageView1_widget=0x7f0b0040;
         public static final int lLayout=0x7f0b000d;
         public static final int left_drawer=0x7f0b0009;
-        public static final int linearLayoutMonatlichesChart=0x7f0b0039;
-        public static final int linearLayoutPieChart=0x7f0b003b;
+        public static final int linearLayoutMonatlichesChart=0x7f0b003b;
+        public static final int linearLayoutPieChart=0x7f0b0039;
         public static final int list=0x7f0b000f;
         public static final int listMonatliches=0x7f0b001e;
         public static final int listSparziele=0x7f0b0033;
@@ -146,8 +146,8 @@ public final class R {
         public static final int activity_sparziel=0x7f03000d;
         public static final int activity_splash_screen=0x7f03000e;
         public static final int alert_neues_password=0x7f03000f;
-        public static final int chartbar_frag=0x7f030010;
-        public static final int charteinausgaben_frag=0x7f030011;
+        public static final int charteinausgaben_frag=0x7f030010;
+        public static final int chartmonatliches_frag=0x7f030011;
         public static final int chartrestbudgets_frag=0x7f030012;
         public static final int drawer_listview_item=0x7f030013;
         public static final int listitem=0x7f030014;

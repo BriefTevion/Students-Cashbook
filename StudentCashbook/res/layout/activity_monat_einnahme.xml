@@ -90,7 +90,7 @@
                 android:layout_alignRight="@+id/editText_betrag"
                 android:text="@string/Anlegen"
                 android:textColor="#000000"
-                android:fontFamily = "sans-serif-thin"
+                android:fontFamily = "sans-serif"
                 android:gravity="center"
                 android:onClick="addMonatlicheEinnahme"/>
             

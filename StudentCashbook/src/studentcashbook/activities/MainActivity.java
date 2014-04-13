@@ -3,12 +3,10 @@ package studentcashbook.activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import network.StartNetworkConnectAsync;
+
 import org.achartengine.GraphicalView;
 
-import Charts.TabPagerAdapter;
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
-import Network.StartNetworkConnectAsync;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,7 +34,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import charts.TabPagerAdapter;
+
 import com.example.studentcashbook.R;
+
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
 
 public class MainActivity extends BaseActivity {
 

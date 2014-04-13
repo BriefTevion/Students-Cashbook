@@ -1,6 +1,5 @@
 package studentcashbook.activities;
 
-import Crypt.CryptHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.studentcashbook.R;
+
+import crypt.CryptHelper;
 
 public class PasswordZurueckActivity extends Activity {
 
@@ -81,7 +82,7 @@ public class PasswordZurueckActivity extends Activity {
 			
 				//Werte der UI Elemente holen
 				
-				//<<<<<<<<<<<<<<<<<<<Verschl??sselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
+				//<<<<<<<<<<<<<<<<<<<Verschluesselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
 				String Passwort = PasswortFeld.getText().toString();
 				String PasswortWdhString = PasswortWdh.getText().toString();
 				

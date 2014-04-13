@@ -7,8 +7,9 @@ import java.util.List;
 
 import com.example.studentcashbook.R;
 
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
+
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;

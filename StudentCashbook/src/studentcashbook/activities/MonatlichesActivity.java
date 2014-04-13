@@ -5,8 +5,9 @@ import java.util.List;
 
 import com.example.studentcashbook.R;
 
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -111,10 +112,10 @@ itemListAdapter adapter;
 			
 			//Nachfragen ob item sicher geloescht werden moechte
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("M??chtest du diese Kategorie l??schen?");
-			alert.setTitle("L??schen best??tigen");
-			alert.setNegativeButton("Nicht L??schen",null);
-			alert.setPositiveButton("L??schen", new DialogInterface.OnClickListener() {
+			alert.setMessage("Möchtest du diese Kategorie löschen?");
+			alert.setTitle("Löschen bestätigen");
+			alert.setNegativeButton("Nicht Löschen",null);
+			alert.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
 					
 					deleteListItem(name.getText().toString());
@@ -143,7 +144,7 @@ itemListAdapter adapter;
 			}
 			catch(Exception e){
 				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setMessage("Eintrag konnte nicht gel??scht werden");
+				alert.setMessage("Eintrag konnte nicht gelöscht werden");
 				alert.setTitle("Fehlgeschlagen");
 				alert.setNegativeButton(name,null);
 				alert.setCancelable(true);
@@ -263,11 +264,11 @@ itemListAdapter adapter;
 			
 			if(Integer.parseInt(data.betrag)>=0){
 				img.setImageResource(R.drawable.ic_action_star);
-				datum.setText("Zubuchen von " + data.betrag + "??? zum: " + data.zumTag + ". des Monats");
+				datum.setText("Zubuchen von " + data.betrag + "€ zum: " + data.zumTag + ". des Monats");
 			}
 			else{
 				img.setImageResource(R.drawable.ic_action_not_important);
-				datum.setText("Abbuchen von " + data.betrag + "??? zum: " + data.zumTag  + ". des Monats");
+				datum.setText("Abbuchen von " + data.betrag + "€ zum: " + data.zumTag  + ". des Monats");
 			}
 
 			

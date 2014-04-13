@@ -8,7 +8,8 @@ package studentcashbook.activities;
 import java.util.ArrayList;
 import java.util.List;
 
-import Network.StartNetworkConnectForNotifications;
+import network.StartNetworkConnectForNotifications;
+
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;

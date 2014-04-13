@@ -1,6 +1,6 @@
-package DB;
+package db;
 
-import DB.TransaktionenContract.transEntry;
+import db.TransaktionenContract.transEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

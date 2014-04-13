@@ -5,8 +5,9 @@ import java.util.Date;
 
 import com.example.studentcashbook.R;
 
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;

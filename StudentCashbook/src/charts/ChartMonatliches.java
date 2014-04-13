@@ -1,4 +1,4 @@
-package Charts;
+package charts;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -12,8 +12,6 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import studentcashbook.activities.MainActivity;
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -30,7 +28,10 @@ import android.widget.TextView;
 
 import com.example.studentcashbook.R;
 
-public class ChartBar extends Fragment{
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
+
+public class ChartMonatliches extends Fragment{
 
 	
 	GraphicalView pieChartView = null;
@@ -41,7 +42,7 @@ public class ChartBar extends Fragment{
 	 @Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {
-		 View windows = inflater.inflate(R.layout.chartbar_frag, container, false);
+		 View windows = inflater.inflate(R.layout.chartmonatliches_frag, container, false);
 		 RelativeLayout vG = (RelativeLayout) windows.findViewById(R.id.linearLayoutMonatlichesChart);
 		 TextView tv = (TextView) windows.findViewById(R.id.default_text);
 		 

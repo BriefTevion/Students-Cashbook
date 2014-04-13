@@ -1,11 +1,11 @@
 eclipse.preferences.version=1
 encoding//gen/com/example/studentcashbook/R.java=UTF-8
-encoding//src/Charts/ChartBar.java=UTF-8
-encoding//src/Charts/ChartEinAusgaben.java=UTF-8
-encoding//src/Charts/ChartRestbudgets.java=UTF-8
-encoding//src/Charts/TabPagerAdapter.java=UTF-8
-encoding//src/Crypt/CryptHelper.java=UTF-8
-encoding//src/Network/NetworkConnect.java=UTF-8
+encoding//src/charts/ChartEinAusgaben.java=UTF-8
+encoding//src/charts/ChartMonatliches.java=UTF-8
+encoding//src/charts/ChartRestbudgets.java=UTF-8
+encoding//src/charts/TabPagerAdapter.java=UTF-8
+encoding//src/crypt/CryptHelper.java=UTF-8
+encoding//src/network/NetworkConnect.java=UTF-8
 encoding//src/studentcashbook/activities/AusgabeActivity.java=UTF-8
 encoding//src/studentcashbook/activities/BaseActivity.java=UTF-8
 encoding//src/studentcashbook/activities/EinnahmeActivity.java=UTF-8

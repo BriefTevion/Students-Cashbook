@@ -4,9 +4,10 @@ package widget;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
+
 import studentcashbook.activities.MainActivity.itemListData;
-import DB.TransaktionenDBHelper;
-import DB.TransaktionenContract.transEntry;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;

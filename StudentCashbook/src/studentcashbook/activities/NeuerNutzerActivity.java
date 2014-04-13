@@ -1,6 +1,5 @@
 package studentcashbook.activities;
 
-import Crypt.CryptHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -12,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.studentcashbook.R;
+
+import crypt.CryptHelper;
 
 public class NeuerNutzerActivity extends Activity {
 
@@ -45,7 +46,7 @@ public void BenutzerNeuAnlegen(View view){
 	
 		//Werte der UI Elemente holen
 		
-		//<<<<<<<<<<<<<<<<<<<Verschl??sselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
+		//<<<<<<<<<<<<<<<<<<<Verschluesselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
 		String Passwort = PasswortFeld.getText().toString();
 		String PasswortWdhString = PasswortWdh.getText().toString();
 		
@@ -72,7 +73,7 @@ public void BenutzerNeuAnlegen(View view){
 		editor.commit();
 		
 		
-		//UI-Elemente zur??cksetzen
+		//UI-Elemente zuruecksetzen
 		PasswortFeld.setText("");
 		PasswortWdh.setText("");
 		
@@ -95,7 +96,7 @@ public void BenutzerNeuAnlegen(View view){
 			alert.setCancelable(true);
 			alert.create().show();
 			
-			//UI-Elemente zur??cksetzen
+			//UI-Elemente zuruecksetzen
 			PasswortFeld.setText("");
 			PasswortWdh.setText("");
 		

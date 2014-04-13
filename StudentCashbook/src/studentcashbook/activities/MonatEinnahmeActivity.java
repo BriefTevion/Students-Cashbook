@@ -3,8 +3,6 @@ package studentcashbook.activities;
 import java.text.DateFormat;
 import java.util.Date;
 
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,6 +20,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.studentcashbook.R;
+
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
 
 public class MonatEinnahmeActivity extends Activity  {
 
@@ -92,7 +93,7 @@ public class MonatEinnahmeActivity extends Activity  {
 		
 		//Nachricht ueber erfolgreiches speichern
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		alert.setMessage("Gesch??ft angelegt");
+		alert.setMessage("Geschäft angelegt");
 		alert.setTitle("Erfolgreich");
 		alert.setNegativeButton("OK",new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {

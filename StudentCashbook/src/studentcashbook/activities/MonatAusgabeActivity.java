@@ -5,8 +5,9 @@ import java.util.Date;
 
 import com.example.studentcashbook.R;
 
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -90,7 +91,7 @@ public class MonatAusgabeActivity extends Activity {
 
 		//Nachricht ueber erfolgreiches speichern
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		alert.setMessage("Gesch??ft angelegt");
+		alert.setMessage("Geschäft angelegt");
 		alert.setTitle("Erfolgreich");
 		alert.setNegativeButton("OK",new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {

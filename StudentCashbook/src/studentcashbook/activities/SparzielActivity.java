@@ -5,8 +5,6 @@ import java.util.List;
 
 import studentcashbook.activities.KategorienActivity.itemListData;
 import studentcashbook.activities.MonatlichesActivity.itemListAdapter;
-import DB.TransaktionenDBHelper;
-import DB.TransaktionenContract.transEntry;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,6 +25,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.studentcashbook.R;
+
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
 
 public class SparzielActivity extends BaseActivity {
 
@@ -208,11 +209,11 @@ public class SparzielActivity extends BaseActivity {
 
 				if(Integer.parseInt(data.betrag)>=2000){
 					img.setImageResource(R.drawable.ic_action_star);
-					datum.setText(data.guthaben + " von " + data.betrag + "??? gespart; Zieldatum: " + data.zumTag);
+					datum.setText(data.guthaben + " von " + data.betrag + "€ gespart; Zieldatum: " + data.zumTag);
 				}
 				else{
 					img.setImageResource(R.drawable.ic_action_not_important);
-					datum.setText(data.guthaben + " von " + data.betrag + "??? gespart; Zieldatum: " + data.zumTag);
+					datum.setText(data.guthaben + " von " + data.betrag + "€ gespart; Zieldatum: " + data.zumTag);
 				}
 
 				
@@ -241,10 +242,10 @@ public class SparzielActivity extends BaseActivity {
 			
 			//Nachfragen ob item sicher geloescht werden moechte
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("M??chtest du diese Sparziel l??schen?");
-			alert.setTitle("L??schen best??tigen");
-			alert.setNegativeButton("Nicht L??schen",null);
-			alert.setPositiveButton("L??schen", new DialogInterface.OnClickListener() {
+			alert.setMessage("Möchtest du diese Sparziel löschen?");
+			alert.setTitle("Löschen bestätigen");
+			alert.setNegativeButton("Nicht Löschen",null);
+			alert.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
 					
 					deleteListItem(name.getText().toString());
@@ -273,7 +274,7 @@ public class SparzielActivity extends BaseActivity {
 			}
 			catch(Exception e){
 				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setMessage("Eintrag konnte nicht gel??scht werden");
+				alert.setMessage("Eintrag konnte nicht gelöscht werden");
 				alert.setTitle("Fehlgeschlagen");
 				alert.setNegativeButton(name,null);
 				alert.setCancelable(true);

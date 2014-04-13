@@ -1,4 +1,4 @@
-package Charts;
+package charts;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,7 +18,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 			return new ChartEinAusgaben();
 		case 1:
 			//Fragment for Ios Tab
-			return new ChartBar();
+			return new ChartMonatliches();
 		case 2:
 			//Fragment for Windows Tab
 			return new ChartRestbudgets();

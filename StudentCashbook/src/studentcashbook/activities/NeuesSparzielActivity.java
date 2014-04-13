@@ -7,8 +7,6 @@ import java.util.Date;
 import org.joda.time.DateMidnight;
 import org.joda.time.Months;
 
-import DB.TransaktionenContract.transEntry;
-import DB.TransaktionenDBHelper;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -25,6 +23,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.example.studentcashbook.R;
+
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
 
 public class NeuesSparzielActivity extends BaseActivity {
 
@@ -54,7 +55,7 @@ public class NeuesSparzielActivity extends BaseActivity {
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				TextView sparbetragFeld = (TextView) findViewById(R.id.textView_Sparbetrag);
-				sparbetragFeld.setText(progressChanged*5 + "???");
+				sparbetragFeld.setText(progressChanged*5 + "€");
 				
 			}
 
@@ -138,7 +139,7 @@ public class NeuesSparzielActivity extends BaseActivity {
 			//Nachricht ueber leeres Feld
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
 			alert.setTitle("Achtung");
-			alert.setMessage("Bitte alle Felder ausf??llen.");
+			alert.setMessage("Bitte alle Felder ausfüllen.");
 			alert.setNegativeButton("OK", null);
 			alert.setCancelable(true);
 			alert.create().show();
@@ -294,7 +295,7 @@ public class NeuesSparzielActivity extends BaseActivity {
 
 	            	seekFeld.setVisibility(View.VISIBLE);
 	            	sparbetragFeld.setVisibility(View.VISIBLE);	  
-	            	sparbetragFeld.setText("0???");
+	            	sparbetragFeld.setText("0€");
 	            	radioFest.setChecked(true);
 	            	radioUebrig.setChecked(false);
 	                
