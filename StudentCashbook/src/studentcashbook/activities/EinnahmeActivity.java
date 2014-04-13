@@ -12,6 +12,7 @@ import com.example.studentcashbook.R;
 
 import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
+import drawer.BaseActivity;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;

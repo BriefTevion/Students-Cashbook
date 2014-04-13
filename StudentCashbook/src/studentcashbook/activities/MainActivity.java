@@ -43,6 +43,7 @@ import com.example.studentcashbook.R;
 
 import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
+import drawer.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 

@@ -3,10 +3,17 @@
  * Auf sie kann ueber extend zugegriffen werden.
  */
 
-package studentcashbook.activities;
+package drawer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import studentcashbook.activities.EinstellungenActivity;
+import studentcashbook.activities.KategorienActivity;
+import studentcashbook.activities.LoginActivity;
+import studentcashbook.activities.MainActivity;
+import studentcashbook.activities.MonatlichesActivity;
+import studentcashbook.activities.SparzielActivity;
 
 import network.StartNetworkConnectForNotifications;
 

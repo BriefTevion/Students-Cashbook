@@ -3,7 +3,7 @@
  */
 package network;
 
-import studentcashbook.activities.BaseActivity;
+import drawer.BaseActivity;
 import android.os.AsyncTask;
 
 public class StartNetworkConnectForNotifications extends AsyncTask<String, Void, String> {
