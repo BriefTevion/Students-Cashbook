@@ -20,14 +20,13 @@
             android:name="studentcashbook.activities.MainActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name="studentcashbook.activities.LoginActivity"
+            android:name="login.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name="studentcashbook.activities.NeuerNutzerActivity"
+            android:name="login.NeuerNutzerActivity"
             android:label="@string/title_activity_neuer_nutzer"
-            android:parentActivityName="studentcashbook.activities.LoginActivity" >
-        </activity>
+            android:parentActivityName="studentcashbook.activlogin.LoginActivity"/>
         <activity
             android:name="studentcashbook.activities.EinnahmeActivity"
             android:label="@string/title_activity_einnahme" >

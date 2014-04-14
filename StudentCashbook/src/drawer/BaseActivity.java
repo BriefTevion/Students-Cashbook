@@ -8,10 +8,11 @@ package drawer;
 import java.util.ArrayList;
 import java.util.List;
 
+import login.LoginActivity;
+
 import network.StartNetworkConnectForNotifications;
 import studentcashbook.activities.EinstellungenActivity;
 import studentcashbook.activities.KategorienActivity;
-import studentcashbook.activities.LoginActivity;
 import studentcashbook.activities.MainActivity;
 import studentcashbook.activities.MonatlichesActivity;
 import studentcashbook.activities.SparzielActivity;

@@ -1,9 +1,10 @@
 /*
  * Diese Klasse beinhaltet alle Methoden rund um den Anmeldescreen.
  */
-package studentcashbook.activities;
+package login;
 
-import login.LoginLoader;
+import studentcashbook.activities.MainActivity;
+import studentcashbook.activities.PasswordZurueckActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
