@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.example.studentcashbook.R;
 
+import db.BudgetLoader;
 import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
 import drawer.BaseActivity;
@@ -69,8 +70,7 @@ public class EinnahmeActivity extends BaseActivity {
 		}
 		catch(Exception e){
 			e.printStackTrace();
-		}
-		
+		}	
 		
 	}
 		
@@ -93,8 +93,7 @@ public class EinnahmeActivity extends BaseActivity {
 		//Uhrzeit erkennen und setzen
 		String AktuelleUhrzeit = DateFormat.getTimeInstance().format(new Date());
 		FeldZeit.setText(AktuelleUhrzeit);
-		
-		
+	
 		
 	}
 	
@@ -119,19 +118,27 @@ public class EinnahmeActivity extends BaseActivity {
 		EditText anmerkungFeld = (EditText) findViewById(R.id.editText_Anmerkungen);
 		Spinner kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
 
-		Integer id = getNewID();
+		//Neue Transaktionen ID ermitteln
+		Integer id = BudgetLoader.getNewTransaktionID(getApplicationContext());
 
 			try{
-				addTransaktion(id, anmerkungFeld.getText().toString(), 
+				//Einnahme in die DB schreiben
+				BudgetLoader.addEinmaligeTransaktion(getApplicationContext(),
+						id, 
+						anmerkungFeld.getText().toString(), 
 						datumFeld.getText().toString(), 
 						zeitFeld.getText().toString(), 
-						kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
+						kategorieSpin.getSelectedItem().toString(), 
+						betragFeld.getText().toString());
 				
 				//wenn kategorie 'ohne kategorie' nicht ausgewaehlt worden ist
 				if(kategorieSpin.getSelectedItem().toString()!="ohne Kategorie"){
 
 					//Betrag der Kategorie gutschreiben
-					addBetragToKategorie(datumFeld.getText().toString(), kategorieSpin.getSelectedItem().toString(), betragFeld.getText().toString());
+					BudgetLoader.addEinmaligeTransaktionToKategorie(getApplicationContext(), 
+							datumFeld.getText().toString(), 
+							kategorieSpin.getSelectedItem().toString(), 
+							betragFeld.getText().toString());
 			
 				}
 				
@@ -148,14 +155,11 @@ public class EinnahmeActivity extends BaseActivity {
 						//zu Main wechseln
 						Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 						startActivity(intent);
-
-					
-						
+	
 					}
 				});
 				alert.setCancelable(true);
 				alert.create().show();
-
 				
 					}
 			
@@ -173,59 +177,6 @@ public class EinnahmeActivity extends BaseActivity {
 			
 		
 		
-		
-	}
-	
-	//Kategorie den Betrag gutschreiben
-	private void addBetragToKategorie(String datum, String kName,
-			String betrag) {
-		
-		//Zugang zur Datenbank
-		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		
-		//GET aktuellen restbetrag der Kategorie
-		String [] projection = {
-				transEntry.K_COLUMN_NAME_BEZEICHNER,
-				transEntry.K_COLUMN_NAME_BUDGET,
-				transEntry.K_COLUMN_NAME_RESTBETRAG
-		};
-
-		String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
-
-		try{ 
-			
-		Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, transEntry.K_COLUMN_NAME_BEZEICHNER 
-				+ "= '" + kName +"'", null, null, null, sortOrder);
-		
-		c.moveToFirst();
-		String aktuellerRest = c.getString(2);
-		Integer neuerBetrag = Integer.parseInt(aktuellerRest) + Integer.parseInt(betrag);
-		
-		
-		
-			
-			ContentValues cv = new ContentValues();
-		      cv.put(transEntry.K_COLUMN_NAME_RESTBETRAG, String.valueOf(neuerBetrag));
-		      cv.put(transEntry.K_COLUMN_NAME_LAST_UPDATED, datum);
-		      
-			db.update(transEntry.TABLE_NAME_Kategorie, cv, transEntry.K_COLUMN_NAME_BEZEICHNER 
-					+ "= '" + kName +"'", null);
-		
-		
-		
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			//Nachricht ueber NICHT erfolgreiches speichern
-			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Fehler2");
-			alert.setTitle("Einnahme konnte nicht gespeichert werde.");
-			alert.setNegativeButton("OK", null);
-			alert.setCancelable(true);
-			alert.create().show();
-		}
-		db.close();
 		
 	}
 
@@ -246,66 +197,6 @@ public class EinnahmeActivity extends BaseActivity {
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 		
-	}
-	
-	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
-	public void addTransaktion(Integer id, String anmerkung, String datum, String zeit, String kategorie, String betrag){
-		//Zugang zur Datenbank
-		try{
-		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		
-		
-		
-		ContentValues cv = new ContentValues();
-		cv.put(transEntry.COLUMN_NAME_TRANSAKTION_ID, id);
-		cv.put(transEntry.COLUMN_NAME_ANMEKRUNG, anmerkung);
-		cv.put(transEntry.COLUMN_NAME_DATUM, datum);
-		cv.put(transEntry.COLUMN_NAME_UHRZEIT, zeit);
-		cv.put(transEntry.COLUMN_NAME_KATEGORIE, kategorie);
-		cv.put(transEntry.COLUMN_NAME_BETRAG, betrag);
-		
-		long newRowID;
-		newRowID = db.insert(transEntry.TABLE_NAME, null, cv);
-		
-		db.close();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-	
-	
-	//Neue tranaktionID ermitteln
-	public Integer getNewID(){
-		try{
-			//Zugang zur Datenbank
-			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-			SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-			Integer id = 0;
-			
-			final String SQL_getMaxID = "Select Max(" + transEntry.COLUMN_NAME_TRANSAKTION_ID + ") AS id FROM " + 
-										transEntry.TABLE_NAME;	
-			
-			Cursor c = db.rawQuery(SQL_getMaxID, null);
-			
-			
-				c.moveToFirst();
-				id = c.getInt(0);
-			
-				db.close();
-				
-				return id+1;
-			
-			
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			
-			return 1;
-		}
-	}
-	
+	}	
 
 }

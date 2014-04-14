@@ -3,6 +3,7 @@
  */
 package studentcashbook.activities;
 
+import login.LoginLoader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -37,12 +38,8 @@ public class PasswordZurueckActivity extends Activity {
 			EditText eingabe = (EditText) findViewById(R.id.secureFrage_Eingabe);
 			
 			String namenEingabe = eingabe.getText().toString();
-			
-			//Holen der Preferences
-			SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-			
-			//Passwort auslesen & keine Entschluesselung noetig
-			String sicherheitsAntwort = spref.getString("SECUREFRAGE", "");
+
+			String secureInput = LoginLoader.getSecureInput(getApplicationContext());
 			
 			//verschlusseln der Eingabe 
 			String nameInputEncrypt="";
@@ -55,8 +52,7 @@ public class PasswordZurueckActivity extends Activity {
 
 			
 			//Daten vergleichen
-			int resultPswd = nameInputEncrypt.compareTo(sicherheitsAntwort);		
-			
+			int resultPswd = nameInputEncrypt.compareTo(secureInput);					
 			
 			//Wenn Passwort uebereinstimmend	
 			if(resultPswd == 0) {
@@ -84,49 +80,43 @@ public class PasswordZurueckActivity extends Activity {
 				
 			
 				//Werte der UI Elemente holen
-				
-				//<<<<<<<<<<<<<<<<<<<Verschluesselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
 				String Passwort = PasswortFeld.getText().toString();
 				String PasswortWdhString = PasswortWdh.getText().toString();
 				
 				//Wenn die Eingaben uebereinstimmen
 				if(Passwort.contains(PasswortWdhString)){
 				
-				//Holen der Preferences
-				SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-				SharedPreferences.Editor editor = spref.edit();
 				
-				
-				//Eingabe verschluesseln		
-				String passwortEncrypt="";
-				try {
-					passwortEncrypt = CryptHelper.toHex(Passwort);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				//verschluesselter Wert speichern;
-				editor.putString("PASSWORD", passwortEncrypt);
-				editor.commit();
-
-				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setMessage("Erfolgreich geaendert!");
-				alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog,int id) {
+					//Eingabe verschluesseln		
+					String passwortEncrypt="";
+					try {
+						passwortEncrypt = CryptHelper.toHex(Passwort);
 						
-						
-						finish();
-						//Zur Mainactivity wechseln
-						Intent intent = new Intent(getApplicationContext(), MainActivity.class);	
-						startActivity(intent);
-						
-
-						
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-				});
-				alert.setCancelable(true);
-				alert.create().show();
+					
+					//verschluesselter Wert im key-value-store speichern;
+					LoginLoader.setPassword(getApplicationContext(), passwortEncrypt);
+	
+					//Erfolgsmeldung
+					AlertDialog.Builder alert = new AlertDialog.Builder(this);
+					alert.setMessage("Erfolgreich geaendert!");
+					alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							
+							
+							finish();
+							//Zur Mainactivity wechseln
+							Intent intent = new Intent(getApplicationContext(), MainActivity.class);	
+							startActivity(intent);
+							
+	
+							
+						}
+					});
+					alert.setCancelable(true);
+					alert.create().show();
 				
 				}
 				

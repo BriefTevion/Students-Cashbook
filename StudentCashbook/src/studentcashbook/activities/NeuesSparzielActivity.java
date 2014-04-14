@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.example.studentcashbook.R;
 
+import db.BudgetLoader;
 import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
 import drawer.BaseActivity;
@@ -163,7 +164,6 @@ public class NeuesSparzielActivity extends BaseActivity {
 			//Ueberpruefung, ob Rate fuer das Zieldatum reicht
 				//Aktuelles Datum
 				DateMidnight aktuellesDatum = new DateMidnight(new Date());
-				Log.v("test", "Aktuell " + aktuellesDatum);
 				DateMidnight zielDatum = null;
 				//Zieldatum in DATE umwandeln;
 				SimpleDateFormat sm = new SimpleDateFormat("dd.mm.yyy");
@@ -186,11 +186,8 @@ public class NeuesSparzielActivity extends BaseActivity {
 				catch(Exception e){
 					Log.v("test", e.getMessage());
 				}
-				Log.v("test", "1d");
 				//Monate zwischen den Daten bekommen
 				int diffMonths = Months.monthsBetween(aktuellesDatum, zielDatum).getMonths();
-				
-				Log.v("test", "2  " + diffMonths);
 				
 			//wenn zu der monatliche Sparbetrag mal der Laufzeit
 			//kleiner ist als der Zielbetrag, muss eine Warnung angezeigt werden
@@ -214,20 +211,14 @@ public class NeuesSparzielActivity extends BaseActivity {
 
 					//Daten in Tabelle speichern
 					try{
-		
-					TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-					SQLiteDatabase db = dbHelper.getWritableDatabase();
-					
-					ContentValues cv = new ContentValues();
-					cv.put(transEntry.T_COLUMN_NAME_BEZEICHNER, titelFeld.getText().toString());
-					cv.put(transEntry.T_COLUMN_NAME_BETRAG, betragFeld.getText().toString());
-					cv.put(transEntry.T_COLUMN_NAME_DATUM, datumFeld.getText().toString());
-					cv.put(transEntry.T_COLUMN_NAME_SPARBETRAG, sparBetrag);
-					cv.put(transEntry.T_COLUMN_NAME_GUTHABEN, "0");
 			
-					
-					long newRowID;
-					newRowID = db.insert(transEntry.TABLE_NAME_TARGET, null, cv);
+						//neues Sparziel in  DB-Tabelle schreiben
+						BudgetLoader.addSparziel(getApplicationContext(),
+							titelFeld.getText().toString(), 
+							betragFeld.getText().toString(), 
+							datumFeld.getText().toString(), 
+							sparBetrag);
+			
 			
 						//Nachricht ueber erfolgreiches speichern
 						AlertDialog.Builder alert = new AlertDialog.Builder(this);

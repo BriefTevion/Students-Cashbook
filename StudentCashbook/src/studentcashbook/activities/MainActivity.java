@@ -3,12 +3,16 @@
  */
 package studentcashbook.activities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import network.StartNetworkConnectAsync;
 
 import org.achartengine.GraphicalView;
+import org.joda.time.DateMidnight;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -21,7 +25,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.sax.RootElement;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -30,19 +33,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import charts.TabPagerAdapter;
 
 import com.example.studentcashbook.R;
 
-import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
+import db.TransaktionenDBHelper;
 import drawer.BaseActivity;
 
 public class MainActivity extends BaseActivity {
@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity {
 	TabPagerAdapter TabAdapter;
 	GraphicalView pieChartView = null;
 	private static Context mContext;
-	private static ProgressBar progressCircle = null;
+	private static ProgressDialog progressDia = null;
 
 	
 	@Override
@@ -75,9 +75,6 @@ public class MainActivity extends BaseActivity {
         
         PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
         pts.setDrawFullUnderline(false);
-        
-        //ProgressKreis zuordnen
-        progressCircle = (ProgressBar) findViewById(R.id.progressBar);
  
         
 	}
@@ -167,7 +164,7 @@ public class MainActivity extends BaseActivity {
 			
 			try{
 			        	
-			progressCircle.setVisibility(View.GONE);
+			progressDia.dismiss();
 			
 			AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
 			alert.setMessage(message);
@@ -203,19 +200,130 @@ public class MainActivity extends BaseActivity {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
        
-        progressCircle.setVisibility(View.VISIBLE);
+        progressDia = ProgressDialog.show(this, "", 
+                "Tipps laden...", true);
         
         
         if (networkInfo != null && networkInfo.isConnected()) {
           StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
           downloadTask.execute();
         }
-	}     
-        
+	}  
 	
+	
+	//monatliche Transaktionen, u.a. Sparziele abbuchen
+     public void monatlicheTransaktionen(){
+    	 //Aktuelle Datum
+    	 DateMidnight aktuellesDatum = new DateMidnight(new Date());
+    	 
+    	 //faellige monatliche Transaktionen abbuchen
+    	 monatlichesAbbuchen(aktuellesDatum);
+    	 //faellige Sparziele abbuchen
+    	 sparzieleAbbuchen(aktuellesDatum);
+    	 //Restbudgets der Kategorien am Monatsanfang wieder auf voll zuruecksetzen
+    	 resetRestbudgets();
+     }
 	
 
+     //Monatliche Einnahmen und Ausgaben abbuchen
+	private void monatlichesAbbuchen(DateMidnight aktuellesDatum) {
+		DateMidnight heute = aktuellesDatum;
+		DateMidnight lastUpdated = getLastUpdated();
+		
+				
+		//erhalte alle Tage zwischen der letzten monatlichen Abbuchung
+		//und heute
+		
+		
+		//pruefe, ob und wenn ja wie oft die AbbuchungsTage noch nicht gemacht worden sind
+		
+		
+		//fuehre die Buchungen der Haeufigkeit nach, mit dem passenden Datum, durch
+
+		
+		
+		
+		
+		
+	}
+
+		
 	
+	//Betraege für Sparziele abbuchen
+	private void sparzieleAbbuchen(DateMidnight aktuellesDatum) {
+		DateMidnight heute = aktuellesDatum;
+		DateMidnight lastUpdated = getLastUpdated();
+		
+				
+		//erhalte alle Tage zwischen der letzten monatlichen Abbuchung
+		//und heute
+		
+		
+		//pruefe, ob und wenn ja wie oft die AbbuchungsTage noch nicht gemacht worden sind
+		
+		
+		//fuehre die Buchungen der Haeufigkeit nach, mit dem passenden Datum, durch
+		
+	}
+	
+	//Pruefen wann das letzte mal eine monatliche Transaktion gemacht wurde
+	private DateMidnight getLastUpdated(){
+		DateMidnight date=null;
+		
+		
+		return date;
+	}
+
+
+	
+	//Restbudgets der Kategorien zuruecksetzen
+	private void resetRestbudgets() {
+		//Daten abfragen
+		//Zugang zur Datenbank
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		String [] projection = {
+				transEntry.K_COLUMN_NAME_BEZEICHNER,
+				transEntry.K_COLUMN_NAME_BUDGET,
+				transEntry.K_COLUMN_NAME_RESTBETRAG
+		};
+
+		String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
+
+		Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, null, null, null, null, sortOrder);
+		
+		//Wenn Kategorien vorhanden sind
+		if(c.getCount()>0){
+		
+			
+			while(c.moveToNext()){
+				if(Integer.parseInt(c.getString(1))!=Integer.parseInt(c.getString(2))){
+				
+					SQLiteDatabase dbWrite = dbHelper.getWritableDatabase();
+					
+					String sql="update "+ transEntry.TABLE_NAME_Kategorie+" set restbetrag='" + 
+										c.getString(1)+ "' where name='" + c.getString(0) + "'";					
+					try{
+						dbWrite.execSQL(sql);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
+					dbWrite.close();
+					
+				}
+			}
+			
+			
+		}
+		
+		db.close();
+	}
+
+
+
+
 	public class itemListData{
 		String name;
 		String datum;

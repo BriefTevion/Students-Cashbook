@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.example.studentcashbook.R;
 
+import db.BudgetLoader;
 import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
 import drawer.BaseActivity;
@@ -121,17 +122,27 @@ public class AusgabeActivity extends BaseActivity {
 		Spinner kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
 
 		String betrag = "-" + betragFeld.getText().toString();
-		Integer id = getNewID();
+		
+		//neue Transaktion ID ermitteln
+		Integer id = BudgetLoader.getNewTransaktionID(getApplicationContext());
 
 		try{
-			addTransaktion(id, anmerkungFeld.getText().toString(), 
+			
+			//Einmalige Ausgabe in DB-Tabelle schreiben
+			BudgetLoader.addEinmaligeTransaktion(getApplicationContext(), 
+					id, 
+					anmerkungFeld.getText().toString(), 
 					datumFeld.getText().toString(), 
 					zeitFeld.getText().toString(), 
-					kategorieSpin.getSelectedItem().toString(), betrag);
+					kategorieSpin.getSelectedItem().toString(), 
+					betrag);
 			
 			//wenn kategorie 'ohne kategorie' nicht ausgewaehlt worden ist
 			if(kategorieSpin.getSelectedItem().toString()!="ohne Kategorie"){
-				subBetragToKategorie(datumFeld.getText().toString(), kategorieSpin.getSelectedItem().toString(), betrag);
+				BudgetLoader.addEinmaligeTransaktionToKategorie(getApplicationContext(),
+						datumFeld.getText().toString(), 
+						kategorieSpin.getSelectedItem().toString(), 
+						betrag);
 			}
 			
 			//Nachricht ueber erfolgreiches speichern
@@ -151,7 +162,12 @@ public class AusgabeActivity extends BaseActivity {
 					//Zunaechst pruefen, ob Einstellungen es zulassen
 					
 					if(EinstellungenActivity.getKeyTippAuto()==true){
-						openNewTipp();
+						try{
+							openNewTipp();
+						}
+						catch(Exception e){
+							
+						}
 					}
 					
 				}
@@ -186,61 +202,6 @@ public class AusgabeActivity extends BaseActivity {
         }
 	}     
 	
-		//Kategorie den Betrag abziehen
-		private void subBetragToKategorie(String datum, String kName,
-				String betrag) {
-			
-			//Zugang zur Datenbank
-			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-			SQLiteDatabase db = dbHelper.getWritableDatabase();
-			
-			//GET aktuellen restbetrag der Kategorie
-			String [] projection = {
-					transEntry.K_COLUMN_NAME_BEZEICHNER,
-					transEntry.K_COLUMN_NAME_BUDGET,
-					transEntry.K_COLUMN_NAME_RESTBETRAG
-			};
-
-			String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
-
-			try{ 
-				
-				Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, transEntry.K_COLUMN_NAME_BEZEICHNER 
-						+ "= '" + kName +"'", null, null, null, sortOrder);
-				
-				c.moveToFirst();
-				String aktuellerRest = c.getString(2);
-			
-			//+ da betrag bereits negativ
-			Integer neuerBetrag = Integer.parseInt(aktuellerRest) + Integer.parseInt(betrag);
-			
-			
-			
-				
-				ContentValues cv = new ContentValues();
-			      cv.put(transEntry.K_COLUMN_NAME_RESTBETRAG, String.valueOf(neuerBetrag));
-			      cv.put(transEntry.K_COLUMN_NAME_LAST_UPDATED, datum);
-			      
-				db.update(transEntry.TABLE_NAME_Kategorie, cv, transEntry.K_COLUMN_NAME_BEZEICHNER 
-						+ "= '" + kName +"'", null);
-			
-			
-			
-			}
-			catch(Exception e){
-				e.printStackTrace();
-				//Nachricht ueber NICHT erfolgreiches speichern
-				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setMessage("Fehler2");
-				alert.setTitle("Einnahme konnte nicht gespeichert werde.");
-				alert.setNegativeButton("OK", null);
-				alert.setCancelable(true);
-				alert.create().show();
-			}
-			db.close();
-			
-		}
-	
 	
 	//Wenn button pressed alle Eingaben zuruecksetzen und in MainActivity wechseln
 	public void abbrechen(View view){
@@ -259,68 +220,6 @@ public class AusgabeActivity extends BaseActivity {
 		startActivity(intent);
 		
 	}
-		
-	
-	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
-		public void addTransaktion(Integer id, String anmerkung, String datum, String zeit, String kategorie, String betrag){
-			//Zugang zur Datenbank
-			try{
-			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-			SQLiteDatabase db = dbHelper.getWritableDatabase();
-			
-
-			ContentValues cv = new ContentValues();
-			cv.put(transEntry.COLUMN_NAME_TRANSAKTION_ID, id);
-			cv.put(transEntry.COLUMN_NAME_ANMEKRUNG, anmerkung);
-			cv.put(transEntry.COLUMN_NAME_DATUM, datum);
-			cv.put(transEntry.COLUMN_NAME_UHRZEIT, zeit);
-			cv.put(transEntry.COLUMN_NAME_KATEGORIE, kategorie);
-			cv.put(transEntry.COLUMN_NAME_BETRAG, betrag);
-			
-			long newRowID;
-			newRowID = db.insert(transEntry.TABLE_NAME, null, cv);
-			
-			db.close();
-			
-			}
-			catch(Exception e){
-				e.printStackTrace();
-
-			}
-		}
-		
-		
-		//Neue tranaktionID ermitteln
-		public Integer getNewID(){
-			try{
-				//Zugang zur Datenbank
-				TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-				SQLiteDatabase db = dbHelper.getReadableDatabase();
-				
-		
-				Integer id = 0;
-				
-				final String SQL_getMaxID = "Select Max(" + transEntry.COLUMN_NAME_TRANSAKTION_ID + ") AS id FROM " + 
-											transEntry.TABLE_NAME;	
-				
-				Cursor c = db.rawQuery(SQL_getMaxID, null);
-				
-				
-					c.moveToFirst();
-					id = c.getInt(0);
-				
-					db.close();
-					
-					return id+1;
-				
-				
-			}
-			catch(Exception e){
-				e.printStackTrace();
-				
-				return 1;
-			}
-		}
 		
 
 }

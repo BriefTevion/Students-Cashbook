@@ -8,6 +8,7 @@ import java.util.Date;
 
 import com.example.studentcashbook.R;
 
+import db.BudgetLoader;
 import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
 
@@ -90,7 +91,12 @@ public class MonatAusgabeActivity extends Activity {
 		}
 		
 		try{
-		putMonatlicheEinnahmeInTable(name.getText().toString(), betrag, datum, tagString);
+		//neue monatliche Ausgabe in die DB-Tabelle schreiben
+		BudgetLoader.addMonatlicheTransaktion(getApplicationContext(), 
+				name.getText().toString(), 
+				betrag, 
+				datum, 
+				tagString);
 
 		//Nachricht ueber erfolgreiches speichern
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -114,23 +120,6 @@ public class MonatAusgabeActivity extends Activity {
 		catch(Exception e){
 			
 		}
-	}
-	
-	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
-	public void putMonatlicheEinnahmeInTable(String name, String betrag, String datum, String tag){
-		//Zugang zur Datenbank
-		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		
-		ContentValues cv = new ContentValues();
-		cv.put(transEntry.M_COLUMN_NAME_BEZEICHNER, name);
-		cv.put(transEntry.M_COLUMN_NAME_BETRAG, betrag);
-		cv.put(transEntry.M_COLUMN_NAME_DATUM, datum);
-		cv.put(transEntry.M_COLUMN_NAME_TAG, tag);
-
-		
-		long newRowID;
-		newRowID = db.insert(transEntry.TABLE_NAME_AUTOMATIC, null, cv);
 	}
 	
 	

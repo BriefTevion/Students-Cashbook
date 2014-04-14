@@ -8,6 +8,7 @@ import java.util.Date;
 
 import com.example.studentcashbook.R;
 
+import db.BudgetLoader;
 import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
 
@@ -90,8 +91,8 @@ public class NeueKategorieActivity extends Activity {
 
 			String datum = DateFormat.getDateInstance().format(new Date());
 			
-
-			addKategorie(kName, kBudget, restbetrag, datum);
+			//neue Kategorie in DB-Tabelle schreiben
+			BudgetLoader.addKategorie(getApplicationContext(), kName, kBudget, restbetrag, datum);
 			
 			//Nachricht ueber erfolgreiches speichern
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -112,35 +113,11 @@ public class NeueKategorieActivity extends Activity {
 	
 		}
 		
-
-		
-		//neue Transaktion der Tabelle TransaktionenList hinzufuegen
-		public void addKategorie(String name, String budget, String restbetrag, String datum){
-			//Zugang zur Datenbank
-			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-			SQLiteDatabase db = dbHelper.getWritableDatabase();
-			
-			ContentValues cv = new ContentValues();
-			cv.put(transEntry.K_COLUMN_NAME_BEZEICHNER, name);
-			cv.put(transEntry.K_COLUMN_NAME_BUDGET, budget);
-			cv.put(transEntry.K_COLUMN_NAME_RESTBETRAG, restbetrag);
-			cv.put(transEntry.K_COLUMN_NAME_LAST_UPDATED, datum);
-			
-			long newRowID;
-			newRowID = db.insert(transEntry.TABLE_NAME_Kategorie, null, cv);
-			
-			db.close();
-		}
-		
-		
-	
-
 		public void changeToKategorien(){
 			Intent intent = new Intent(getApplicationContext(), KategorienActivity.class);	
-			startActivity(intent);
-			
+			startActivity(intent);			
 		}
-		
+			
 		
 		public void abbrechen(View view){
 			EditText name = (EditText) findViewById(R.id.editText_Name);

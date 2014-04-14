@@ -3,6 +3,7 @@
  */
 package studentcashbook.activities;
 
+import login.LoginLoader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -45,17 +46,9 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		
-		
-		//Holen der Preferences
-		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-		
-		//Passwort auslesen & keine Entschluesselung noetig
-		String Password = spref.getString("PASSWORD", "");
-		
-		
+
 		//Wenn noch kein Passwort gesetzt worden ist, Umleitung zur Registrierung
-		if (Password == ""){
+		if (LoginLoader.getPassword(getApplicationContext()) == ""){
 			Intent intent = new Intent(this, NeuerNutzerActivity.class);	
 			startActivity(intent);
 			
@@ -77,14 +70,7 @@ public class LoginActivity extends Activity {
 		EditText PasswortFeld = (EditText) findViewById(R.id.Passwort);
 		
 		//Werte der UI Elemente holen
-		//<<<<<<<<<<<<<<<<<<<Verschluesselung hinzufuegen>>>>>>>>>>>>>>>>>>>>>>>>>>
 		String PasswortInput = PasswortFeld.getText().toString();
-		
-		//Holen der Preferences
-		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-		
-		//Daten auslesen
-		String PasswortMemory = spref.getString("PASSWORD", "");
 		
 		//verschlusseln der Eingabe 
 		String PasswortInputEncrypt="";
@@ -97,7 +83,7 @@ public class LoginActivity extends Activity {
 
 		
 		//Daten vergleichen
-		int resultPswd = PasswortInputEncrypt.compareTo(PasswortMemory);		
+		int resultPswd = PasswortInputEncrypt.compareTo(LoginLoader.getPassword(getApplicationContext()));		
 		
 		
 		//Wenn Passwort uebereinstimmend	

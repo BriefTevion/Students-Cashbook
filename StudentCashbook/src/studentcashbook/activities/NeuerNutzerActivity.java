@@ -3,6 +3,7 @@
  */
 package studentcashbook.activities;
 
+import login.LoginLoader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -56,35 +57,32 @@ public void BenutzerNeuAnlegen(View view){
 		//Wenn die Eingaben uebereinstimmen
 		if(Passwort.contains(PasswortWdhString)){
 		
-		//Holen der Preferences
-		SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-		SharedPreferences.Editor editor = spref.edit();
 		
-		
-		//Eingabe verschluesseln		
-		String passwortEncrypt="";
-		try {
-			passwortEncrypt = CryptHelper.toHex(Passwort);
+			//Eingabe verschluesseln		
+			String passwortEncrypt="";
+			String eingabeSecure= eingabeSecureFrage.getText().toString();
+			try {
+				passwortEncrypt = CryptHelper.toHex(Passwort);
+				CryptHelper.toHex(eingabeSecure);
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		//verschluesselter Wert speichern;
-		editor.putString("PASSWORD", passwortEncrypt);
-		editor.putString("SECUREFRAGE", CryptHelper.toHex(eingabeSecureFrage.getText().toString()));
-		editor.commit();
-		
-		
-		//UI-Elemente zuruecksetzen
-		PasswortFeld.setText("");
-		PasswortWdh.setText("");
-		
-		//Zur Mainactivity wechseln
-		Intent intent = new Intent(this, MainActivity.class);	
-		startActivity(intent);
-		
-		finish();
+			//Eingaben im key-value-store speichern
+			LoginLoader.setPasswordAndSecurefrage(getApplicationContext(), passwortEncrypt, eingabeSecure);
+			
+			
+			//UI-Elemente zuruecksetzen
+			PasswortFeld.setText("");
+			PasswortWdh.setText("");
+			
+			//Zur Mainactivity wechseln
+			Intent intent = new Intent(this, MainActivity.class);	
+			startActivity(intent);
+			
+			finish();
 		}
 		
 		//Wenn die Eingaben nicht uebereinstimmen
