@@ -146,48 +146,45 @@ public class MainActivity extends BaseActivity {
 			String urlString= "";
 			String message = nachricht;
 			
-			
-			
-			if(message.contains("http")){
-				String [] mArray = nachricht.split("-");
-				if(mArray.length>0){
-					urlString = mArray[1];
-					message = mArray[0];
-				}
-			}
-			else{
-				message = message.substring(0,  message.length()-1);
-			}
-			
-			final String URL = urlString;
-		
-			
 			try{
-			        	
-			progressDia.dismiss();
 			
-			AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
-			alert.setMessage(message);
-			alert.setPositiveButton("OK", null);
-			
-			if(URL!=""){
-			
-			alert.setNegativeButton("Weitere Infos", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					
-					Intent intent = new Intent(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse(URL));
-					mContext.startActivity(intent);
-					
-	
+				if(message.contains("http")){
+					String [] mArray = nachricht.split("-");
+					if(mArray.length>0){
+						urlString = mArray[1];
+						message = mArray[0];
+					}
 				}
-			});
-			}
-			alert.setCancelable(true);
-			alert.create().show();
+				else{
+					message = message.substring(0,  message.length()-1);
+				}
+				
+				final String URL = urlString;
+       	
+				progressDia.dismiss();
+				
+				AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+				alert.setMessage(message);
+				alert.setPositiveButton("OK", null);
+				
+				if(URL!=""){
+				
+				alert.setNegativeButton("Weitere Infos", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						
+						Intent intent = new Intent(Intent.ACTION_VIEW);
+						intent.setData(Uri.parse(URL));
+						mContext.startActivity(intent);
+						
+		
+					}
+				});
+				}
+				alert.setCancelable(true);
+				alert.create().show();
 			}
 			catch(Exception e){
-				Log.v("test", e.getMessage());
+				
 			}
 			
 
@@ -195,12 +192,12 @@ public class MainActivity extends BaseActivity {
 
 
 	//Action button neuer Tipp geklickt
-	public  void openNewTipp(){
+	public static void openNewTipp(){
 		//Tipps anzeigen
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
        
-        progressDia = ProgressDialog.show(this, "", 
+        progressDia = ProgressDialog.show(mContext, "", 
                 "Tipps laden...", true);
         
         

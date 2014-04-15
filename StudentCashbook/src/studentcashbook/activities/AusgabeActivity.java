@@ -9,19 +9,17 @@ import java.util.Date;
 import java.util.List;
 
 import network.StartNetworkConnectAsync;
-
 import android.app.AlertDialog;
-import android.content.ContentValues;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -34,13 +32,14 @@ import android.widget.Toast;
 import com.example.studentcashbook.R;
 
 import db.BudgetLoader;
-import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
+import db.TransaktionenDBHelper;
 import drawer.BaseActivity;
 
 public class AusgabeActivity extends BaseActivity {
 
 	private Spinner kategorieSpin;
+	ProgressDialog progressDia;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +83,6 @@ public class AusgabeActivity extends BaseActivity {
 	@Override
 	protected void onStart(){
 		super.onStart();
-		
-		//kleine Nachricht beim oeffnen der Activity
-		Toast.makeText(this, "Neue Ausgabe", Toast.LENGTH_SHORT).show();
 		
 		//Elemente erkennen
 		TextView FeldZeit = (TextView) findViewById(R.id.textView_Uhrzeit);
@@ -163,10 +159,10 @@ public class AusgabeActivity extends BaseActivity {
 					
 					if(EinstellungenActivity.getKeyTippAuto()==true){
 						try{
-							openNewTipp();
+							MainActivity.openNewTipp();
 						}
 						catch(Exception e){
-							
+							Log.v("test", e.getMessage());
 						}
 					}
 					
@@ -190,17 +186,7 @@ public class AusgabeActivity extends BaseActivity {
 			alert.create().show();
 		}
 	}
-	
-	//Neuen Tipp nach abgeschlossener Transaktion anzeigen
-	public  void openNewTipp(){
-		//Tipps anzeigen
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-          StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
-          downloadTask.execute();
-        }
-	}     
+	   
 	
 	
 	//Wenn button pressed alle Eingaben zuruecksetzen und in MainActivity wechseln
