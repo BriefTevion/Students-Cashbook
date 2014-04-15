@@ -169,4 +169,38 @@ public class BudgetLoader {
 		db.close();
 	}
 
+	//Zusammenrechnen aller Transkationen
+	public static Integer getSumOfTransaktionen(Context context) {
+		Integer sum = 0;
+		
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.COLUMN_NAME_TRANSAKTION_ID,
+				transEntry.COLUMN_NAME_BETRAG
+		};
+
+		String sortOrder = transEntry.COLUMN_NAME_TRANSAKTION_ID;
+
+		try{ 
+			
+			Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder);
+		
+			while(c.moveToNext()){
+				sum = sum + Integer.parseInt(c.getString(1));
+				
+			}
+	
+		}
+		catch(Exception e){
+			
+		}
+		
+		db.close();
+		return sum;
+		
+	}
+
 }

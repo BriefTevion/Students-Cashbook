@@ -42,6 +42,7 @@ import charts.TabPagerAdapter;
 import com.example.studentcashbook.R;
 
 import db.TransaktionenContract.transEntry;
+import db.BudgetLoader;
 import db.TransaktionenDBHelper;
 import drawer.BaseActivity;
 
@@ -75,6 +76,9 @@ public class MainActivity extends BaseActivity {
         
         PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
         pts.setDrawFullUnderline(false);
+        
+        //Restbetraganzeige setzen
+        getActionBar().setTitle("Restbudget: " + getRestbudget() + "€");
  
         
 	}
@@ -317,6 +321,19 @@ public class MainActivity extends BaseActivity {
 		
 		db.close();
 	}
+	
+	
+	//Das Restbudget abfragen
+	private Integer getRestbudget(){
+		try{
+			
+			return BudgetLoader.getSumOfTransaktionen(mContext);
+		}
+		catch(Exception e){
+			return 0;
+		}
+	}
+	
 
 
 
