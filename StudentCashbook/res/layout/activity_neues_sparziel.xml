@@ -75,30 +75,18 @@
                 android:gravity="center"
                 android:inputType="date"/>
             
-
-            <RadioButton
-                android:id="@+id/radioButton_uebrig"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/editText_datumEingabe"
-                android:layout_below="@+id/editText_datumEingabe" 
-                android:layout_marginTop="15dp"
-                android:text="@string/uebrig"
-                android:textColor="#ffffff"
-                android:onClick="onRadioButtonClicked"
-                 />
             
             <RadioButton
                 android:id="@+id/radioButton_fest"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/radioButton_uebrig"
-                android:layout_below="@+id/radioButton_uebrig"
+                android:layout_alignLeft="@+id/editText_datumEingabe"
+                android:layout_below="@+id/editText_datumEingabe" 
                 android:layout_marginTop="15dp"
                 android:text="@string/fest"
                 android:textColor="#ffffff"
-                android:onClick="onRadioButtonClicked"
-                 />
+                android:checked="true"
+               	android:clickable="false"                />
 
             <SeekBar
                 android:id="@+id/seekBar_Betrag"
@@ -108,8 +96,9 @@
                 android:layout_below="@+id/radioButton_fest"
                 android:layout_marginTop="15dp"
                 android:progress="0"
-            	android:max="100" 
-            	android:fontFamily="sans-serif"/>
+            	android:max="500" 
+            	android:fontFamily="sans-serif"
+            	android:visibility="visible"/>
 
             <TextView
                 android:id="@+id/textView_Sparbetrag"
@@ -123,7 +112,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffff"
                 android:textStyle="bold" 
-                android:fontFamily="sans-serif"/>
+                android:fontFamily="sans-serif"
+                android:visibility="visible"/>
 
             <Button
                 android:id="@+id/button_Anlegen"
@@ -136,7 +126,6 @@
                 android:clickable="true"
                 android:onClick="zielAnlegen"
                 android:text="@string/Anlegen"
-                android:textColor="#ffffff"
                 android:fontFamily="sans-serif"
                 />   
                 
@@ -151,7 +140,6 @@
                 android:clickable="true"
                 android:onClick="abbrechen"
                 android:text="@string/abbrechen_button"
-                android:textColor="#ffffff"
                 android:fontFamily="sans-serif"
                 />  
         </RelativeLayout>

@@ -11,10 +11,8 @@ import org.joda.time.DateMidnight;
 import org.joda.time.Months;
 
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,8 +26,6 @@ import android.widget.TextView;
 import com.example.studentcashbook.R;
 
 import db.BudgetLoader;
-import db.TransaktionenDBHelper;
-import db.TransaktionenContract.transEntry;
 import drawer.BaseActivity;
 
 public class NeuesSparzielActivity extends BaseActivity {
@@ -41,7 +37,7 @@ public class NeuesSparzielActivity extends BaseActivity {
 		//seekbar onChangeListener setzen
 		SeekBar seekFeld = (SeekBar) findViewById(R.id.seekBar_Betrag);
 		TextView sparbetragFeld = (TextView) findViewById(R.id.textView_Sparbetrag);
-		
+		sparbetragFeld.setText("0€");
 		
     	seekFeld.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
     		
@@ -60,30 +56,17 @@ public class NeuesSparzielActivity extends BaseActivity {
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				TextView sparbetragFeld = (TextView) findViewById(R.id.textView_Sparbetrag);
-				sparbetragFeld.setText(progressChanged*5 + "€");
+				sparbetragFeld.setText(progressChanged*1 + "€");
 				
 			}
 
 
         });
 	}
+	
 	@Override
 	protected void onStart(){
 		super.onStart();
-		
-		//Radiobuttons checked und unchecked setzen
-		RadioButton radioFest = (RadioButton) findViewById(R.id.radioButton_fest);
-		RadioButton radioUebrig = (RadioButton) findViewById(R.id.radioButton_uebrig);
-
-		radioFest.setChecked(false);
-		radioUebrig.setChecked(true);
-		
-		//seekbar verstecken
-		SeekBar seekFeld = (SeekBar) findViewById(R.id.seekBar_Betrag);
-		TextView sparbetragFeld = (TextView) findViewById(R.id.textView_Sparbetrag);
-		
-		seekFeld.setVisibility(View.GONE);
-    	sparbetragFeld.setVisibility(View.GONE);
 
 	}
 	
@@ -93,9 +76,7 @@ public class NeuesSparzielActivity extends BaseActivity {
 		setContentView(R.layout.activity_neues_sparziel);
 	}
 
-	
-	
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -108,7 +89,6 @@ public class NeuesSparzielActivity extends BaseActivity {
 		EditText titelFeld = (EditText) findViewById(R.id.editText_Titel);
 		EditText datumFeld = (EditText) findViewById(R.id.editText_datumEingabe);
 		EditText betragFeld = (EditText) findViewById(R.id.editText_BetragInput);
-		RadioButton uebrigFeld = (RadioButton) findViewById(R.id.radioButton_uebrig);
 		RadioButton festFeld = (RadioButton) findViewById(R.id.radioButton_fest);
 		SeekBar seekFeld = (SeekBar) findViewById(R.id.seekBar_Betrag);
 		TextView sparbetragFeld = (TextView) findViewById(R.id.textView_Sparbetrag);
@@ -116,7 +96,6 @@ public class NeuesSparzielActivity extends BaseActivity {
 		titelFeld.setText("");
 		datumFeld.setText("");
 		betragFeld.setText("");
-		uebrigFeld.setText("");
 		festFeld.setText("");
 		seekFeld.setProgress(0);
 		sparbetragFeld.setText("");
@@ -132,7 +111,6 @@ public class NeuesSparzielActivity extends BaseActivity {
 		EditText titelFeld = (EditText) findViewById(R.id.editText_Titel);
 		EditText datumFeld = (EditText) findViewById(R.id.editText_datumEingabe);
 		EditText betragFeld = (EditText) findViewById(R.id.editText_BetragInput);
-		RadioButton uebrigFeld = (RadioButton) findViewById(R.id.radioButton_uebrig);
 		RadioButton festFeld = (RadioButton) findViewById(R.id.radioButton_fest);
 		SeekBar seekFeld = (SeekBar) findViewById(R.id.seekBar_Betrag);
 		TextView sparbetragFeld = (TextView) findViewById(R.id.textView_Sparbetrag);
@@ -152,14 +130,7 @@ public class NeuesSparzielActivity extends BaseActivity {
 		
 		else{
 			
-			//Pruefen, ob RadioButton Uebrig gewaehlt
-			if(uebrigFeld.isChecked()){
-				sparBetrag = "ueber";
-			}
-			else{
 				sparBetrag=String.valueOf(seekFeld.getProgress()*5);
-			}
-
 			
 			//Ueberpruefung, ob Rate fuer das Zieldatum reicht
 				//Aktuelles Datum
@@ -240,7 +211,6 @@ public class NeuesSparzielActivity extends BaseActivity {
 						titelFeld.setText("");
 						datumFeld.setText("");
 						betragFeld.setText("");
-						uebrigFeld.setText("");
 						festFeld.setText("");
 						seekFeld.setProgress(0);
 						sparbetragFeld.setText("");
@@ -266,36 +236,6 @@ public class NeuesSparzielActivity extends BaseActivity {
 	private void zurUebersicht() {
 		Intent intent = new Intent(getApplicationContext(), SparzielActivity.class);	
 		startActivity(intent);		
-	}
-	
-	//Methode fuer die RadioButtons
-	public void onRadioButtonClicked(View view) {
-		SeekBar seekFeld = (SeekBar) findViewById(R.id.seekBar_Betrag);
-		TextView sparbetragFeld = (TextView) findViewById(R.id.textView_Sparbetrag);
-		RadioButton radioFest = (RadioButton) findViewById(R.id.radioButton_fest);
-		RadioButton radioUebrig = (RadioButton) findViewById(R.id.radioButton_uebrig);
-		
-
-	    
-	    // Checken welcher Button gecheckt
-	    switch(view.getId()) {
-	        case R.id.radioButton_uebrig:
-	        	seekFeld.setVisibility(View.GONE);
-            	sparbetragFeld.setVisibility(View.GONE);
-            	radioUebrig.setChecked(true);
-            	radioFest.setChecked(false);
-
-	            break;
-	        case R.id.radioButton_fest:
-
-	            	seekFeld.setVisibility(View.VISIBLE);
-	            	sparbetragFeld.setVisibility(View.VISIBLE);	  
-	            	sparbetragFeld.setText("0€");
-	            	radioFest.setChecked(true);
-	            	radioUebrig.setChecked(false);
-	                
-	            break;
-	    }
 	}
 
 }
