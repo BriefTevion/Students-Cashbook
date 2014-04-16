@@ -3,6 +3,7 @@
  */
 package studentcashbook.activities;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,12 +14,16 @@ import network.StartNetworkConnectAsync;
 
 import org.achartengine.GraphicalView;
 import org.joda.time.DateMidnight;
+import org.joda.time.Months;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
@@ -35,14 +40,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import charts.TabPagerAdapter;
 
 import com.example.studentcashbook.R;
 
-import db.TransaktionenContract.transEntry;
 import db.BudgetLoader;
+import db.TransaktionenContract.transEntry;
 import db.TransaktionenDBHelper;
 import drawer.BaseActivity;
 
@@ -79,7 +83,8 @@ public class MainActivity extends BaseActivity {
         
         //Restbetraganzeige setzen
         getActionBar().setTitle("Restbudget: " + getRestbudget() + "€");
- 
+        
+
         
 	}
 	
@@ -229,7 +234,9 @@ public class MainActivity extends BaseActivity {
      //Monatliche Einnahmen und Ausgaben abbuchen
 	private void monatlichesAbbuchen(DateMidnight aktuellesDatum) {
 		DateMidnight heute = aktuellesDatum;
-		DateMidnight lastUpdated = getLastUpdated();
+		String dateOfLastTransaktion = BudgetLoader.getDateOfLastTransaktion(mContext);
+		
+		//pruefen ob heute etwas abgebucht werden muss
 		
 				
 		//erhalte alle Tage zwischen der letzten monatlichen Abbuchung
@@ -253,28 +260,49 @@ public class MainActivity extends BaseActivity {
 	//Betraege für Sparziele abbuchen
 	private void sparzieleAbbuchen(DateMidnight aktuellesDatum) {
 		DateMidnight heute = aktuellesDatum;
-		DateMidnight lastUpdated = getLastUpdated();
+		DateMidnight lastUpdated = null;
+		
+		//Datum der letzten Transaktion erhalten und umwandeln
+		String dateOfLastTransaktion = BudgetLoader.getDateOfLastTransaktion(mContext);
+		SimpleDateFormat sm = new SimpleDateFormat("dd.mm.yyy");
+		SimpleDateFormat out = new SimpleDateFormat("yyyy-mm-dd");
+		Date aD = null;
+		String formatedDate=null;
+		
+		try {
+			aD = (Date) sm.parse(dateOfLastTransaktion);
+			formatedDate = out.format(aD);
+
+		} catch (ParseException e1) {
+
+		}
+		
+		try{
+		 lastUpdated =  new DateMidnight(formatedDate + "T00:00:00.000+01:00");
+		}
+		catch(Exception e){
+			Log.v("test", e.getMessage());
+		}
 		
 				
 		//erhalte alle Tage zwischen der letzten monatlichen Abbuchung
 		//und heute
+		int diffMonths = Months.monthsBetween(aktuellesDatum, lastUpdated).getMonths();
 		
 		
 		//pruefe, ob und wenn ja wie oft die AbbuchungsTage noch nicht gemacht worden sind
 		
 		
 		//fuehre die Buchungen der Haeufigkeit nach, mit dem passenden Datum, durch
+		//BudgetLoader.getSparbetragOfTarget(context, sparzielTitel)
+		//BudgetLoader.addEinmaligeTransaktion(context, id, anmerkung, datum, zeit, kategorie, betrag)
+		
+		//schreibe es dem Sparziel gut
+		//BudgetLoader.addCreditToSparziel(context, betrag, sparzielTitel)
+		
+		//pruefen ob heute etwas abgebucht werden muss
 		
 	}
-	
-	//Pruefen wann das letzte mal eine monatliche Transaktion gemacht wurde
-	private DateMidnight getLastUpdated(){
-		DateMidnight date=null;
-		
-		
-		return date;
-	}
-
 
 	
 	//Restbudgets der Kategorien zuruecksetzen

@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import db.TransaktionenContract.transEntry;
 
 public class BudgetLoader {
@@ -151,6 +152,76 @@ public class BudgetLoader {
 		newRowID = db.insert(transEntry.TABLE_NAME_TARGET, null, cv);
 	}
 	
+	//Sparziel Betrag gutschreiben
+	public static void addCreditToSparziel(Context context, Integer betrag, String sparzielTitel){
+		Integer credit = betrag;
+		Integer neuesGuthaben = credit + getCurrentCreditOfTarget(context, sparzielTitel);
+		
+		
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		ContentValues cv = new ContentValues();
+	      cv.put(transEntry.T_COLUMN_NAME_GUTHABEN, String.valueOf(neuesGuthaben));
+
+	      
+		db.update(transEntry.TABLE_NAME_TARGET, cv, transEntry.T_COLUMN_NAME_BEZEICHNER 
+				+ "= '" + sparzielTitel +"'", null);	
+		
+		db.close();
+		
+	}
+	
+	//Aktuelles Guthaben eines Sparzieles abfragen, bei der Annahme, dass es keine gleichnamigen Ziele gibt
+	private static Integer getCurrentCreditOfTarget(Context context, String sparzielTitel) {
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.T_COLUMN_NAME_BEZEICHNER,
+				transEntry.T_COLUMN_NAME_GUTHABEN
+		};
+
+		String sortOrder = transEntry.T_COLUMN_NAME_BEZEICHNER;
+
+			
+		Cursor c = db.query(transEntry.TABLE_NAME_TARGET, projection, transEntry.T_COLUMN_NAME_BEZEICHNER 
+				+ "= '" + sparzielTitel +"'", null, null, null, sortOrder);
+		
+		c.moveToFirst();
+		Integer aktuellesGuthaben = Integer.parseInt(c.getString(1));
+		
+		db.close();
+			
+		return aktuellesGuthaben;
+	}
+	
+	//Sparbetrag eines Sparzieles erfragen
+	public static Integer getSparbetragOfTarget(Context context, String sparzielTitel){
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.T_COLUMN_NAME_BEZEICHNER,
+				transEntry.T_COLUMN_NAME_SPARBETRAG
+		};
+
+		String sortOrder = transEntry.T_COLUMN_NAME_BEZEICHNER;
+
+			
+		Cursor c = db.query(transEntry.TABLE_NAME_TARGET, projection, transEntry.T_COLUMN_NAME_BEZEICHNER 
+				+ "= '" + sparzielTitel +"'", null, null, null, sortOrder);
+		
+		c.moveToFirst();
+		Integer sparbetrag = Integer.parseInt(c.getString(1));
+		
+		
+		return sparbetrag;
+	}
+	
+
 	//neue Kategorie anlegen
 	public static void addKategorie(Context context, String name, String budget, String restbetrag, String datum){
 		//Zugang zur Datenbank
@@ -201,6 +272,59 @@ public class BudgetLoader {
 		db.close();
 		return sum;
 		
+	}
+	
+	//Datum der letzten Transaktion erhalten
+	public static String getDateOfLastTransaktion(Context context){
+		//Daten abfragen
+		//Zugang zur Datenbank
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		String [] projection = {
+				transEntry.COLUMN_NAME_TRANSAKTION_ID,
+				transEntry.COLUMN_NAME_DATUM
+		};
+		
+		String sortOrder = transEntry.COLUMN_NAME_TRANSAKTION_ID + " DESC";
+		
+		Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder, "1");
+		
+		c.moveToFirst();
+		String datum = c.getString(1);
+		
+		db.close();
+		
+		return datum;
+	}
+	
+	//pruefen ob Ausgabe im Budget liegt
+	public static boolean checkIfKategorieEnoughMoney(Context context, String kategorieTitel, Integer betrag){
+		
+		//Aktuelles Restbudget abfragen
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		String [] projection = {
+				transEntry.K_COLUMN_NAME_BEZEICHNER,
+				transEntry.K_COLUMN_NAME_RESTBETRAG
+		};
+		
+		
+		Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, transEntry.K_COLUMN_NAME_BEZEICHNER
+				+ "= '" + kategorieTitel +"'", null, null, null, null);
+		
+		c.moveToFirst();
+		Integer restBetrag = Integer.parseInt(c.getString(1));
+		
+		//Wenn ein des Restbudget mindestens so hoch ist wie der betrag
+		if(restBetrag>betrag){
+			return true;
+		}
+		else{
+			return false;
+		}
+
 	}
 
 }

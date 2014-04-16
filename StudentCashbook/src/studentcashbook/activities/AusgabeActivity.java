@@ -110,81 +110,103 @@ public class AusgabeActivity extends BaseActivity {
 		return true;
 	}
 	
-	public void addAusgabe(View view){
+	public boolean addAusgabe(View view){
 		TextView datumFeld = (TextView) findViewById(R.id.textView_Datum);
 		TextView zeitFeld = (TextView) findViewById(R.id.textView_Uhrzeit);
 		EditText betragFeld = (EditText) findViewById(R.id.editText_Eingabe);
 		EditText anmerkungFeld = (EditText) findViewById(R.id.editText_Anmerkungen);
 		Spinner kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
 
-		String betrag = "-" + betragFeld.getText().toString();
+		String kategorieTitel = kategorieSpin.getSelectedItem().toString();
+		Integer betragPre = Integer.parseInt(betragFeld.getText().toString());
+		boolean check = BudgetLoader.checkIfKategorieEnoughMoney(getApplicationContext(), kategorieTitel, betragPre);
+		Log.v("test", " " + check);
 		
-		//neue Transaktion ID ermitteln
-		Integer id = BudgetLoader.getNewTransaktionID(getApplicationContext());
+		if(check==false){
+			//Nachricht, da Restbudget nicht ausreicht
+			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+			alert.setMessage("Restbudget der Kategorie "+ kategorieTitel + " nicht ausreichend.");
+			alert.setTitle("Achtung!");
+			alert.setPositiveButton("OK", null);
+			alert.setCancelable(true);
+			alert.create().show();
+		}	
+		else{
 
-		try{
-			
-			//Einmalige Ausgabe in DB-Tabelle schreiben
-			BudgetLoader.addEinmaligeTransaktion(getApplicationContext(), 
-					id, 
-					anmerkungFeld.getText().toString(), 
-					datumFeld.getText().toString(), 
-					zeitFeld.getText().toString(), 
-					kategorieSpin.getSelectedItem().toString(), 
-					betrag);
-			
-			//wenn kategorie 'ohne kategorie' nicht ausgewaehlt worden ist
-			if(kategorieSpin.getSelectedItem().toString()!="ohne Kategorie"){
-				BudgetLoader.addEinmaligeTransaktionToKategorie(getApplicationContext(),
+			String betrag = "-" + betragPre;
+			//neue Transaktion ID ermitteln
+			Integer id = BudgetLoader.getNewTransaktionID(getApplicationContext());
+	
+			try{
+				
+				//Einmalige Ausgabe in DB-Tabelle schreiben
+				BudgetLoader.addEinmaligeTransaktion(getApplicationContext(), 
+						id, 
+						anmerkungFeld.getText().toString(), 
 						datumFeld.getText().toString(), 
-						kategorieSpin.getSelectedItem().toString(), 
+						zeitFeld.getText().toString(), 
+						kategorieTitel, 
 						betrag);
+				
+				//wenn kategorie 'ohne kategorie' nicht ausgewaehlt worden ist
+				if(kategorieSpin.getSelectedItem().toString()!="ohne Kategorie"){
+					BudgetLoader.addEinmaligeTransaktionToKategorie(getApplicationContext(),
+							datumFeld.getText().toString(), 
+							kategorieSpin.getSelectedItem().toString(), 
+							betrag);
+				}
+				
+				//Nachricht ueber erfolgreiches speichern
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.setMessage("Ausgabe gepeichert");
+				alert.setTitle("Erfolgreich");
+				alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						
+						finish();
+						
+						//zu Main wechseln
+						Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+						startActivity(intent);	
+						
+						//Tipp anzeigen
+						//Zunaechst pruefen, ob Einstellungen es zulassen
+						
+						if(EinstellungenActivity.getKeyTippAuto()==true){
+							try{
+								MainActivity.openNewTipp();
+							}
+							catch(Exception e){
+								Log.v("test", e.getMessage());
+							}
+						}
+						
+					}
+				});
+				alert.setCancelable(true);
+				alert.create().show();
+	
+				return true;
+				
 			}
 			
-			//Nachricht ueber erfolgreiches speichern
-			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Ausgabe gepeichert");
-			alert.setTitle("Erfolgreich");
-			alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					
-					finish();
-					
-					//zu Main wechseln
-					Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-					startActivity(intent);	
-					
-					//Tipp anzeigen
-					//Zunaechst pruefen, ob Einstellungen es zulassen
-					
-					if(EinstellungenActivity.getKeyTippAuto()==true){
-						try{
-							MainActivity.openNewTipp();
-						}
-						catch(Exception e){
-							Log.v("test", e.getMessage());
-						}
-					}
-					
-				}
-			});
-			alert.setCancelable(true);
-			alert.create().show();
-
-			
-		}
+			catch(Exception e){
+				e.printStackTrace();
+				
+				//Nachricht ueber NICHT erfolgreiches speichern
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.setMessage("Ausgabe konnte nicht gespeichert werde.");
+				alert.setTitle("Fehler");
+				alert.setNegativeButton("OK", null);
+				alert.setCancelable(true);
+				alert.create().show();
+				
+				return false;
+			}
+		}	
 		
-		catch(Exception e){
-			e.printStackTrace();
-			
-			//Nachricht ueber NICHT erfolgreiches speichern
-			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Ausgabe konnte nicht gespeichert werde.");
-			alert.setTitle("Fehler");
-			alert.setNegativeButton("OK", null);
-			alert.setCancelable(true);
-			alert.create().show();
-		}
+		return true;
+		
 	}
 	   
 	
