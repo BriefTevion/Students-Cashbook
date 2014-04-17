@@ -83,9 +83,7 @@ public class MainActivity extends BaseActivity {
         
         //Restbetraganzeige setzen
         getActionBar().setTitle("Restbudget: " + getRestbudget() + "€");
-        
-
-        
+            
 	}
 	
 	//Back Taste ausgeschalten
@@ -217,139 +215,6 @@ public class MainActivity extends BaseActivity {
 	}  
 	
 	
-	//monatliche Transaktionen, u.a. Sparziele abbuchen
-     public void monatlicheTransaktionen(){
-    	 //Aktuelle Datum
-    	 DateMidnight aktuellesDatum = new DateMidnight(new Date());
-    	 
-    	 //faellige monatliche Transaktionen abbuchen
-    	 monatlichesAbbuchen(aktuellesDatum);
-    	 //faellige Sparziele abbuchen
-    	 sparzieleAbbuchen(aktuellesDatum);
-    	 //Restbudgets der Kategorien am Monatsanfang wieder auf voll zuruecksetzen
-    	 resetRestbudgets();
-     }
-	
-
-     //Monatliche Einnahmen und Ausgaben abbuchen
-	private void monatlichesAbbuchen(DateMidnight aktuellesDatum) {
-		DateMidnight heute = aktuellesDatum;
-		String dateOfLastTransaktion = BudgetLoader.getDateOfLastTransaktion(mContext);
-		
-		//pruefen ob heute etwas abgebucht werden muss
-		
-				
-		//erhalte alle Tage zwischen der letzten monatlichen Abbuchung
-		//und heute
-		
-		
-		//pruefe, ob und wenn ja wie oft die AbbuchungsTage noch nicht gemacht worden sind
-		
-		
-		//fuehre die Buchungen der Haeufigkeit nach, mit dem passenden Datum, durch
-
-		
-		
-		
-		
-		
-	}
-
-		
-	
-	//Betraege für Sparziele abbuchen
-	private void sparzieleAbbuchen(DateMidnight aktuellesDatum) {
-		DateMidnight heute = aktuellesDatum;
-		DateMidnight lastUpdated = null;
-		
-		//Datum der letzten Transaktion erhalten und umwandeln
-		String dateOfLastTransaktion = BudgetLoader.getDateOfLastTransaktion(mContext);
-		SimpleDateFormat sm = new SimpleDateFormat("dd.mm.yyy");
-		SimpleDateFormat out = new SimpleDateFormat("yyyy-mm-dd");
-		Date aD = null;
-		String formatedDate=null;
-		
-		try {
-			aD = (Date) sm.parse(dateOfLastTransaktion);
-			formatedDate = out.format(aD);
-
-		} catch (ParseException e1) {
-
-		}
-		
-		try{
-		 lastUpdated =  new DateMidnight(formatedDate + "T00:00:00.000+01:00");
-		}
-		catch(Exception e){
-			Log.v("test", e.getMessage());
-		}
-		
-				
-		//erhalte alle Tage zwischen der letzten monatlichen Abbuchung
-		//und heute
-		int diffMonths = Months.monthsBetween(aktuellesDatum, lastUpdated).getMonths();
-		
-		
-		//pruefe, ob und wenn ja wie oft die AbbuchungsTage noch nicht gemacht worden sind
-		
-		
-		//fuehre die Buchungen der Haeufigkeit nach, mit dem passenden Datum, durch
-		//BudgetLoader.getSparbetragOfTarget(context, sparzielTitel)
-		//BudgetLoader.addEinmaligeTransaktion(context, id, anmerkung, datum, zeit, kategorie, betrag)
-		
-		//schreibe es dem Sparziel gut
-		//BudgetLoader.addCreditToSparziel(context, betrag, sparzielTitel)
-		
-		//pruefen ob heute etwas abgebucht werden muss
-		
-	}
-
-	
-	//Restbudgets der Kategorien zuruecksetzen
-	private void resetRestbudgets() {
-		//Daten abfragen
-		//Zugang zur Datenbank
-		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-		String [] projection = {
-				transEntry.K_COLUMN_NAME_BEZEICHNER,
-				transEntry.K_COLUMN_NAME_BUDGET,
-				transEntry.K_COLUMN_NAME_RESTBETRAG
-		};
-
-		String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
-
-		Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, null, null, null, null, sortOrder);
-		
-		//Wenn Kategorien vorhanden sind
-		if(c.getCount()>0){
-		
-			
-			while(c.moveToNext()){
-				if(Integer.parseInt(c.getString(1))!=Integer.parseInt(c.getString(2))){
-				
-					SQLiteDatabase dbWrite = dbHelper.getWritableDatabase();
-					
-					String sql="update "+ transEntry.TABLE_NAME_Kategorie+" set restbetrag='" + 
-										c.getString(1)+ "' where name='" + c.getString(0) + "'";					
-					try{
-						dbWrite.execSQL(sql);
-					}catch(Exception e){
-						e.printStackTrace();
-					}
-					
-					dbWrite.close();
-					
-				}
-			}
-			
-			
-		}
-		
-		db.close();
-	}
-	
 	
 	//Das Restbudget abfragen
 	private Integer getRestbudget(){
@@ -362,8 +227,6 @@ public class MainActivity extends BaseActivity {
 		}
 	}
 	
-
-
 
 
 	public class itemListData{

@@ -221,6 +221,48 @@ public class BudgetLoader {
 		return sparbetrag;
 	}
 	
+	//Get Datum des Sparzieles
+	public static Cursor getDetailsOfSparziele(Context context){
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.T_COLUMN_NAME_BEZEICHNER,
+				transEntry.T_COLUMN_NAME_DATUM,
+				transEntry.T_COLUMN_NAME_SPARBETRAG
+		};
+
+		String sortOrder = transEntry.T_COLUMN_NAME_BEZEICHNER;
+
+			
+		Cursor c = db.query(transEntry.TABLE_NAME_TARGET, projection, null, null, null, null, sortOrder);
+		db.close();
+		return c;
+		
+	}
+	
+	//Details zu den Monatstransaktionen
+		public static Cursor getDetailsOfMonthlyTransaktionen(Context context){
+			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+			SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+			//GET aktuellen restbetrag der Kategorie
+			String [] projection = {
+					transEntry.COLUMN_NAME_KATEGORIE,
+					transEntry.COLUMN_NAME_DATUM,
+					transEntry.COLUMN_NAME_BETRAG
+			};
+
+			String sortOrder = transEntry.COLUMN_NAME_KATEGORIE;
+
+				
+			Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder);
+			db.close();
+			return c;
+			
+		}
+	
 
 	//neue Kategorie anlegen
 	public static void addKategorie(Context context, String name, String budget, String restbetrag, String datum){
@@ -325,6 +367,41 @@ public class BudgetLoader {
 			return false;
 		}
 
+	}
+	
+	
+	//Details der Katgorie ausgeben
+	public static Cursor getDetailsOfKategorien(Context context){
+		//Aktuelles Restbudget abfragen
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		String [] projection = {
+				transEntry.K_COLUMN_NAME_BEZEICHNER,
+				transEntry.K_COLUMN_NAME_RESTBETRAG,
+				transEntry.K_COLUMN_NAME_BUDGET
+		};
+		String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
+		
+		Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, null, null, null, null, sortOrder);
+		db.close();
+		return c;
+	}
+	
+	//Reset der restbudgets der Kategorien
+	public static void resetRestbudgetsKategorien(Context context, String name, String betrag){
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		String sql="update "+ transEntry.TABLE_NAME_Kategorie+" set restbetrag='" + 
+				betrag + "' where name='" + name + "'";					
+		try{
+			db.execSQL(sql);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		db.close();
 	}
 
 }

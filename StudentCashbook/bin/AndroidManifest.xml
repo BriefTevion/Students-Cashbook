@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -111,6 +112,15 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider" />
         </receiver>
+        
+        <!-- receiver monatliche Abbuchungen -->
+        <receiver android:name="studentcashbook.activities.AutoLoader">
+    		<intent-filter>
+        		<action android:name="android.intent.action.BOOT_COMPLETED"></action>
+   		 	</intent-filter>
+		</receiver>
+		
+        
 
     </application>
 
