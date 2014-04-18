@@ -348,5 +348,159 @@ public class BudgetLoader {
 	}
 	
 	
+	/*
+	 * Folgende Methoden werden ausschliesslich fuer den AutoLoader verwendet
+	 */
+	
+	//Neue transaktionID ausgeben
+	public static Integer getNewTransaktionID(Context context, SQLiteDatabase db){
+		try{
 
+			Integer id = 0;
+			
+			final String SQL_getMaxID = "Select Max(" + transEntry.COLUMN_NAME_TRANSAKTION_ID + ") AS id FROM " + 
+										transEntry.TABLE_NAME;	
+			
+			Cursor c = db.rawQuery(SQL_getMaxID, null);
+					
+				c.moveToFirst();
+				id = c.getInt(0);
+			
+				
+				
+				return id+1;		
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+			return 1;
+		}
+	}
+	
+	//neue Transaktion der Tabelle TransaktionenList hinzufuegen
+	public static void addEinmaligeTransaktion(SQLiteDatabase db, Context context, Integer id, String anmerkung, String datum, String zeit, String kategorie, String betrag){
+		//Zugang zur Datenbank
+		try{
+
+			ContentValues cv = new ContentValues();
+			cv.put(transEntry.COLUMN_NAME_TRANSAKTION_ID, id);
+			cv.put(transEntry.COLUMN_NAME_ANMEKRUNG, anmerkung);
+			cv.put(transEntry.COLUMN_NAME_DATUM, datum);
+			cv.put(transEntry.COLUMN_NAME_UHRZEIT, zeit);
+			cv.put(transEntry.COLUMN_NAME_KATEGORIE, kategorie);
+			cv.put(transEntry.COLUMN_NAME_BETRAG, betrag);
+			
+			long newRowID;
+			newRowID = db.insert(transEntry.TABLE_NAME, null, cv);
+			
+			db.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	//Sparziel Betrag gutschreiben
+	public static void addCreditToSparziel(SQLiteDatabase dbWrite, SQLiteDatabase dbRead, Context context, Integer betrag, String sparzielTitel){
+		Integer credit = betrag;
+		Integer neuesGuthaben = credit + getCurrentCreditOfTarget(dbRead, context, sparzielTitel);
+		
+		ContentValues cv = new ContentValues();
+	      cv.put(transEntry.T_COLUMN_NAME_GUTHABEN, String.valueOf(neuesGuthaben));
+
+	      
+		dbWrite.update(transEntry.TABLE_NAME_TARGET, cv, transEntry.T_COLUMN_NAME_BEZEICHNER 
+				+ "= '" + sparzielTitel +"'", null);	
+		
+	}
+	
+	//Aktuelles Guthaben eines Sparzieles abfragen, bei der Annahme, dass es keine gleichnamigen Ziele gibt
+	private static Integer getCurrentCreditOfTarget(SQLiteDatabase db, Context context, String sparzielTitel) {
+
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.T_COLUMN_NAME_BEZEICHNER,
+				transEntry.T_COLUMN_NAME_GUTHABEN
+		};
+
+		String sortOrder = transEntry.T_COLUMN_NAME_BEZEICHNER;
+
+			
+		Cursor c = db.query(transEntry.TABLE_NAME_TARGET, projection, transEntry.T_COLUMN_NAME_BEZEICHNER 
+				+ "= '" + sparzielTitel +"'", null, null, null, sortOrder);
+		
+		c.moveToFirst();
+		Integer aktuellesGuthaben = Integer.parseInt(c.getString(1));
+		
+		
+			
+		return aktuellesGuthaben;
+	}
+	
+	//Get Datum des Sparzieles
+	public static Cursor getDetailsOfSparziele(SQLiteDatabase db, Context context){
+
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.T_COLUMN_NAME_BEZEICHNER,
+				transEntry.T_COLUMN_NAME_DATUM,
+				transEntry.T_COLUMN_NAME_SPARBETRAG
+		};
+
+		String sortOrder = transEntry.T_COLUMN_NAME_BEZEICHNER;
+
+			
+		Cursor c = db.query(transEntry.TABLE_NAME_TARGET, projection, null, null, null, null, sortOrder);
+
+		return c;
+		
+	}
+	
+	//Details der Katgorie ausgeben
+	public static Cursor getDetailsOfKategorien(SQLiteDatabase db, Context context){
+
+		String [] projection = {
+				transEntry.K_COLUMN_NAME_BEZEICHNER,
+				transEntry.K_COLUMN_NAME_RESTBETRAG,
+				transEntry.K_COLUMN_NAME_BUDGET
+		};
+		String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
+		
+		Cursor c = db.query(transEntry.TABLE_NAME_Kategorie, projection, null, null, null, null, sortOrder);
+		return c;
+	}
+	
+	//Reset der restbudgets der Kategorien
+	public static void resetRestbudgetsKategorien(SQLiteDatabase db, Context context, String name, String betrag){
+		
+		String sql="update "+ transEntry.TABLE_NAME_Kategorie+" set restbetrag='" + 
+				betrag + "' where name='" + name + "'";					
+		try{
+			db.execSQL(sql);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//Details zu den Monatstransaktionen
+	public static Cursor getDetailsOfMonthlyTransaktionen(SQLiteDatabase db, Context context){
+
+
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.M_COLUMN_NAME_BEZEICHNER,
+				transEntry.M_COLUMN_NAME_TAG,
+				transEntry.M_COLUMN_NAME_BETRAG
+		};
+
+		String sortOrder = transEntry.M_COLUMN_NAME_BEZEICHNER;
+
+			
+		Cursor c = db.query(transEntry.TABLE_NAME_AUTOMATIC, projection, null, null, null, null, sortOrder);
+		
+		return c;
+				
+	}
 }
