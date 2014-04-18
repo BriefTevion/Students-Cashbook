@@ -152,50 +152,9 @@ public class BudgetLoader {
 		newRowID = db.insert(transEntry.TABLE_NAME_TARGET, null, cv);
 	}
 	
-	//Sparziel Betrag gutschreiben
-	public static void addCreditToSparziel(Context context, Integer betrag, String sparzielTitel){
-		Integer credit = betrag;
-		Integer neuesGuthaben = credit + getCurrentCreditOfTarget(context, sparzielTitel);
-		
-		
-		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		
-		ContentValues cv = new ContentValues();
-	      cv.put(transEntry.T_COLUMN_NAME_GUTHABEN, String.valueOf(neuesGuthaben));
-
-	      
-		db.update(transEntry.TABLE_NAME_TARGET, cv, transEntry.T_COLUMN_NAME_BEZEICHNER 
-				+ "= '" + sparzielTitel +"'", null);	
-		
-		db.close();
-		
-	}
 	
-	//Aktuelles Guthaben eines Sparzieles abfragen, bei der Annahme, dass es keine gleichnamigen Ziele gibt
-	private static Integer getCurrentCreditOfTarget(Context context, String sparzielTitel) {
-		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-		//GET aktuellen restbetrag der Kategorie
-		String [] projection = {
-				transEntry.T_COLUMN_NAME_BEZEICHNER,
-				transEntry.T_COLUMN_NAME_GUTHABEN
-		};
-
-		String sortOrder = transEntry.T_COLUMN_NAME_BEZEICHNER;
-
-			
-		Cursor c = db.query(transEntry.TABLE_NAME_TARGET, projection, transEntry.T_COLUMN_NAME_BEZEICHNER 
-				+ "= '" + sparzielTitel +"'", null, null, null, sortOrder);
-		
-		c.moveToFirst();
-		Integer aktuellesGuthaben = Integer.parseInt(c.getString(1));
-		
-		db.close();
-			
-		return aktuellesGuthaben;
-	}
+	
+	
 	
 	//Sparbetrag eines Sparzieles erfragen
 	public static Integer getSparbetragOfTarget(Context context, String sparzielTitel){
@@ -388,20 +347,6 @@ public class BudgetLoader {
 		return c;
 	}
 	
-	//Reset der restbudgets der Kategorien
-	public static void resetRestbudgetsKategorien(Context context, String name, String betrag){
-		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		
-		String sql="update "+ transEntry.TABLE_NAME_Kategorie+" set restbetrag='" + 
-				betrag + "' where name='" + name + "'";					
-		try{
-			db.execSQL(sql);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		db.close();
-	}
+	
 
 }
