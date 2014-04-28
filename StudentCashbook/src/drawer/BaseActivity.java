@@ -8,14 +8,15 @@ package drawer;
 import java.util.ArrayList;
 import java.util.List;
 
+import kategorie.KategorienActivity;
+
 import login.LoginActivity;
+import monatliches.MonatlichesActivity;
 
 import network.StartNetworkConnectForNotifications;
-import studentcashbook.activities.EinstellungenActivity;
-import studentcashbook.activities.KategorienActivity;
-import studentcashbook.activities.MainActivity;
-import studentcashbook.activities.MonatlichesActivity;
-import studentcashbook.activities.SparzielActivity;
+import sparziel.SparzielActivity;
+import uebersicht.MainActivity;
+import weiteres.EinstellungenActivity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;

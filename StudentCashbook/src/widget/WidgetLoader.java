@@ -10,7 +10,7 @@ import java.util.List;
 import db.TransaktionenDBHelper;
 import db.TransaktionenContract.transEntry;
 
-import studentcashbook.activities.MainActivity.itemListData;
+import uebersicht.MainActivity.itemListData;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -23,12 +23,15 @@ public class WidgetLoader extends AppWidgetProvider {
 	RemoteViews remoteViews;
 	AppWidgetManager appWidgetManager;
 	ComponentName thisWidget;
+	
+	//wenn das Widget updated, wird folgende Methode aufgerufen
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		this.appWidgetManager = appWidgetManager;
 		remoteViews = new RemoteViews(context.getPackageName(),com.example.studentcashbook.R.layout.widgetlayout );
 		thisWidget = new ComponentName(context, WidgetLoader.class);
 		
+		//neue Daten abfragen
 		String daten = getDataForWidget(context);
 		
 		//Daten in Widget schreiben

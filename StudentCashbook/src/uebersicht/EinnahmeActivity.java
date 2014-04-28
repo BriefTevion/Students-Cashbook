@@ -1,0 +1,203 @@
+/*
+ * Diese Klasse beinhaltet alle Methoden um die Activity "Anlegen einer neuen einmaligen Einnahme" zu bearbeiten.
+ */
+package uebersicht;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
+import com.example.studentcashbook.R;
+
+import db.BudgetLoader;
+import db.TransaktionenDBHelper;
+import db.TransaktionenContract.transEntry;
+import drawer.BaseActivity;
+
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+public class EinnahmeActivity extends BaseActivity {
+
+	private Spinner kategorieSpin;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		//Spinner laden
+		kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
+		List<String> list = new ArrayList<String>();
+		//Kategorien aus der DB laden
+			//Zugang zur Datenbank
+			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(getApplicationContext());	
+			SQLiteDatabase db = dbHelper.getReadableDatabase();
+			
+			String [] projection = { transEntry.K_COLUMN_NAME_BEZEICHNER };
+			String sortOrder = transEntry.K_COLUMN_NAME_BEZEICHNER;
+			
+			Cursor c = db.query(transEntry.TABLE_NAME_Kategorie,projection, null, null, null, null, sortOrder);
+			
+			//Jeden Wert in List hinzufuegen
+			while(c.moveToNext()){
+				list.add(c.getString(0));
+			}
+			
+			list.add("ohne Kategorie");
+		
+		
+		try{
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			kategorieSpin.setAdapter(dataAdapter);	
+			
+			kategorieSpin.setOnItemSelectedListener((OnItemSelectedListener) this);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}	
+		
+	}
+		
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+		
+		//Kleine Nachricht beim oeffnen der Activity
+		Toast.makeText(this, "Neue Einnahme", Toast.LENGTH_SHORT).show();
+		
+		//Elemente erkennen
+		TextView FeldZeit = (TextView) findViewById(R.id.textView_Uhrzeit);
+		TextView FeldDatum = (TextView) findViewById(R.id.textView_Datum);
+		
+		//Datum erkennen und setzen
+		String AktuellesDatum = DateFormat.getDateInstance().format(new Date());
+		FeldDatum.setText(AktuellesDatum);
+		
+		//Uhrzeit erkennen und setzen
+		String AktuelleUhrzeit = DateFormat.getTimeInstance().format(new Date());
+		FeldZeit.setText(AktuelleUhrzeit);
+	
+		
+	}
+	
+	@Override
+	public void startAct(){
+		
+		setContentView(R.layout.activity_einnahme);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.einnahme, menu);
+		return true;
+	}
+	
+	public void addEinnahme(View view){
+		
+		TextView datumFeld = (TextView) findViewById(R.id.textView_Datum);
+		TextView zeitFeld = (TextView) findViewById(R.id.textView_Uhrzeit);
+		EditText betragFeld = (EditText) findViewById(R.id.editText_Eingabe);
+		EditText anmerkungFeld = (EditText) findViewById(R.id.editText_Anmerkungen);
+		Spinner kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
+
+		//Neue Transaktionen ID ermitteln
+		Integer id = BudgetLoader.getNewTransaktionID(getApplicationContext());
+
+			try{
+				//Einnahme in die DB schreiben
+				BudgetLoader.addEinmaligeTransaktion(getApplicationContext(),
+						id, 
+						anmerkungFeld.getText().toString(), 
+						datumFeld.getText().toString(), 
+						zeitFeld.getText().toString(), 
+						kategorieSpin.getSelectedItem().toString(), 
+						betragFeld.getText().toString());
+				
+				//wenn kategorie 'ohne kategorie' nicht ausgewaehlt worden ist
+				if(kategorieSpin.getSelectedItem().toString()!="ohne Kategorie"){
+
+					//Betrag der Kategorie gutschreiben
+					BudgetLoader.addEinmaligeTransaktionToKategorie(getApplicationContext(), 
+							datumFeld.getText().toString(), 
+							kategorieSpin.getSelectedItem().toString(), 
+							betragFeld.getText().toString());
+			
+				}
+				
+				
+				//Nachricht ueber erfolgreiches speichern
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.setMessage("Einnahme gepeichert");
+				alert.setTitle("Erfolgreich");
+				alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						
+						finish();
+						
+						//zu Main wechseln
+						Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+						startActivity(intent);
+	
+					}
+				});
+				alert.setCancelable(true);
+				alert.create().show();
+				
+					}
+			
+			catch(Exception e){
+				e.printStackTrace();
+				
+				//Nachricht ueber NICHT erfolgreiches speichern
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.setMessage("Fehler");
+				alert.setTitle("Einnahme konnte nicht gespeichert werde.");
+				alert.setNegativeButton("OK", null);
+				alert.setCancelable(true);
+				alert.create().show();
+			}
+			
+		
+		
+		
+	}
+
+
+	//Wenn button pressed alle Eingaben zuruecksetzen und in MainActivity wechseln
+	public void abbrechen(View view){
+		//Elemente aufrufen
+		EditText betragFeld = (EditText) findViewById(R.id.editText_Eingabe);
+		EditText anmerkungFeld = (EditText) findViewById(R.id.editText_Anmerkungen);
+		Spinner kategorieSpin = (Spinner) findViewById(R.id.DropDown_Kategorien);
+		
+		//Elemente zuruecksetzen
+		betragFeld.setText("");
+		anmerkungFeld.setText("");
+		kategorieSpin.setSelection(0);
+		
+		//zu Main wechseln
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		
+	}	
+
+}

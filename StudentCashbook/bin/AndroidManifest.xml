@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="studentcashbook.activities.MainActivity"
+            android:name="uebersicht.MainActivity"
             android:label="@string/title_activity_main" />
         <activity
             android:name="login.LoginActivity"
@@ -29,64 +29,64 @@
             android:label="@string/title_activity_neuer_nutzer"
             android:parentActivityName="studentcashbook.activlogin.LoginActivity"/>
         <activity
-            android:name="studentcashbook.activities.EinnahmeActivity"
+            android:name="uebersicht.EinnahmeActivity"
             android:label="@string/title_activity_einnahme" >
         </activity>
         <activity
-            android:name="studentcashbook.activities.AusgabeActivity"
+            android:name="uebersicht.AusgabeActivity"
             android:label="@string/title_activity_ausgabe" >
         </activity>
         <activity
-            android:name="studentcashbook.activities.KategorienActivity"
+            android:name="kategorie.KategorienActivity"
             android:label="@string/title_activity_kategorien" >
         </activity>
         <activity
-            android:name="studentcashbook.activities.MonatEinnahmeActivity"
+            android:name="monatliches.MonatEinnahmeActivity"
             android:label="@string/title_activity_monat_einnahme"
-            android:parentActivityName="studentcashbook.activities.MonatlichesActivity" >
+            android:parentActivityName="monatliches.MonatlichesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
-            android:name="studentcashbook.activities.MonatAusgabeActivity"
+            android:name="studentcashbookmonatliches.MonatAusgabeActivity"
             android:label="@string/title_activity_monat_ausgabe"
-            android:parentActivityName="studentcashbook.activities.MonatlichesActivity" >
+            android:parentActivityName="monatliches.MonatlichesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
-            android:name="studentcashbook.activities.SparzielActivity"
+            android:name="sparziel.SparzielActivity"
             android:label="@string/title_activity_sparziel" >
         </activity>
         <activity
-            android:name="studentcashbook.activities.NeuesSparzielActivity"
+            android:name="sparziel.NeuesSparzielActivity"
             android:label="@string/title_activity_neues_sparziel" >
         </activity>
         <activity
-            android:name="studentcashbook.activities.EinstellungenActivity"
+            android:name="weiteres.EinstellungenActivity"
             android:label="@string/title_activity_einstellungen"
-            android:parentActivityName="studentcashbook.activities.MainActivity"
+            android:parentActivityName="uebersicht.MainActivity"
             android:theme="@style/Theme.SettingsBackground" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.MainActivity" />
         </activity>
         <activity
-            android:name="studentcashbook.activities.NeueKategorieActivity"
+            android:name="kategorie.NeueKategorieActivity"
             android:label="@string/title_activity_neue_kategorie"
-            android:parentActivityName="studentcashbook.activities.KategorienActivity" >
+            android:parentActivityName="kategorie.KategorienActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.KategorienActivity" />
         </activity>
         <activity
-            android:name="studentcashbook.activities.MonatlichesActivity"
+            android:name="monatliches.MonatlichesActivity"
             android:label="@string/title_activity_monatliches" >
         </activity>
         <activity
-            android:name="studentcashbook.activities.SplashScreen"
+            android:name="weiteres.SplashScreen"
             android:label="@string/title_activity_splash_screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -95,7 +95,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="studentcashbook.activities.PasswordZurueckActivity"
+            android:name="login.PasswordZurueckActivity"
             android:label="@string/title_activity_password_zurueck"
             android:theme="@style/Theme.passwortZurueck" >
         </activity>
@@ -114,7 +114,7 @@
         </receiver>
         
         <!-- receiver monatliche Abbuchungen -->
-        <receiver android:name="studentcashbook.activities.AutoLoader">
+        <receiver android:name="monatliches.AutoLoader">
     		<intent-filter>
         		<action android:name="android.intent.action.BOOT_COMPLETED"></action>
    		 	</intent-filter>

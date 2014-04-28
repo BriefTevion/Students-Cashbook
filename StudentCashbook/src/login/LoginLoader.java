@@ -1,5 +1,6 @@
 /*
  * Diese Klasse binhaltet alle Methoden zur Bearbeitugn des key-value-stores
+ * Speicherung der Daten erflgt mit einem Key-Value-Store
  */
 package login;
 

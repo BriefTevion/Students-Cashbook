@@ -3,7 +3,7 @@
  */
 package network;
 
-import studentcashbook.activities.MainActivity;
+import uebersicht.MainActivity;
 import android.os.AsyncTask;
 
 public class StartNetworkConnectAsync extends AsyncTask<String, Void, String> {

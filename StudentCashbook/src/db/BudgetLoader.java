@@ -153,9 +153,7 @@ public class BudgetLoader {
 	}
 	
 	
-	
-	
-	
+
 	//Sparbetrag eines Sparzieles erfragen
 	public static Integer getSparbetragOfTarget(Context context, String sparzielTitel){
 		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
@@ -180,7 +178,7 @@ public class BudgetLoader {
 		return sparbetrag;
 	}
 	
-	//Get Datum des Sparzieles
+	//Datum des Sparzieles abfragen
 	public static Cursor getDetailsOfSparziele(Context context){
 		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -202,25 +200,25 @@ public class BudgetLoader {
 	}
 	
 	//Details zu den Monatstransaktionen
-		public static Cursor getDetailsOfMonthlyTransaktionen(Context context){
-			TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
-			SQLiteDatabase db = dbHelper.getReadableDatabase();
+	public static Cursor getDetailsOfMonthlyTransaktionen(Context context){
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-			//GET aktuellen restbetrag der Kategorie
-			String [] projection = {
-					transEntry.COLUMN_NAME_KATEGORIE,
-					transEntry.COLUMN_NAME_DATUM,
-					transEntry.COLUMN_NAME_BETRAG
-			};
+		//GET aktuellen restbetrag der Kategorie
+		String [] projection = {
+				transEntry.COLUMN_NAME_KATEGORIE,
+				transEntry.COLUMN_NAME_DATUM,
+				transEntry.COLUMN_NAME_BETRAG
+		};
 
-			String sortOrder = transEntry.COLUMN_NAME_KATEGORIE;
+		String sortOrder = transEntry.COLUMN_NAME_KATEGORIE;
 
-				
-			Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder);
-			db.close();
-			return c;
 			
-		}
+		Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder);
+		db.close();
+		return c;
+		
+	}
 	
 
 	//neue Kategorie anlegen

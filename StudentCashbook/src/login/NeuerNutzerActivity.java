@@ -1,9 +1,10 @@
 /*
  * Diese Klasse beinhaltet alle Methoden um die Activity "Anlegen eines neuen Nutzers" zu bearbeiten.
+ * Anlegen des Users mit den Methoden der Klasse LoginLoader.
  */
 package login;
 
-import studentcashbook.activities.MainActivity;
+import uebersicht.MainActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;

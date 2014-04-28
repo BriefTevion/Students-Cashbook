@@ -32,6 +32,7 @@ public class NetworkConnect {
 			InputStream is = null;
 			
 			try{
+				//Serververbindung oeffnen
 				URL url = new URL("http://space-labs.appspot.com/repo/2185003/budget/api/tipps.sjs");
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				
@@ -43,12 +44,9 @@ public class NetworkConnect {
 				
 				String contentAsString = convertStreamToString(is);
 				
-				
+				//Daten auf Server abfragen
 				String tipp = parseDownload(contentAsString);
-				
 
-				
-				
 				return tipp;
 			}
 			
@@ -121,7 +119,7 @@ public class NetworkConnect {
 				  }
 				
 				  
-				 //zufaelliger Tipp
+				 //zufaelliger Tipp auswaehlen
 				  int randomTipp = (int) (Math.random()*a.length);
 				  
 				  	parsedString.append(a[randomTipp].getTitle() + "\n\n");

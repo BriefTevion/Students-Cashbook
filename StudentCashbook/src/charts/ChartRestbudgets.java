@@ -13,7 +13,7 @@ import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
-import studentcashbook.activities.MainActivity;
+import uebersicht.MainActivity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -42,6 +42,7 @@ public class ChartRestbudgets extends Fragment{
 	 @Override
      public View onCreateView(LayoutInflater inflater, ViewGroup container,
              Bundle savedInstanceState) {
+	   //Layout abfragen
        View windows = inflater.inflate(R.layout.chartrestbudgets_frag, container, false);
        RelativeLayout vG = (RelativeLayout) windows.findViewById(R.id.linearLayoutPieChart);
        TextView tv = (TextView) windows.findViewById(R.id.default_Pie);
