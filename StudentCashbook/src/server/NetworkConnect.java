@@ -114,19 +114,15 @@ public class NetworkConnect {
 				}
 			}
 		}
-		int randomTipp = 1;
-		// pruefen, dass auch wirklich text wiedergegeben wird
-		String description = "";
-		while (description.isEmpty()) {
-			// zufaelligen Tipp auswaehlen
-			description = "";
-			randomTipp = (int) (Math.random() * a.length);
-			parsedString.append(a[randomTipp].getTitle() + "\n\n");
-			parsedString.append(a[randomTipp].getDescription());
-			description = a[randomTipp].getDescription();
-
+		// zufaelligen Tipp auswaehlen
+		int randomTipp = (int) (Math.random() * a.length);
+		// Auswechseln bei Acht, da Fehler mit acht
+		if (randomTipp == 8) {
+			randomTipp = 7;
 		}
 
+		parsedString.append(a[randomTipp].getTitle() + "\n\n");
+		parsedString.append(a[randomTipp].getDescription());
 		parsedString.append("-" + a[randomTipp].getURL().toString());
 
 		return parsedString.toString();
