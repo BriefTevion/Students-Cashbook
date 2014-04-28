@@ -15,6 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class NetworkConnect {
 
 	// JSON Node names
@@ -96,7 +98,7 @@ public class NetworkConnect {
 			}
 
 		} catch (JSONException e) {
-			e.printStackTrace();
+			Log.v("test", e.getMessage());
 		}
 
 		TippsListEntry[] a = new TippsListEntry[al.size()];
@@ -112,16 +114,22 @@ public class NetworkConnect {
 				}
 			}
 		}
+		int randomTipp = 1;
+		// pruefen, dass auch wirklich text wiedergegeben wird
+		String description = "";
+		while (description.isEmpty()) {
+			// zufaelligen Tipp auswaehlen
+			description = "";
+			randomTipp = (int) (Math.random() * a.length);
+			parsedString.append(a[randomTipp].getTitle() + "\n\n");
+			parsedString.append(a[randomTipp].getDescription());
+			description = a[randomTipp].getDescription();
 
-		// zufaelliger Tipp auswaehlen
-		int randomTipp = (int) (Math.random() * a.length);
+		}
 
-		parsedString.append(a[randomTipp].getTitle() + "\n\n");
-		parsedString.append(a[randomTipp].getDescription());
 		parsedString.append("-" + a[randomTipp].getURL().toString());
 
 		return parsedString.toString();
 
 	}
-
 }
