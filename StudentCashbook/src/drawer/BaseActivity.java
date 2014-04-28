@@ -8,10 +8,10 @@ package drawer;
 import java.util.ArrayList;
 import java.util.List;
 
-import kategorie.KategorienActivity;
+import kategorien.KategorienActivity;
 import login.LoginActivity;
 import monatliches.MonatlichesActivity;
-import network.StartNetworkConnectForNotifications;
+import server.StartNetworkConnectForNotifications;
 import sparziel.SparzielActivity;
 import uebersicht.MainActivity;
 import android.app.NotificationManager;

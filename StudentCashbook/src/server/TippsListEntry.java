@@ -1,7 +1,7 @@
 /*
  * Diese Klasse stellt den Aufbau eines Tipss in der Tippslist dar.
  */
-package network;
+package server;
 
 public class TippsListEntry {
 

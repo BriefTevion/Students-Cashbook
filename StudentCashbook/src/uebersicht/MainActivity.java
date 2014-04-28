@@ -6,9 +6,10 @@ package uebersicht;
 import java.util.ArrayList;
 import java.util.List;
 
-import network.StartNetworkConnectAsync;
 
 import org.achartengine.GraphicalView;
+
+import server.StartNetworkConnectAsync;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

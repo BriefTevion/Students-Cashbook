@@ -1,7 +1,7 @@
 /*
  * Diese Klasse stellt Methoden zum Laden der Tipps-Daten vom Server "space-labs.appspot.com".
  */
-package network;
+package server;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -37,7 +37,7 @@
             android:label="@string/title_activity_ausgabe" >
         </activity>
         <activity
-            android:name="kategorie.KategorienActivity"
+            android:name="kategorien.KategorienActivity"
             android:label="@string/title_activity_kategorien" >
         </activity>
         <activity
@@ -74,9 +74,9 @@
                 android:value="com.example.studentcashbook.MainActivity" />
         </activity>
         <activity
-            android:name="kategorie.NeueKategorieActivity"
+            android:name="kategorien.NeueKategorieActivity"
             android:label="@string/title_activity_neue_kategorie"
-            android:parentActivityName="kategorie.KategorienActivity" >
+            android:parentActivityName="kategorien.KategorienActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studentcashbook.KategorienActivity" />

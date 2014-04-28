@@ -1,7 +1,7 @@
 /*
  * Diese Klasse beinhaltet alle Methoden um die Activity "Anlegen einer neuen Kategorie" zu bearbeiten.
  */
-package kategorie;
+package kategorien;
 
 import java.text.DateFormat;
 import java.util.Date;
