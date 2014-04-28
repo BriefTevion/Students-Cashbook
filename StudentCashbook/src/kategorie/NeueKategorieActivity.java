@@ -6,20 +6,11 @@ package kategorie;
 import java.text.DateFormat;
 import java.util.Date;
 
-
-import com.example.studentcashbook.R;
-
-import db.BudgetLoader;
-import db.TransaktionenDBHelper;
-import db.TransaktionenContract.transEntry;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -27,6 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.studentcashbook.R;
+
+import db.BudgetLoader;
 
 public class NeueKategorieActivity extends Activity {
 
@@ -71,66 +66,66 @@ public class NeueKategorieActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	//Button pressed, neue Kategorie hinzufuegen
-		public void createNewKategorie(View view){
-			EditText name = (EditText) findViewById(R.id.editText_Name);
-			EditText budget = (EditText) findViewById(R.id.editText_budget);
-			
-			String kName= name.getText().toString();
-			String kBudget;
-			
-			if (budget.getText().toString().matches("")){
-				kBudget = "0";
-			}
-			else{
-				kBudget = budget.getText().toString();
-				
-			}
-			
-			String restbetrag = kBudget;
 
-			String datum = DateFormat.getDateInstance().format(new Date());
-			
-			//neue Kategorie in DB-Tabelle schreiben
-			BudgetLoader.addKategorie(getApplicationContext(), kName, kBudget, restbetrag, datum);
-			
-			//Nachricht ueber erfolgreiches speichern
-			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Kategorie angelegt");
-			alert.setTitle("Erfolgreich");
-			alert.setNegativeButton("OK",new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					
-					dialog.cancel();
-					
-					changeToKategorien();
-					
-				}
-			});
+	// Button pressed, neue Kategorie hinzufuegen
+	public void createNewKategorie(View view) {
+		EditText name = (EditText) findViewById(R.id.editText_Name);
+		EditText budget = (EditText) findViewById(R.id.editText_budget);
 
-			alert.setCancelable(true);
-			alert.create().show();
-	
+		String kName = name.getText().toString();
+		String kBudget;
+
+		if (budget.getText().toString().matches("")) {
+			kBudget = "0";
+		} else {
+			kBudget = budget.getText().toString();
+
 		}
-		
-		//zur Uebersicht der Kategorien wechseln
-		public void changeToKategorien(){
-			Intent intent = new Intent(getApplicationContext(), KategorienActivity.class);	
-			startActivity(intent);			
-		}
-			
-		//Wenn Button ABBRECHEN geklickt
-		public void abbrechen(View view){
-			EditText name = (EditText) findViewById(R.id.editText_Name);
-			EditText budget = (EditText) findViewById(R.id.editText_budget);
-			
-			name.setText("");
-			budget.setText("");
-			
-			changeToKategorien();
-			
-			
-		}
+
+		String restbetrag = kBudget;
+
+		String datum = DateFormat.getDateInstance().format(new Date());
+
+		// neue Kategorie in DB-Tabelle schreiben
+		BudgetLoader.addKategorie(getApplicationContext(), kName, kBudget,
+				restbetrag, datum);
+
+		// Nachricht ueber erfolgreiches speichern
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setMessage("Kategorie angelegt");
+		alert.setTitle("Erfolgreich");
+		alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+
+				dialog.cancel();
+
+				changeToKategorien();
+
+			}
+		});
+
+		alert.setCancelable(true);
+		alert.create().show();
+
+	}
+
+	// zur Uebersicht der Kategorien wechseln
+	public void changeToKategorien() {
+		Intent intent = new Intent(getApplicationContext(),
+				KategorienActivity.class);
+		startActivity(intent);
+	}
+
+	// Wenn Button ABBRECHEN geklickt
+	public void abbrechen(View view) {
+		EditText name = (EditText) findViewById(R.id.editText_Name);
+		EditText budget = (EditText) findViewById(R.id.editText_budget);
+
+		name.setText("");
+		budget.setText("");
+
+		changeToKategorien();
+
+	}
 
 }

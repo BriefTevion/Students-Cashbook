@@ -1,9 +1,8 @@
 /*
  * Diese Klasse laedt den ersten Screen(Splash Screen) der App fuer drei Sekunden.
  */
-package weiteres;
+package login;
 
-import login.LoginActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,32 +13,31 @@ import com.example.studentcashbook.R;
 
 public class SplashScreen extends Activity {
 
-	//Timer fuer den Splash Screen
+	// Timer fuer den Splash Screen
 	private static int SPLASH_TIME_OUT = 3000;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
-		
+
 		new Handler().postDelayed(new Runnable() {
-			 
-            /*
-             * Splash screen mit Timer anzeigen, um Unterstützer anzuzeigen
-             */
- 
-            @Override
-            public void run() {
-                
-            	
-                // Start LoginActivity
-                Intent i = new Intent(SplashScreen.this, LoginActivity.class);
-                startActivity(i);
- 
-                // Splash schliessen
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+
+			/*
+			 * Splash screen mit Timer anzeigen, um Unterstützer anzuzeigen
+			 */
+
+			@Override
+			public void run() {
+
+				// Start LoginActivity
+				Intent i = new Intent(SplashScreen.this, LoginActivity.class);
+				startActivity(i);
+
+				// Splash schliessen
+				finish();
+			}
+		}, SPLASH_TIME_OUT);
 	}
 
 	@Override

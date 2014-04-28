@@ -6,18 +6,14 @@ package monatliches;
 import java.text.DateFormat;
 import java.util.Date;
 
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,22 +22,18 @@ import android.widget.EditText;
 import com.example.studentcashbook.R;
 
 import db.BudgetLoader;
-import db.TransaktionenDBHelper;
-import db.TransaktionenContract.transEntry;
 
-public class MonatEinnahmeActivity extends Activity  {
+public class MonatEinnahmeActivity extends Activity {
 
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_monat_einnahme);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
+
 	}
-	
+
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */
@@ -51,7 +43,7 @@ public class MonatEinnahmeActivity extends Activity  {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -68,7 +60,6 @@ public class MonatEinnahmeActivity extends Activity  {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -76,73 +67,66 @@ public class MonatEinnahmeActivity extends Activity  {
 		getMenuInflater().inflate(R.menu.monat_einnahme, menu);
 		return true;
 	}
-	
-	public void addMonatlicheEinnahme(View view){
+
+	public void addMonatlicheEinnahme(View view) {
 		EditText name = (EditText) findViewById(R.id.editText_Name);
 		EditText betrag = (EditText) findViewById(R.id.editText_betrag);
 		EditText tag = (EditText) findViewById(R.id.editText_Tag);
-		
+
 		String tagString;
-		if(tag.getText().toString().isEmpty() || tag.getText().toString()=="0"){
+		if (tag.getText().toString().isEmpty()
+				|| tag.getText().toString() == "0") {
 			tagString = "1";
-		}
-		else{
+		} else {
 			tagString = tag.getText().toString();
 		}
-		
-		
-		
+
 		String datum = DateFormat.getDateInstance().format(new Date());
-		try{
-			//neue monatliche Einnahme in die DB-Tabelle schreiben
-			BudgetLoader.addMonatlicheTransaktion(getApplicationContext(), 
-					name.getText().toString(), 
-					betrag.getText().toString(), 
-					datum, 
+		try {
+			// neue monatliche Einnahme in die DB-Tabelle schreiben
+			BudgetLoader.addMonatlicheTransaktion(getApplicationContext(), name
+					.getText().toString(), betrag.getText().toString(), datum,
 					tagString);
-			
-			//Nachricht ueber erfolgreiches speichern
+
+			// Nachricht ueber erfolgreiches speichern
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
 			alert.setMessage("Geschäft angelegt");
 			alert.setTitle("Erfolgreich");
-			alert.setNegativeButton("OK",new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					
-					dialog.cancel();
-					
-					changeToMonatlichUebersicht();
-					
-				}
-			});
-	
+			alert.setNegativeButton("OK",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+
+							dialog.cancel();
+
+							changeToMonatlichUebersicht();
+
+						}
+					});
+
 			alert.setCancelable(true);
 			alert.create().show();
-			
-			}
-			catch(Exception e){
-				
-			}
-	}
-	
-	
-	public void changeToMonatlichUebersicht(){
-		Intent intent = new Intent(getApplicationContext(), MonatlichesActivity.class);	
-		startActivity(intent);
-		
-	}
-	
-	
-	public void abbrechen(View view){
-		EditText name = (EditText) findViewById(R.id.editText_Name);
-		EditText budget = (EditText) findViewById(R.id.editText_betrag);
-		
-		name.setText("");
-		budget.setText("");
-		
-		changeToMonatlichUebersicht();
-		
-		
+
+		} catch (Exception e) {
+
+		}
 	}
 
-	
+	public void changeToMonatlichUebersicht() {
+		Intent intent = new Intent(getApplicationContext(),
+				MonatlichesActivity.class);
+		startActivity(intent);
+
+	}
+
+	public void abbrechen(View view) {
+		EditText name = (EditText) findViewById(R.id.editText_Name);
+		EditText budget = (EditText) findViewById(R.id.editText_betrag);
+
+		name.setText("");
+		budget.setText("");
+
+		changeToMonatlichUebersicht();
+
+	}
+
 }

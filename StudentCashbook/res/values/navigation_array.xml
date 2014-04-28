@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Array mit den Items für den Navigationdrawer -->
 <resources>
     <string-array
         name="string_array_navigation_drawer"

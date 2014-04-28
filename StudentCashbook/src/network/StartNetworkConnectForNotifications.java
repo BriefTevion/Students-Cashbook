@@ -3,27 +3,28 @@
  */
 package network;
 
-import drawer.BaseActivity;
 import android.os.AsyncTask;
+import drawer.BaseActivity;
 
-public class StartNetworkConnectForNotifications extends AsyncTask<String, Void, String> {
+public class StartNetworkConnectForNotifications extends
+		AsyncTask<String, Void, String> {
 
-		@Override
-		protected String doInBackground(String... urls){
-			NetworkConnect nc = new NetworkConnect();
-			try{
-				return nc.downloadTipps();
-				
-			}catch(Exception e){
-				return e.getMessage();
-			}
-		
+	@Override
+	protected String doInBackground(String... urls) {
+		NetworkConnect nc = new NetworkConnect();
+		try {
+			return nc.downloadTipps();
+
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+
 	}
-		
-		// onPostExecute displays the results of the AsyncTask.	
-	 	@Override	
-	 	protected void onPostExecute(String tipp) {
-	 		BaseActivity.sendNotification(tipp);
-	 	}
-		
+
+	// onPostExecute displays the results of the AsyncTask.
+	@Override
+	protected void onPostExecute(String tipp) {
+		BaseActivity.sendNotification(tipp);
 	}
+
+}

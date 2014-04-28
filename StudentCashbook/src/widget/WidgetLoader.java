@@ -3,14 +3,6 @@
  */
 package widget;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-import db.TransaktionenDBHelper;
-import db.TransaktionenContract.transEntry;
-
-import uebersicht.MainActivity.itemListData;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -18,58 +10,62 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.RemoteViews;
+import db.TransaktionenContract.transEntry;
+import db.TransaktionenDBHelper;
 
 public class WidgetLoader extends AppWidgetProvider {
 	RemoteViews remoteViews;
 	AppWidgetManager appWidgetManager;
 	ComponentName thisWidget;
-	
-	//wenn das Widget updated, wird folgende Methode aufgerufen
+
+	// wenn das Widget updated, wird folgende Methode aufgerufen
 	@Override
-	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
+			int[] appWidgetIds) {
 		this.appWidgetManager = appWidgetManager;
-		remoteViews = new RemoteViews(context.getPackageName(),com.example.studentcashbook.R.layout.widgetlayout );
+		remoteViews = new RemoteViews(context.getPackageName(),
+				com.example.studentcashbook.R.layout.widgetlayout);
 		thisWidget = new ComponentName(context, WidgetLoader.class);
-		
-		//neue Daten abfragen
+
+		// neue Daten abfragen
 		String daten = getDataForWidget(context);
-		
-		//Daten in Widget schreiben
-		remoteViews.setTextViewText(com.example.studentcashbook.R.id.textView1_widget, daten);
+
+		// Daten in Widget schreiben
+		remoteViews.setTextViewText(
+				com.example.studentcashbook.R.id.textView1_widget, daten);
 		appWidgetManager.updateAppWidget(thisWidget, remoteViews);
-		
+
 	}
-	
-	//Daten abfragen
-	public String getDataForWidget(Context context){
-		//Zugang zur Datenbank
-		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);	
+
+	// Daten abfragen
+	public String getDataForWidget(Context context) {
+		// Zugang zur Datenbank
+		TransaktionenDBHelper dbHelper = new TransaktionenDBHelper(context);
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-		String [] projection = {
-				transEntry.COLUMN_NAME_TRANSAKTION_ID,
-				transEntry.COLUMN_NAME_DATUM,
-				transEntry.COLUMN_NAME_BETRAG,
-				transEntry.COLUMN_NAME_KATEGORIE
-		};
-		
+		String[] projection = { transEntry.COLUMN_NAME_TRANSAKTION_ID,
+				transEntry.COLUMN_NAME_DATUM, transEntry.COLUMN_NAME_BETRAG,
+				transEntry.COLUMN_NAME_KATEGORIE };
+
 		String sortOrder = transEntry.COLUMN_NAME_TRANSAKTION_ID + " DESC";
-		
-		Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null, null, null, sortOrder, "3");
-		
-		String data="";
-		
-		if(c.getCount()>1){
-		
-			//Daten erhalten
-			while(c.moveToNext()){
-				data = data + c.getString(1) + " " + c.getString(3) + "    " + c.getString(2) + "€\n";
+
+		Cursor c = db.query(transEntry.TABLE_NAME, projection, null, null,
+				null, null, sortOrder, "3");
+
+		String data = "";
+
+		if (c.getCount() > 1) {
+
+			// Daten erhalten
+			while (c.moveToNext()) {
+				data = data + c.getString(1) + " " + c.getString(3) + "    "
+						+ c.getString(2) + "€\n";
 			}
-			
+
 		}
 		db.close();
 		return data;
-	
+
 	}
-	
+
 }

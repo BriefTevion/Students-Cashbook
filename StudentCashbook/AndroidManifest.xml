@@ -65,7 +65,7 @@
             android:label="@string/title_activity_neues_sparziel" >
         </activity>
         <activity
-            android:name="weiteres.EinstellungenActivity"
+            android:name="einstellungen.EinstellungenActivity"
             android:label="@string/title_activity_einstellungen"
             android:parentActivityName="uebersicht.MainActivity"
             android:theme="@style/Theme.SettingsBackground" >
@@ -86,8 +86,9 @@
             android:label="@string/title_activity_monatliches" >
         </activity>
         <activity
-            android:name="weiteres.SplashScreen"
+            android:name="login.SplashScreen"
             android:label="@string/title_activity_splash_screen" >
+            <!-- Diesen Screen als Startbildschirm setzen -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

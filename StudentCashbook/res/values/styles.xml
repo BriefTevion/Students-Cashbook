@@ -12,19 +12,19 @@
         -->
     </style>
 
-    <!-- Application theme. -->
+    <!-- Benutzerdefiniertes Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:actionBarStyle">@style/studentCashbooksBar</item>
     </style>
     
-    <!-- Action Bar Styling -->
+    <!-- Benutzerdefiniertes Action Bar Styling -->
     <style name="studentCashbooksBar" parent="@android:style/Widget.Holo.Light.ActionBar"> 
         <item name="android:background">#04031A</item>
         <item name="android:titleTextStyle">@style/studentCashbooksBarTitleText</item>
     </style>
     
-    <!-- ActionBar title text Styling -->
+    <!-- Benutzerdefiniertes ActionBar title text Styling -->
     <style name="studentCashbooksBarTitleText" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">#ffffff</item>
         <item name="android:fontFamily">sans-serif-thin</item>

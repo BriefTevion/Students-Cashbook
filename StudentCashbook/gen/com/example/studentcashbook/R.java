@@ -60,13 +60,13 @@ public final class R {
         public static final int DropDown_Kategorien=0x7f0b0005;
         public static final int Passwort=0x7f0b0014;
         public static final int Pswdzuruecksetzen=0x7f0b0012;
-        public static final int action_add=0x7f0b0041;
-        public static final int action_nAusgabe=0x7f0b0044;
-        public static final int action_nEinnahme=0x7f0b0043;
+        public static final int action_add=0x7f0b0040;
+        public static final int action_nAusgabe=0x7f0b0043;
+        public static final int action_nEinnahme=0x7f0b0042;
         public static final int action_nMonatlicheAusgabe=0x7f0b0046;
         public static final int action_nMonatlicheEinnahme=0x7f0b0045;
-        public static final int action_settings=0x7f0b0040;
-        public static final int action_tipp=0x7f0b0042;
+        public static final int action_settings=0x7f0b0044;
+        public static final int action_tipp=0x7f0b0041;
         public static final int alert_passwordNeu=0x7f0b0033;
         public static final int anlegen=0x7f0b0022;
         public static final int button1=0x7f0b003b;
@@ -171,7 +171,6 @@ public final class R {
         public static final int password_zurueck=0x7f0a000d;
         public static final int sparziel=0x7f0a000e;
         public static final int splash_screen=0x7f0a000f;
-        public static final int test=0x7f0a0010;
     }
     public static final class string {
         public static final int Anlegen=0x7f08000e;
@@ -286,16 +285,16 @@ public final class R {
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f090000;
-        /**  Application theme. 
+        /**  Benutzerdefiniertes Application theme. 
          */
         public static final int AppTheme=0x7f090001;
         public static final int Main_button_text=0x7f090004;
         public static final int Theme_SettingsBackground=0x7f090006;
         public static final int Theme_passwortZurueck=0x7f090007;
-        /**  Action Bar Styling 
+        /**  Benutzerdefiniertes Action Bar Styling 
          */
         public static final int studentCashbooksBar=0x7f090002;
-        /**  ActionBar title text Styling 
+        /**  Benutzerdefiniertes ActionBar title text Styling 
          */
         public static final int studentCashbooksBarTitleText=0x7f090003;
         public static final int trivial_button_text=0x7f090005;
