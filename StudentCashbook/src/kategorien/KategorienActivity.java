@@ -1,17 +1,11 @@
 /*
  * Diese Klasse beinhaltet alle Methoden um die Activity "Kategorien" zu bearbeiten.
- * Au??erdem beinhaltet sie alle Methoden zur Bearbeitung dieser Liste.
+ * Ausserdem beinhaltet sie alle Methoden zur Bearbeitung dieser Liste.
  */
 package kategorien;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.studentcashbook.R;
-
-import db.TransaktionenDBHelper;
-import db.TransaktionenContract.transEntry;
-import drawer.BaseActivity;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -30,6 +24,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.studentcashbook.R;
+
+import db.TransaktionenContract.transEntry;
+import db.TransaktionenDBHelper;
+import drawer.BaseActivity;
 
 public class KategorienActivity extends BaseActivity {
 
@@ -55,10 +55,10 @@ public class KategorienActivity extends BaseActivity {
 
 		// Nachfragen ob item sicher geloescht werden moechte
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		alert.setMessage("M??chtest du diese Kategorie l??schen?");
-		alert.setTitle("L??schen bestatigen");
-		alert.setNegativeButton("Nicht L??schen", null);
-		alert.setPositiveButton("L??schen",
+		alert.setMessage("Möchtest du diese Kategorie löschen?");
+		alert.setTitle("Löschen bestatigen");
+		alert.setNegativeButton("Nicht Löschen", null);
+		alert.setPositiveButton("Löschen",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 
@@ -88,7 +88,7 @@ public class KategorienActivity extends BaseActivity {
 
 		} catch (Exception e) {
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setMessage("Eintrag konnte nicht gel??scht werden");
+			alert.setMessage("Eintrag konnte nicht gelöscht werden");
 			alert.setTitle("Fehlgeschlagen");
 			alert.setNegativeButton(name, null);
 			alert.setCancelable(true);
@@ -238,14 +238,14 @@ public class KategorienActivity extends BaseActivity {
 
 			if (Integer.parseInt(data.budget) == 0) {
 				img.setImageResource(R.drawable.ic_action_labels);
-				rest.setText(data.rest + "???");
+				rest.setText(data.rest + "€");
 			} else if ((Integer.parseInt(data.rest) / Integer
 					.parseInt(data.budget)) > 0.3) {
 				img.setImageResource(R.drawable.ic_action_good);
-				rest.setText(data.rest + "??? von " + data.budget + "??? ??brig");
+				rest.setText(data.rest + "€ von " + data.budget + "€ übrig");
 			} else {
 				img.setImageResource(R.drawable.ic_action_bad);
-				rest.setText(data.rest + "??? von " + data.budget + "??? ??brig");
+				rest.setText(data.rest + "€ von " + data.budget + "€ übrig");
 			}
 
 			name.setText(data.name);
