@@ -50,7 +50,8 @@ public class PasswordZurueckActivity extends Activity {
 		}
 
 		// Daten vergleichen
-		int resultPswd = nameInputEncrypt.compareTo(secureInput);
+		int resultPswd = nameInputEncrypt.compareTo(CryptHelper
+				.toHex(secureInput));
 
 		// Wenn Passwort uebereinstimmend
 		if (resultPswd == 0) {
