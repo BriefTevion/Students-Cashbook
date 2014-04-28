@@ -159,7 +159,14 @@ public class BaseActivity extends FragmentActivity {
 			startActivity(intent6);
 			if (EinstellungenActivity.getKeyTippNotifications() == true) {
 				try {
-					startNotificationContentDownload();
+					// pruefen der Internetverbindung
+					ConnectivityManager connMgr = (ConnectivityManager) mcontext
+							.getSystemService(Context.CONNECTIVITY_SERVICE);
+					NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+					if (networkInfo != null && networkInfo.isConnected()) {
+						startNotificationContentDownload();
+					}
+
 				} catch (Exception e) {
 					Log.v("test", e.getMessage());
 				}

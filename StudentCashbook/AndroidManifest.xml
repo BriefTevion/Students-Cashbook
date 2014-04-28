@@ -49,7 +49,7 @@
                 android:value="com.example.studentcashbook.MonatlichesActivity" />
         </activity>
         <activity
-            android:name="studentcashbookmonatliches.MonatAusgabeActivity"
+            android:name="monatliches.MonatAusgabeActivity"
             android:label="@string/title_activity_monat_ausgabe"
             android:parentActivityName="monatliches.MonatlichesActivity" >
             <meta-data

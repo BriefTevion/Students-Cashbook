@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,10 +28,14 @@ public class MonatAusgabeActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_monat_ausgabe);
-		// Show the Up button in the action bar.
-		setupActionBar();
+		try {
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_monat_ausgabe);
+			// Show the Up button in the action bar.
+			setupActionBar();
+		} catch (Exception e) {
+			Log.v("test", e.getMessage());
+		}
 
 	}
 
@@ -68,6 +73,7 @@ public class MonatAusgabeActivity extends Activity {
 		return true;
 	}
 
+	// neue monatliche Ausgabe hinzufuegen
 	public void addMonatlicheAusgabe(View view) {
 		EditText name = (EditText) findViewById(R.id.editText_Name);
 		EditText betragF = (EditText) findViewById(R.id.editText_betrag);
@@ -111,6 +117,7 @@ public class MonatAusgabeActivity extends Activity {
 		}
 	}
 
+	// zurueck zur Uebersicht wechseln
 	public void changeToMonatlichUebersicht() {
 		Intent intent = new Intent(getApplicationContext(),
 				MonatlichesActivity.class);
@@ -118,6 +125,7 @@ public class MonatAusgabeActivity extends Activity {
 
 	}
 
+	// Button ABBRECHEN geklickt
 	public void abbrechen(View view) {
 		EditText name = (EditText) findViewById(R.id.editText_Name);
 		EditText budget = (EditText) findViewById(R.id.editText_betrag);

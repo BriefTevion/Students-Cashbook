@@ -80,6 +80,7 @@ public class MonatlichesActivity extends BaseActivity {
 		}
 	}
 
+	// zur neuen monatlichen Ausgabe wechseln
 	private void openNeuMonAusgabe() {
 		Intent intent = new Intent(getApplicationContext(),
 				MonatAusgabeActivity.class);
@@ -87,6 +88,7 @@ public class MonatlichesActivity extends BaseActivity {
 
 	}
 
+	// zur neuen monatlichen Einnahme wechseln
 	private void openNeuMonEinnahme() {
 		Intent intent = new Intent(getApplicationContext(),
 				MonatEinnahmeActivity.class);

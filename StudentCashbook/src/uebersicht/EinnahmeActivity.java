@@ -21,7 +21,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.studentcashbook.R;
 
@@ -78,9 +77,6 @@ public class EinnahmeActivity extends BaseActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-
-		// Kleine Nachricht beim oeffnen der Activity
-		Toast.makeText(this, "Neue Einnahme", Toast.LENGTH_SHORT).show();
 
 		// Elemente erkennen
 		TextView FeldZeit = (TextView) findViewById(R.id.textView_Uhrzeit);

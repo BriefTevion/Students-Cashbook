@@ -186,11 +186,18 @@ public class MainActivity extends BaseActivity {
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-		progressDia = ProgressDialog.show(mContext, "", "Tipps laden...", true);
-
 		if (networkInfo != null && networkInfo.isConnected()) {
+			progressDia = ProgressDialog.show(mContext, "", "Tipps laden...",
+					true);
 			StartNetworkConnectAsync downloadTask = new StartNetworkConnectAsync();
 			downloadTask.execute();
+		} else {
+			AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+			alert.setMessage("Keine oder schlechte Interetverbindung!");
+			alert.setTitle("Achtung");
+			alert.setPositiveButton("OK", null);
+			alert.setCancelable(true);
+			alert.create().show();
 		}
 	}
 
