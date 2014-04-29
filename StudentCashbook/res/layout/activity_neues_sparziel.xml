@@ -32,8 +32,10 @@
 
             <EditText
                 android:id="@+id/editText_Titel"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="50sp"
+                android:layout_marginLeft="25sp"
+                android:layout_marginRight="25sp"
                 android:layout_below="@+id/textView_Sparziel"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="35dp"
@@ -47,11 +49,13 @@
 
             <EditText
                 android:id="@+id/editText_BetragInput"
-                android:layout_width="140dp"
+                android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_below="@+id/editText_Titel"
                 android:layout_alignRight="@+id/editText_Titel"
-                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/editText_datumEingabe"
+                android:layout_marginTop="15sp"
+                android:layout_marginLeft="10sp"
                 android:background="#ffffff"
                 android:ems="10"
                 android:fontFamily="sans-serif-thin"
@@ -63,7 +67,7 @@
 
             <EditText
                 android:id="@+id/editText_datumEingabe"
-                android:layout_width="140sp"
+                android:layout_width="120sp"
                 android:layout_height="50sp"
                 android:layout_below="@+id/editText_Titel"
                 android:layout_alignLeft="@+id/editText_Titel"
@@ -117,10 +121,12 @@
 
             <Button
                 android:id="@+id/button_Anlegen"
-                android:layout_width="140dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/seekBar_Betrag"
                 android:layout_alignRight="@+id/textView_Sparbetrag"
+                android:layout_toRightOf="@+id/button_Abbrechen"
+                android:layout_marginLeft="10sp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/styledbutton2"
                 android:clickable="true"
@@ -131,7 +137,7 @@
                 
             <Button
                 android:id="@+id/button_Abbrechen"
-                android:layout_width="140dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/seekBar_Betrag"
                 android:layout_alignLeft="@+id/seekBar_Betrag"

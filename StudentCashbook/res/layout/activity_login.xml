@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25sp"
@@ -39,11 +39,13 @@
     
     <EditText
         android:id="@+id/Passwort"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30sp"
+        android:layout_marginLeft="25sp"
+        android:layout_marginRight="25sp"
         android:background="#ffffff"
         android:ems="10"
         android:gravity="center"
@@ -58,11 +60,13 @@
     <Button
         android:id="@+id/Anmeldung"
         style="@style/Main_button_text"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/Passwort"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/Passwort"
         android:layout_marginTop="28sp"
+        android:layout_marginLeft="25sp"
+        android:layout_marginRight="25sp"
         android:background="@drawable/styledbutton2"
         android:clickable="true"
         android:fontFamily="sans-serif-thin"

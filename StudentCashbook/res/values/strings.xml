@@ -73,7 +73,7 @@
     <string name="pref_summary_tipps_auto">Tipps automatisch nach neuer Ausgabe anzeigen</string>
     <string name="pref_summary_sprache_change">Sprache ändern (Derzeit nicht möglich)</string>
     <string name="pref_tipps_einstellungen_title">Tipps</string>
-    <string name="pref_title_tipps_auto">Automatiches Anzeigen</string>
+    <string name="pref_title_tipps_auto">Automatiches Anzeigen nach Ausgabe</string>
     <string name="pref_sprache_einstellungen_title">Sprache</string>
     <string name="pref_title_sprache_change">Deutsch</string>
     <string name="pref_passwort_einstellungen_title">Passwort</string>
@@ -83,9 +83,11 @@
     <string name="eingabe_secureFrage">Name</string>
     <string name="neuesPassword">Gib dein neues Passwort ein:</string>
     <string name="title_activity_password_zurueck">Passwort zurücksetzen</string>
-    <string name="pref_summary_tipps_notifications">Benachrichtigungen</string>
-    <string name="pref_title_tipps_notifications">Erhalte regelmäßige Tipps-Benachrichtigungen</string>
+    <string name="pref_summary_tipps_notifications">Erhalte regelmäßige Tipps-Benachrichtigungen</string>
+    <string name="pref_title_tipps_notifications">Benachrichtigungen</string>
     <string name="title_activity_test">Test</string>
     <string name="widgetTitle">Letzten Transaktionen:</string>
+    <string name="monat_title">Neu</string>
+    <string name="monat_tag_hint">Tag</string>
 
 </resources>

@@ -221,6 +221,8 @@ public final class R {
         public static final int hello_world=0x7f080004;
         public static final int kategorieUebersicht=0x7f080038;
         public static final int login=0x7f08002f;
+        public static final int monat_tag_hint=0x7f080059;
+        public static final int monat_title=0x7f080058;
         public static final int neueKategorie=0x7f080037;
         public static final int neuerName=0x7f080033;
         public static final int neuesMon=0x7f08003f;

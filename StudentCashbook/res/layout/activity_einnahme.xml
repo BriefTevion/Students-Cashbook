@@ -43,10 +43,12 @@
             
             <Spinner
                 android:id="@+id/DropDown_Kategorien"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_Uhrzeit"
                 android:layout_centerHorizontal="true"
+                android:layout_marginLeft="25sp"
+        		android:layout_marginRight="25sp"
                 android:layout_marginTop="25sp"
                 android:gravity="center"
                 android:textColor="#ffffff"
@@ -56,11 +58,12 @@
             
              <EditText
                  android:id="@+id/editText_Eingabe"
-                 android:layout_width="300dp"
+                 android:layout_width="match_parent"
                  android:layout_height="50dp"
                  android:layout_alignTop="@+id/DropDown_Kategorien"
-                 android:layout_marginLeft="5dp"
                  android:layout_marginTop="80sp"
+                 android:layout_marginLeft="25sp"
+        		 android:layout_marginRight="25sp"
                  android:background="#ffffff"
                  android:ems="10"
                  android:gravity="center"
@@ -75,11 +78,13 @@
 
             <EditText
                 android:id="@+id/editText_Anmerkungen"
-                android:layout_width="300dp"
-                android:layout_height="80dp"
+                android:layout_width="match_parent"
+                android:layout_height="80sp"
                 android:layout_below="@+id/editText_Eingabe"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="35sp"
+                android:layout_marginLeft="25sp"
+        		android:layout_marginRight="25sp"
                 android:background="#ffffff"
                 android:ems="10"
                 android:fontFamily="sans-serif-thin"
@@ -89,7 +94,7 @@
             
             <Button 
                 android:id="@+id/button_einnahmeAbbrechen"
-                android:layout_width="140sp"
+                android:layout_width="120sp"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/editText_Anmerkungen"
                 android:layout_below="@+id/editText_Anmerkungen"
@@ -104,11 +109,13 @@
 
             <Button
                 android:id="@+id/button_einnahmeBestaetigen"
-                android:layout_width="140sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/editText_Anmerkungen"
+                android:layout_toRightOf="@+id/button_einnahmeAbbrechen"
                 android:layout_below="@+id/editText_Anmerkungen"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="25sp"
                 android:background="@drawable/styledbutton2"
                 android:fontFamily="sans-serif"
                 android:onClick="addEinnahme"
